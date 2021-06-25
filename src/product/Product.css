@@ -1,0 +1,238 @@
+ul.searchproduct{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+div.total-wrap{
+    float: left;
+}
+
+
+div.header{
+    
+    display: flex;
+    justify-content: space-between;
+    min-width: 60%; 
+    width: 60%;
+    margin-left: 25%;
+}
+
+div.dsecImage{
+    
+    width: 410px;
+    height: 410px;
+    flex-grow: 1;
+    min-width: 410px;
+    margin-right: 3%;
+}
+
+img.productImage{
+    width: 100%;
+    height: 100%;
+}
+
+ul.otherProduct-ul li{
+    margin-right: 50px;
+    width: 230px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+ul.searchproduct li{
+    margin-right: 50px;
+    width: 230px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+div.namedesc{
+    margin: 5px 0px 0px;
+}
+
+div.name{
+    font-weight: bold;
+}
+
+div.desc{
+    color: #aaa;
+}
+
+em.sale{
+    color: #AE0000;
+}
+
+div.productlist{
+    margin-left: 18%;
+    margin-top: 5%;
+    width: 75%;
+}
+div.productdesc{
+    width: 479px;
+    height: 450px;
+    font-size: 10pt;
+    flex-grow: 1;
+    margin-left: 3%;
+}
+
+div.dsecImage{
+    max-width: 410px;
+    max-height: 410px;
+}
+
+button.cart{
+    border: 1px solid #346aff;
+    color: #346aff;
+    width: 192px;
+    height: 42px;
+    font-size: 16pt;
+    margin: 0px 15px 0px 0px;
+    background-color: white;
+}
+
+button.perchase{
+    background-color: #346aff;
+    color: white;
+    width: 192px;
+    height: 42px;
+    font-size: 16pt;
+    margin: 0px 15px 0px 0px;
+}
+
+div.productStar{
+    border-bottom: 1px solid rgb(172, 170, 170);
+    height: 30px;
+    vertical-align: middle;
+}
+
+div.productPrice{
+    border-bottom: 0.5px solid rgb(207, 205, 205);
+    height: 40px;
+}
+
+div.productSize{
+    margin-top: 20px;
+}
+
+div.seller{
+    margin-top: 10px;
+}
+
+div.productSeller{
+    border-bottom: 0.5px solid rgb(207, 205, 205);
+    height: 50px;
+}
+
+div.productSizeColor{
+    border-bottom: 0.5px solid rgb(207, 205, 205);
+    height: 50px;
+}
+
+
+div.cartPerchase{
+    margin-top: 10px;
+    text-align: center;
+}
+
+div.otherProduct{
+    width : 80%;
+    margin-left: 23%;
+}
+
+div.productMenuBar{
+    margin-left: 18%;
+    width: 75%;
+}
+
+ul.productMenuBarUl li{
+    display: inline-block;
+    list-style: none;
+    border-top: 2px solid #555555;
+    border-right: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    width: 32%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: #FAFAFA;
+    color: #555555;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div.product-detail-desc{
+    width : 75%;
+    margin-left: 12%;
+    text-align: center;
+}
+
+div.product-question-desc{
+    width : 75.5%;
+    margin-left: 9.5%;
+}
+
+div.product-question-desc-header{
+    margin-left: 12%;
+    width: 83%;
+    height: 1000px;
+    border:1px solid #aaa;
+}
+
+ul.product-question-desc{
+    margin-left: 2%;
+}
+
+div.product-question-body-wrap{
+    border-left: none;
+    border-right: none;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    border-top: 2px solid #555555;
+}
+
+div.product-question-body{
+    border-left: none;
+    border-right: none;
+    
+}
+
+div.product-question-body2{
+    margin: 2%;
+    border-bottom: 1px solid #aaa;
+}
+
+span.product-question-writeday{
+    float: right;
+    color: #aaa;
+}
+
+div.question-reply-wrap{
+    border-top: 1px solid #aaa;
+    background-color: rgb(250, 248, 248);
+}
+
+div.product-review{
+    border: 1px solid black;
+    width: 83%;
+    width : 75.5%;
+    margin-left: 9.5%;
+}
+
+div.product-review-header{
+    margin-left: 12%;
+    width: 83%;
+    height: 1000px;
+    border-top:1px solid #aaa;
+}
+
+span.star{
+    font-size: 30pt;
+    color: orange;
+}
+
+span.reviewlength{
+    font-size: 25pt;
+}
