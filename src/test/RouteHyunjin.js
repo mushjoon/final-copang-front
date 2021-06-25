@@ -6,7 +6,7 @@ import Test from './Test';
 import Test22 from './Test22';
 import Test33 from './Test33';
 
-const RouteMain = () => {
+const RouteHyunjin = () => {
     return (
         <div>
             <BrowserRouter>
@@ -22,4 +22,4 @@ const RouteMain = () => {
     )
 }
 
-export default RouteMain;
+export default RouteHyunjin;
