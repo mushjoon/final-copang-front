@@ -6,7 +6,7 @@ import './css/MyCopang.css';
 import './css/OrderList.css';
 import './css/Tab.css';
 
-// import {MyCopangPay} from './MyCopangPay';
+import {MyCopangPay} from './MyCopangPay';
 // Navigation
 // const MyCopangNavi = () => {
 //     return (
@@ -193,7 +193,7 @@ const MyCopangTemplate = () => {
                             <ul>
                                 <li className="title-mid">My정보</li>
                                 <li>개인정보확인/수정</li>
-                                <li><Link exact to="co-pay">결제수단/쿠페이 관리</Link></li>
+                                <li><Link exact="true" to="co-pay">결제수단/쿠페이 관리</Link></li>
                                 <li>배송지 관리</li>
                             </ul>
                         </div>
@@ -202,15 +202,15 @@ const MyCopangTemplate = () => {
                         <div className="mc-main-header">
                             <div className="mc-main-header-item">
                                 <div>미사용 티켓</div>
-                                <span>0</span><span>장</span>
+                                <span>0</span>
                             </div>
                             <div className="mc-main-header-item">
                                 <div>배송중</div>
-                                <span>0</span><span>개</span>
+                                <span>0</span>
                             </div>
                             <div className="mc-main-header-item">
                                 <div>할인쿠폰</div>
-                                <span>0</span><span>장</span>
+                                <span>0</span>
                             </div>
                             <div className="mc-main-header-item">
                                 <div className="test">
@@ -232,7 +232,7 @@ const MyCopangTemplate = () => {
                                 <Route path="/trip" component={TripRender} />
                                 <Route path="/ticket" component={TicketRender} />
                                 <Route path="/refund-account" component={Refund} />
-                                {/* <Route path="/co-pay" component={MyCopangPay} /> */}
+                                <Route path="/co-pay" component={MyCopangPay} />
                             </Switch>
                         </div>
                     </div>

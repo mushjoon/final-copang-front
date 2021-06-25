@@ -41,7 +41,7 @@ ul {
     display:flex;
     justify-content: center;
     align-items: center;
-    background: rgb(40, 109, 180);
+    background: rgb(66, 132, 243);
     color:white;
     font-size: 2rem;
 }
@@ -50,8 +50,7 @@ ul {
     display:flex;
     flex-direction: column;
     flex-grow:4;
-    border:5px solid skyblue;
-    min-width: 30vh;
+    min-width: 500px;
     max-width: 90vh;
 }
 
@@ -59,10 +58,11 @@ ul {
     display:flex;
     flex-direction: row;
     height: 100px;
+    background-color: rgb(131, 188, 225);
+    color:white;
 }
 
 .mc-main-header-item { 
-    border:5px solid red;
     padding:15px;
     width: 100%;
 }
