@@ -86,8 +86,10 @@ button.cart{
     width: 192px;
     height: 42px;
     font-size: 16pt;
-    margin: 0px 15px 0px 0px;
+    margin: 0px 5px 0px 0px;
     background-color: white;
+    float: left;
+    margin-left: 10px;
 }
 
 button.perchase{
@@ -97,6 +99,7 @@ button.perchase{
     height: 42px;
     font-size: 16pt;
     margin: 0px 15px 0px 0px;
+    float: left;
 }
 
 div.productStar{
@@ -215,7 +218,6 @@ div.question-reply-wrap{
 }
 
 div.product-review{
-    border: 1px solid black;
     width: 83%;
     width : 75.5%;
     margin-left: 9.5%;
@@ -235,4 +237,126 @@ span.star{
 
 span.reviewlength{
     font-size: 25pt;
+}
+
+ul.product-review-header-image{
+    list-style: none;
+    margin-left: -4.5%;
+}
+
+ul.product-review-header-image li{
+    display: inline-block;
+}
+
+ul.product-review-header-image li img{
+    width: 120px;
+    height: 120px;
+    margin: 1%;
+}
+
+div.product-review-searchbar{
+    margin-left: 0%;
+    width: 100%;
+    height: 50px;
+    border:1px solid #aaa;
+    background-color: #555555;
+}
+
+div.searchbar-btn{
+    margin-top: 15px;
+    margin-left: 1%;
+}
+
+button.bestbtn{
+    background: none;
+    padding: 0;
+    margin-right: 10px;
+    border: none;
+    outline: none;
+    font-size: 9pt;
+    color: white;
+}
+
+button.lastbtn{
+    background: none;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: 9pt;
+    color: white;
+}
+
+span.search{
+    text-align: center;
+    font-size: 15pt;
+    width: 30px;
+    height: 28.5px;
+    background-color: white;
+    line-height: 30px;
+    margin-bottom: 5px;
+    border-left: none;
+}
+
+span.user-photo{
+    border-bottom: 1px solid #aaa ;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25pt;
+}
+
+div.product-review-body{
+    border-bottom: 1px solid #aaa ;
+    width: 100%;
+    height: 200px;
+    margin-top: 5%;
+}
+
+span.smstar{
+    color: orange;
+}
+
+div.product-review-content{
+    
+    width: 100%;
+    height: 100px;
+}
+
+div.prod-quantity__form{
+    display: table;
+    width: 83px;
+    height: 40px;
+    border: 1px solid #ccc;
+}
+
+input.prod-quantity__input{
+    outline: none;
+    text-align: center;
+    border: 0;
+    width: 61px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+    color: #111;
+    line-height: 25px;
+    padding: 11px 0 9px 0;
+}
+
+div.prod-buy-quantity button{
+    background: transparent;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    border: 0;
+}
+
+div.prod-buy-quantity button span{
+    color: rgb(83, 82, 82);
+    font-size: 5pt;
+    text-align: left;
 }

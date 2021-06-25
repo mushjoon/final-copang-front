@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../Product/Product.css';
+import '../product/Product.css';
 
 const Menu =()=>{
     return(

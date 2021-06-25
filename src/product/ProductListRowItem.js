@@ -4,7 +4,6 @@ import LinesEllipsis from 'react-lines-ellipsis';
 import './Product.css';
 
 const ProductListRowItem = (props) =>{
-    console.log(props.row.sid);
     return(
                 <li                   
                 onClick={
