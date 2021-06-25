@@ -36,9 +36,6 @@ const Menu = () =>{
                     <Link to="/list">상품 리스트</Link>
                 </li>
                 <li>
-                    <Link to="/copy">쿠팡 카피</Link>
-                </li>
-                <li>
                     <Link to="/cart">장바구니</Link>
                 </li>
                 <li>
