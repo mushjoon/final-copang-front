@@ -1,20 +1,25 @@
-import {BrowserRouter, Route} from 'react-router-dom';
-import RouteHyunjin from './test/RouteHyunjin';
-import Menu from './Menu';
+import React from 'react';
+import {Route} from 'react-router-dom';
+import ProductList from './product/ProductList';
+import Menu from './header/Menu';
+import ProductDetail from './product/ProductDetail';
+import test from './product/test';
+import ProductDescBottom from './product/ProductDescBottom';
+import ProductReviewBottom from './product/ProductReviewBottom';
+import ProductQuestionBottom from './product/ProductQuestionBottom';
 
-const RouteMain = () => {
+const RouteMain = () =>{
     return (
         <div>
-            <BrowserRouter>
-                <Menu/>
-                <Route path="/member/1" component={RouteHyunjin}/>
-                <Route path="/member/2" component={RouteHyunjin}/>
-                <Route path="/member/3" component={RouteHyunjin}/>
-                <Route path="/member/4" component={RouteHyunjin}/>
-                <Route path="/member/5" component={RouteHyunjin}/>
-                <Route path="/member/6" component={RouteHyunjin}/>
-                <Route path="/member/7" component={RouteHyunjin}/>
-            </BrowserRouter>
+            <Menu />
+            <Route exact path="/" component={ProductList}/>
+            <Route path="/list" component={ProductList}/>
+            <Route path="/product/selectOne/:sid" component={ProductDetail}/>
+            <Route path="/product/selectOne/:sid/ProductDescBottom" component={ProductDescBottom}/>
+            <Route path="/product/selectOne/:sid/ProductReviewBottom" component={ProductReviewBottom}/>
+            <Route path="/product/selectOne/:sid/ProductQuestionBottom" component={ProductQuestionBottom}/>
+            <Route path="/purchase/product/" component={test}/>
+
         </div>
     )
 }

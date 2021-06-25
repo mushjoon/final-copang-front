@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import ProductList from '../Product/ProductList';
+import ProductList from '../product/ProductList';
 import Menu from '../header/Menu';
-import ProductDetail from '../Product/ProductDetail';
-import test from '../Product/test';
-import ProductDescBottom from '../Product/ProductDescBottom';
-import ProductReviewBottom from '../Product/ProductReviewBottom';
-import ProductQuestionBottom from '../Product/ProductQuestionBottom';
+import ProductDetail from '../product/ProductDetail';
+import test from '../product/test';
+import ProductDescBottom from '../product/ProductDescBottom';
+import ProductReviewBottom from '../product/ProductReviewBottom';
+import ProductQuestionBottom from '../product/ProductQuestionBottom';
 
 const RouteMain = () =>{
     return (
@@ -18,9 +18,7 @@ const RouteMain = () =>{
             <Route path="/product/selectOne/:sid/ProductDescBottom" component={ProductDescBottom}/>
             <Route path="/product/selectOne/:sid/ProductReviewBottom" component={ProductReviewBottom}/>
             <Route path="/product/selectOne/:sid/ProductQuestionBottom" component={ProductQuestionBottom}/>
-            <Route path="/purchase/product/:sid" component={test}/>
-
-
+            <Route path="/purchase/product/" component={test}/>
         </div>
     )
 }
