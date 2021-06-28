@@ -26,6 +26,7 @@ const Menu = () => {
                     <Link to="/member/7">Member7</Link>
                 </li>
             </ul>
+            <hr/>
         </div>
     )
 }
