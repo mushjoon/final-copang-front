@@ -1,14 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import RouteMain from './RouteMain';
-
+import ProductListRouteMain from './ProductListRouteMain';
 //App.js 수정 다시함 또다시함
-const App=()=>{
+const ProductListApp=()=>{
     return(
         <Router>
-            <RouteMain/>
+            <ProductListRouteMain/>
         </Router>
     )
 }
 
-export default App;
+export default ProductListApp;
