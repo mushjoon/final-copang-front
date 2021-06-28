@@ -170,8 +170,6 @@ const ProductDetail = ({ match, history }) => {
                             }>상품문의</li>
                         </ul>
                     </div>
-                    <div className="bottom">
-                    </div>
                 </div>
             </div>
         )
