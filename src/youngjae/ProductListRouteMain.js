@@ -7,7 +7,7 @@ import ProductDescBottom from '../product/ProductList&Detail/ProductDescBottom';
 import ProductReviewBottom from '../product/ProductList&Detail/ProductReviewBottom';
 import ProductQuestionBottom from '../product/ProductList&Detail/ProductQuestionBottom';
 
-const RouteMain = () =>{
+const ProductListRouteMain = () =>{
     return (
         <div>
             <ProductList />
@@ -22,4 +22,4 @@ const RouteMain = () =>{
     )
 }
 
-export default RouteMain;
+export default ProductListRouteMain;
