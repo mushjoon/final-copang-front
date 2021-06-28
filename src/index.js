@@ -4,9 +4,7 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Route path="/orderpage" component={OrderPageApp} />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
