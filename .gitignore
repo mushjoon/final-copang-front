@@ -8,8 +8,8 @@
 .src/index.js
 .src/Menu.js
 .src/RouteMain.js
-.package.json
-.package-lock.json
+package.json
+package-lock.json
 
 # testing
 /coverage
