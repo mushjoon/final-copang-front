@@ -7,13 +7,13 @@ const ProductCategory = () => {
                 <h5>Product Details</h5>
             </div>
             <div className = "col">
-                <h5>Price</h5>
+                <h5 className = "text-right">Price</h5>
             </div>
             <div className = "col">
-                <h5>Quantity</h5>
+                <h5 className = "text-right">Quantity</h5>
             </div>
             <div className = "col">
-                <h5>Subtotal</h5>
+                <h5 className = "text-right">Subtotal</h5>
             </div>
         </div>
     )

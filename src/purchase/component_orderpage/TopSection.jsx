@@ -11,10 +11,10 @@ function TopSection(props){
     return (
         <div className = "row top align-items-center">
             <div className = "col-6" >
-                <h1>Order Confirmation</h1>
+                <h1>Review your order</h1>
             </div>
             <div className = "col ">
-                <h4>Order Total : {props.totalPrice}원 </h4>
+                <h4>Total Price : {props.totalPrice}원 </h4>
             </div>
             <div className = "col">
                 <button type = "button" 

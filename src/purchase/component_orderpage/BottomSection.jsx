@@ -3,6 +3,10 @@ import React, {useEffect} from "react";
 
 function BottomSection(props){
 
+    function cancelOrder(event) {
+        
+    }
+
     useEffect(() => {
         console.log(props.totalPrice)
         
@@ -12,7 +16,7 @@ function BottomSection(props){
         <div>
             <div className = "row bottom">
                 <div className = "col-9">
-                    <h5 style = {{fontWeight: "bold"}} className = "text-right">Your Total Price: </h5>
+                    <h5 style = {{fontWeight: "bold"}} className = "text-right">Total Payment: </h5>
                 </div>
                 <div className = "col-3">
                     <h3 className = "text-right">{props.totalPrice}원</h3>
