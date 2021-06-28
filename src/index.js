@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./purchase/Orderpage.css";
-import OrderPageApp from "./purchase/OrderPageApp";
-import { BrowserRouter, Route } from "react-router-dom";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
