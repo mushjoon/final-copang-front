@@ -1,0 +1,32 @@
+.tab-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-content:center;
+    align-items: center;
+}
+
+.tab-box-label {
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    height: 45px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px 1px 2px;
+    border-color: rgb(215, 215, 215);
+    background-color: rgb(249, 249, 249);
+    padding-top: 10px;
+}
+
+.clicked {
+    border-color: rgb(23, 149, 199);
+}
+
+.main-tab { 
+    display: flex;
+    margin-bottom: 2vh;
+}
+
