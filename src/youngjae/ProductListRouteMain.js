@@ -6,7 +6,7 @@ import test from './test';
 import ProductDescBottom from '../product/ProductList&Detail/ProductDescBottom';
 import ProductReviewBottom from '../product/ProductList&Detail/ProductReviewBottom';
 import ProductQuestionBottom from '../product/ProductList&Detail/ProductQuestionBottom';
-import OrderPageApp from "./purchase/OrderPageApp";
+import OrderPageApp from "../purchase/OrderPageApp";
 
 const ProductListRouteMain = () =>{
     return (
