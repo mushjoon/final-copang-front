@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from './ProductReviewModal';
+import StarIcon from '@material-ui/icons/Star';
 
 const ProductReviewBottom = () => {
 
@@ -58,11 +59,12 @@ const ProductReviewBottom = () => {
                         ⑥ 회원이 탈퇴를 하거나 쿠팡 이용약관에 의하여 회원 자격을 상실한 경우 작성자의 명시적인 의사표시가 없다면 원칙적으로 노출되나, 게시물에 따라 임의<br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;로 블라인드 될 수 있습니다.</Modal><br />
                     <div style={{ width: '300px', height: '44' }}>
-                        <span className="star glyphicon glyphicon-star"></span>
-                        <span className="star glyphicon glyphicon-star" ></span>
-                        <span className="star glyphicon glyphicon-star"></span>
-                        <span className="star glyphicon glyphicon-star"></span>
-                        <span className="star glyphicon glyphicon-star"></span>&nbsp;&nbsp;&nbsp;
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        &nbsp;&nbsp;&nbsp;
                         <span className="reviewlength">{Review.length}</span>
                     </div>
                     {/* map 반복문 돌려야함.(li반복) */}
@@ -90,23 +92,25 @@ const ProductReviewBottom = () => {
                                     <div style={{ float: 'left' }}>
                                         <span className="user-photo glyphicon glyphicon-user"></span>
                                     </div>
-                                    <div style={{ float: 'left' }}>
+                                    <div style={{ float:'left' }}>
                                         <div>{row.writeID}</div>
-                                        <div>
-                                            {
-                                                row.stars === '1' ? <div><span className="smstar glyphicon glyphicon-star"></span></div>
-                                                    : row.stars === '2' ? <div><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /></div>
-                                                        : row.stars === '3' ? <div><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /></div>
-                                                            : row.stars === '4' ? <div><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /></div>
-                                                                : row.stars === '5' ? <div><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /><span className="smstar glyphicon glyphicon-star" /></div> : <div>별x</div>
-                                            }
-                                            {/* <span className="smstar glyphicon glyphicon-star"></span>
+                                        <span>
+                                            <div>
+                                                {
+                                                    row.stars === '1' ? <div><StarIcon className="smstar"></StarIcon><span className="writeDate">{row.writeDate}</span></div>
+                                                        : row.stars === '2' ? <div><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><span className="writeDate">{row.writeDate}</span></div>
+                                                            : row.stars === '3' ? <div><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon> <StarIcon className="smstar"></StarIcon><span className="writeDate">{row.writeDate}</span></div>
+                                                                : row.stars === '4' ? <div><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><span className="writeDate">{row.writeDate}</span></div>
+                                                                    : row.stars === '5' ? <div><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><StarIcon className="smstar"></StarIcon><span className="writeDate">{row.writeDate}</span></div> : <div>별x</div>
+                                                }
+                                                {/* <span className="smstar glyphicon glyphicon-star"></span>
                                             <span className="smstar glyphicon glyphicon-star"></span>
                                             <span className="smstar glyphicon glyphicon-star"></span>
                                             <span className="smstar glyphicon glyphicon-star"></span>
-                                            <span className="smstar glyphicon glyphicon-star"></span>&nbsp; */}
-                                            <span>{row.writeDate}</span>
-                                        </div>
+                                        <span className="smstar glyphicon glyphicon-star"></span>&nbsp; */}
+                                                
+                                            </div>
+                                        </span>
                                     </div>
                                     <br /><br /><br />
                                     <div className="product-review-content">

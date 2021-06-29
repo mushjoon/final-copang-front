@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import LinesEllipsis from 'react-lines-ellipsis';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import StarIcon from '@material-ui/icons/Star';
 
 
 const ProductDetail = ({ match, history }) => {
@@ -53,7 +56,7 @@ const ProductDetail = ({ match, history }) => {
     }
         const addOneCart = () => {
             const axiosAddOneCart = async () => {
-                const result = await axios.post("http://192.168.0.13:9001/cart/add", sendData);
+                await axios.post("http://192.168.0.13:9001/cart/add", sendData);
             }
             axiosAddOneCart();
             alert("장바구니에 담았습니다.")
@@ -68,7 +71,7 @@ const ProductDetail = ({ match, history }) => {
                         <div className="dsecImage" style={{ width: '410px', height: '410px' }}><img className="productImage" alt="../에어맥스97.PNG" src="/에어맥스97.PNG" /></div>
                         <div className="productdesc" >
                             <div className="productName" style={{ width: '479px', borderBottom: '1px sloid gray' }}><h2>{ProductOne.name}</h2>{ProductOne.description}</div>
-                            <div className="productStar"><span className="smstar glyphicon glyphicon-star"></span></div>
+                            <div className="productStar"><StarIcon className="smstar"></StarIcon></div>
                             <div className="productPrice"><div style={{ marginTop: '10px' }}><strong style={{ fontSize: '16pt', color: '#AE0000' }}>{ProductOne.price}</strong>원</div></div>
                             <div className="productSizeColor">
                                 <div className="productSize">신발 사이즈(mm) : ?</div>
@@ -85,8 +88,8 @@ const ProductDetail = ({ match, history }) => {
                                             className="prod-quantity__input" maxLength="6"
                                             autoComplete="off" readOnly style={{ float: 'left' }} />
                                         <div style={{ display: 'TableCell', verticalAlign: 'top', float: 'left', height: '40px', width: '20px' }}>
-                                            <div style={{ float: 'left', width: '20px', height: '20px', borderBottom: '1px solid #ccc' }}><button className="prod-quantity__plus" type="button" onClick={upSu}><span className="arrow-up" /></button></div>
-                                            <div style={{ width: '20px', height: '20px' }}><button className="prod-quantity__minus" type="button" onClick={downSu}><span className="arrow-down" /></button></div>
+                                            <div style={{ float: 'left', width: '20px', height: '20px', borderBottom: '1px solid #ccc' }}><button className="prod-quantity__plus" type="button" onClick={upSu}><ExpandLessIcon style={{maxWidth:'20px'}}></ExpandLessIcon></button></div>
+                                            <div style={{ width: '20px', height: '20px' }}><button className="prod-quantity__minus" type="button" onClick={downSu}><ExpandMoreIcon style={{maxWidth:'20px'}}></ExpandMoreIcon></button></div>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +104,7 @@ const ProductDetail = ({ match, history }) => {
                                             userSID: 20,
                                             productSID
                                         }
-                                        history.push("/purchase/product/", data);
+                                        history.push("/member/2", data);
                                     }
                                 }>바로구매</button>
                             </div>
