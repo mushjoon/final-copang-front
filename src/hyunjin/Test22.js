@@ -1,18 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from 'axios';
 
-const Test22 = (props) => {
-    const data = {
-        aa: 'aa',
-        bb: 'bb',
-    }
-    const data2 = null;
-   useEffect( () => {
-    console.log(props);
-   },[])
-    return (
+const Test22 = () => {
+     return (
         <div>
-            <button onClick={() => props.history.push("/test33",data)}>버튼</button>
+            Test22
         </div>
     )
 }
