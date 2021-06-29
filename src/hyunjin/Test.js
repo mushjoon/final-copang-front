@@ -173,27 +173,27 @@ const Test = () => {
         productSID : 13,
         entity : 1,
     }
-    const cartData3 = {
-        userSID : 4,
-        productSID : 12,
-        entity : 1,
-    }
-    const cartData4 = {
-        userSID : 4,
-        productSID : 13,
-        entity : 1,
-    }
+    // const cartData3 = {
+    //     userSID : 4,
+    //     productSID : 12,
+    //     entity : 1,
+    // }
+    // const cartData4 = {
+    //     userSID : 4,
+    //     productSID : 13,
+    //     entity : 1,
+    // }
     const userSID = 3;
 
 
-    const cartList = () => {
-        const axiosCartList = async () => {
-            const result = await axios.get(server+"/cart/selectuser/"+userSID);
-            console.log("cartList 결과:");
-            console.log(result);
-        }
-        axiosCartList();
-    }
+    // const cartList = () => {
+    //     const axiosCartList = async () => {
+    //         const result = await axios.get(server+"/cart/selectuser/"+userSID);
+    //         console.log("cartList 결과:");
+    //         console.log(result);
+    //     }
+    //     axiosCartList();
+    // }
     const addCart = () => {
         const axiosAddOneCart = async () => {
             const result = await axios.post(server+"/cart/add",cartData1);
