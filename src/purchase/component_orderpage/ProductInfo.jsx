@@ -6,7 +6,7 @@ import ProductCategory from "./ProductCategory";
 import BottomSection from "./BottomSection";
 import Payment from "./Payment";
 
-function ProductInfo() {
+function ProductInfo({ location }) {
   const [product, setProduct] = useState([]);
   const [totalPrice, setTotalPrice] = useState();
   //const server = "http://192.168.0.13:9001/product/selectOne/9";
@@ -18,16 +18,6 @@ function ProductInfo() {
   };
 
   useEffect(() => {
-    const location = {
-      state: {
-        productName: "Nike Air Jordan",
-        productSID: 10,
-        userSID: 3,
-        price: 80000,
-        entity: 6,
-      },
-    };
-
     //location.state 가 null 이면 cart 라는 서버 DB의 장바구니 테이블에서 데이터를 가져온다.
     //곧 해당 주문은 장바구니 페이지에서 주문하기 버튼을 통해 들어온 것
     //arrayOfPrice 는 단순히 단가 * 수량 = 총 단가 를 계산하기 위한 변수다
