@@ -67,7 +67,9 @@ function ProductInfo({ location }) {
               <img src={entry.image} alt="product img"></img>
             </div>
             <div className="col-5">
-              <h5 className="productName">{entry.productName}</h5>
+              <h5 className="productName">
+                {entry.productName ? entry.productName : entry.name}
+              </h5>
               <h6>Item No: {entry.productSID}</h6>
               <h6>판매자: {entry.userSID}</h6>
               <h6>Details: {entry.description}</h6>

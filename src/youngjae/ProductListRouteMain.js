@@ -6,6 +6,7 @@ import test from './test';
 import ProductDescBottom from '../product/ProductList&Detail/ProductDescBottom';
 import ProductReviewBottom from '../product/ProductList&Detail/ProductReviewBottom';
 import ProductQuestionBottom from '../product/ProductList&Detail/ProductQuestionBottom';
+import OrderPageApp from "./purchase/OrderPageApp";
 
 const ProductListRouteMain = () =>{
     return (
@@ -18,6 +19,7 @@ const ProductListRouteMain = () =>{
             <Route path="/product/selectOne/:sid/ProductReviewBottom" component={ProductReviewBottom}/>
             <Route path="/product/selectOne/:sid/ProductQuestionBottom" component={ProductQuestionBottom}/>
             <Route path="/purchase/product/" component={test}/>
+            <Route path="/member/2" component={OrderPageApp} />
         </div>
     )
 }
