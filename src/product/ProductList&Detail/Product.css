@@ -177,7 +177,7 @@ div.product-question-desc{
 }
 
 div.product-question-desc-header{
-    margin-left: 12%;
+    margin-left: 9%;
     width: 83%;
     height: 1000px;
     border:1px solid #aaa;
@@ -224,7 +224,7 @@ div.product-review{
 }
 
 div.product-review-header{
-    margin-left: 12%;
+    margin-left: 9%;
     width: 83%;
     height: 1000px;
     border-top:1px solid #aaa;
@@ -241,7 +241,7 @@ span.reviewlength{
 
 ul.product-review-header-image{
     list-style: none;
-    margin-left: -4.5%;
+    margin-left: -0.5%;
 }
 
 ul.product-review-header-image li{
