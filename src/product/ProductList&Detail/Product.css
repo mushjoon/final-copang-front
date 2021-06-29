@@ -230,8 +230,8 @@ div.product-review-header{
     border-top:1px solid #aaa;
 }
 
-span.star{
-    font-size: 30pt;
+.star{
+    font-size:50px;
     color: orange;
 }
 
@@ -314,7 +314,7 @@ div.product-review-body{
     margin-top: 5%;
 }
 
-span.smstar{
+.smstar{
     color: orange;
 }
 
@@ -388,3 +388,7 @@ button.question-cancel-btn{
     margin-left: 1%;
 }
 
+span.writeDate{
+    font-size: 10pt;
+    color: #aaa;
+}

@@ -24,6 +24,17 @@ const ProductQuestionBottom=()=>{
         setModelOpen(false);
     }
 
+    const addQuestion = (Question) => {
+        const axiosAddQuestion = async () =>{
+            const questionData = {
+                writeID : Question.writeID,
+                writeContent : Question.writeContent,
+                writeDate : Question.writeDate
+            }
+            await axios.post("severAPI",questionData);
+        }
+        axiosAddQuestion();
+    }
     return(
             <div className="product-question-desc">
                 <div >
@@ -72,7 +83,7 @@ const ProductQuestionBottom=()=>{
                                 </tbody>
                             </table>
                             <div style={{textAlign:'center'}}>
-                                <button type="submit" className="question-submit-btn"><span>확인</span></button>
+                                <button type="submit" className="question-submit-btn" onClick={addQuestion}><span>확인</span></button>
                                 <button type="button" className="question-cancel-btn" onClick={closeModal}><span>취소</span></button>
                             </div>
                         </ProductQuestionModal>
