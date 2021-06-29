@@ -2,10 +2,10 @@ import React from "react";
 import ProductInfo from "../purchase/component_orderpage/ProductInfo";
 import "./Orderpage.css";
 
-function OrderPageApp() {
+function OrderPageApp({ location }) {
   return (
     <div className="container">
-      <ProductInfo />
+      <ProductInfo location={location} />
     </div>
   );
 }
