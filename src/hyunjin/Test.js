@@ -186,14 +186,14 @@ const Test = () => {
     const userSID = 3;
 
 
-    const cartList = () => {
-        const axiosCartList = async () => {
-            const result = await axios.get(server+"/cart/selectuser/"+userSID);
-            console.log("cartList 결과:");
-            console.log(result);
-        }
-        axiosCartList();
-    }
+    // const cartList = () => {
+    //     const axiosCartList = async () => {
+    //         const result = await axios.get(server+"/cart/selectuser/"+userSID);
+    //         console.log("cartList 결과:");
+    //         console.log(result);
+    //     }
+    //     axiosCartList();
+    // }
     const addCart = () => {
         const axiosAddOneCart = async () => {
             const result = await axios.post(server+"/cart/add",cartData1);
