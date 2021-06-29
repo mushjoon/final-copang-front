@@ -74,8 +74,13 @@ const ProductDetail = ({ match, history }) => {
                             <div className="productStar"><StarIcon className="smstar"></StarIcon></div>
                             <div className="productPrice"><div style={{ marginTop: '10px' }}><strong style={{ fontSize: '16pt', color: '#AE0000' }}>{ProductOne.price}</strong>원</div></div>
                             <div className="productSizeColor">
-                                <div className="productSize">신발 사이즈(mm) : ?</div>
-                                <div className="productColor">색상 : ?</div>
+                                <div className="productSize">
+                                    상품옵션 : &nbsp; 
+                                    <select>
+                                        {/* 옵션 반복문으로 넣어줘야함. */}
+                                        <option>옵션들</option>
+                                    </select>
+                                </div>
                             </div>
                             <div className="productSeller">
                                 <div className="seller">판매자 : {ProductOne.sellerSID}</div>
