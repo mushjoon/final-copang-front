@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Test = () => {
-   
+
     const server = "http://192.168.0.13:9001"
     const productData1 = {
         name : "냄비3",
