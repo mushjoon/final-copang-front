@@ -173,16 +173,16 @@ const Test = () => {
         productSID : 13,
         entity : 1,
     }
-    const cartData3 = {
-        userSID : 4,
-        productSID : 12,
-        entity : 1,
-    }
-    const cartData4 = {
-        userSID : 4,
-        productSID : 13,
-        entity : 1,
-    }
+    // const cartData3 = {
+    //     userSID : 4,
+    //     productSID : 12,
+    //     entity : 1,
+    // }
+    // const cartData4 = {
+    //     userSID : 4,
+    //     productSID : 13,
+    //     entity : 1,
+    // }
     const userSID = 3;
 
 

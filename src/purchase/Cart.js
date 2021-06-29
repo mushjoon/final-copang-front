@@ -24,6 +24,7 @@ const Cart = () => {
         let total = 0;
         data.map( (item) => {
             total += item.entity*item.price;
+            return null;
         })
         setTotal(total);
         setCart(data);
