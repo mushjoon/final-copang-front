@@ -13,13 +13,14 @@ function UserMenu(props) {
   // const user = useSelector(state => state.user)
   const USER_SERVER = '/api/auth';
   const logoutHandler = () => {
-    axios.get(`${USER_SERVER}/logout`).then(response => {
-      if (response.status === 200) {
-        props.history.push("/login");
-      } else {
-        alert('Log Out Failed')
-      }
-    });
+    // axios.get(`${USER_SERVER}/auth/logout`).then(response => {
+    //   if (response.status === 200) {
+    //     props.history.push("/login");
+    //   } else {
+    //     alert('Log Out Failed')
+    //   }
+    // });
+    window.localStorage.setItem('accessToken', "");
   };
   return !window.localStorage.getItem('accessToken')  ? (
     <Breadcrumbs aria-label="breadcrumb" style={{marginRight:'20px'}}>
