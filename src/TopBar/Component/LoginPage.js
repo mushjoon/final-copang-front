@@ -70,8 +70,6 @@ function LoginPage(props) {
                 username: Username,
                 password: Password
             };
-            console.log("dispatch 전");
-            console.log(dataToSubmit);
 
             dispatch(loginUser(dataToSubmit))
                 .then(response => {
