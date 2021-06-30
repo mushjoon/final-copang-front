@@ -8,7 +8,7 @@ const ProductListRowItem = (props) =>{
                 <li                   
                 onClick={
                     ()=>{
-                        props.history.push("/product/selectOne/"+props.row.sid);
+                        props.history.push("/member/4/product/selectOne/"+props.row.sid+"/ProductDescBottom");
                     }
                 }>
                     <dl>

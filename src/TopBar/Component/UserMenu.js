@@ -42,26 +42,6 @@ function UserMenu(props) {
 
 
   )
-  // if (user.userData && !user.userData.isAuth) {
-  //   return (
-  //     <Menu mode={props.mode}>
-  //       <div>
-  //         <Link to="/login">로그인</Link>
-  //       </div>
-  //        <div>
-  //         <Link to="/register">회원가입</Link>
-  //        </div>
-  //     </Menu>
-  //   )
-  // } else {
-  //   return (
-  //     <Menu mode={props.mode}>
-  //       <MenuItem key="logout">
-  //         <Link onClick={logoutHandler}>로그아웃</Link>
-  //       </MenuItem>
-  //     </Menu>
-  //   )
-  // }
 }
 
 export default withRouter(UserMenu);
