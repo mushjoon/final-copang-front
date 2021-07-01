@@ -4,21 +4,65 @@ import { Button } from 'reactstrap';
 import { Table } from 'reactstrap';
 
 
-const Cart = () => {
+const Cart2 = () => {
     const server = "http://192.168.0.13:9001";
     const userSID = 3;
     const [cart, setCart] = useState();
     const [total, setTotal] = useState(0);
     const [refresh, setRefresh] = useState(0);
     const [idx, setIdx] = useState();
-    const [allchk, setAllchk] = useState(false);
+    const [allchk, setAllchk] = useState();
     
+
+
+
+    const getCart2 = () => {
+        const axiosGetCart = async () => {
+            const result = await axios.get("https://alconn.co/api/cart");
+            console.log(result);
+        }
+        axiosGetCart();
+    }
+
+    const addCart2 = () => {
+        const axiosAddCart = async () => {
+            const data = {
+                "itemId" : 1002,
+                "itemDetailId" : 1003,
+                "amount" : 2
+            }
+            const result = await axios.post("https://alconn.co/api/cart/item",data)
+            console.log(result);
+        }
+        axiosAddCart();
+    }
+
+
+    // amount: 5
+    // cartId: 1043
+    // itemDetailId: 1003
+    // itemId: 1002
+    // itemName: "과자"
+    // mainImg: ""
+    // optionName: "맛"
+    // optionValue: "매운맛"
+    // price: 600
+    // unitTotal: 0
+
+
+
+
+
+
+
+
+
     //userSID의 카트리스트 받아와서 cart 에 저장
     const axiosCartList = async () => {
-        const {data} = await axios.get(server+"/cart/selectuser/"+userSID);
+        const {data} = await axios.get("https://alconn.co/api/cart");
         console.log("cartList 결과:");
         console.log(data);
-        setCart(data);
+        setCart(data.data.cartItems);
     }
 
     //refresh 될 때마다 카트리스트 리렌더링
@@ -40,12 +84,12 @@ const Cart = () => {
     //카트 항목 1개 증가
     const addCart = (item) => {
         const axiosAddCart = async () => {
-            const cartData = {
-                userSID : item.userSID,
-                productSID : item.productSID,
-                entity : item.entity,
+            const data = {
+                itemId : item.itemId,
+                itemDetailId : item.itemDetailId,
+                amount : item.amount+1,
             }
-            const result = await axios.post(server+"/cart/add",cartData);
+            const result = await axios.post("https://alconn.co/api/cart/item/amount",data);
             console.log("addCart 결과:");
             console.log(result);
             setRefresh(prev => prev+1);  
@@ -55,11 +99,12 @@ const Cart = () => {
     //카트 항목 1개 감소
     const removeOneCart = (item) => {
         const axiosRemoveOneCart = async () => {
-            const cartData = {
-                userSID : item.userSID,
-                productSID : item.productSID,
+            const data = {
+                itemId : item.itemId,
+                itemDetailId : item.itemDetailId,
+                amount : item.amount-1,
             }
-            const result = await axios.post(server+"/cart/removeone",cartData);
+            const result = await axios.post("https://alconn.co/api/cart/item/amount",data);
             console.log("removeOneCart 결과:");
             console.log(result);
             setRefresh(prev => prev+1);
@@ -69,11 +114,10 @@ const Cart = () => {
     //카트 라인 제거
     const removeLineCart = (item) => {
         const axiosRemoveLineCart = async () => {
-            const cartData = {
-                userSID : item.userSID,
-                productSID : item.productSID,
+            const data = {
+                itemDetailId : item.itemDetailId,
             }
-            const result = await axios.post(server+"/cart/removeline",cartData);
+            const result = await axios.delete("https://alconn.co/api/cart/item/54",data);
             console.log("removeLineCart 결과:");
             console.log(result);
             setRefresh(prev => prev+1);
@@ -132,7 +176,7 @@ const Cart = () => {
         cart && cart.map( (row,idxorder) => {
             const item = document.getElementById(idxorder);
             if(item.checked === true)
-                total += row.price*row.entity;
+                total += row.price*row.amount;
             return null;
         })
         setTotal(total);
@@ -140,13 +184,13 @@ const Cart = () => {
 
     return(
         <div style={{width:'1000px',margin:'0 auto', padding:'20px'}}>
-            <h2><b><i className='fas fa-shopping-cart'></i> 장바구니</b></h2><br/>
+            <h2><b><i class='fas fa-shopping-cart'></i> 장바구니</b></h2><br/>
             <Table  hover>
                 <thead>
                     <tr>
                         <td>
                             <div className="form-check">
-                                <input onChange={onChangeCheckAll} type="checkbox" className="form-check-input" checked={allchk} value=""/>
+                                <input onChange={onChangeCheckAll} type="checkbox" className="form-check-input" checked={allchk}/>
                             </div>
                         </td>
                         <td style={{width:'100px'}}><h4><b>사진</b></h4></td>
@@ -168,11 +212,11 @@ const Cart = () => {
                                             <input id={idx} onChange={onChangeCheckOne} type="checkbox" className="form-check-input" value=""/>
                                         </div>
                                     </td>
-                                    <td>{item.image}</td>
-                                    <td>{item.productName}</td>
+                                    <td>{item.mainImg}</td>
+                                    <td>{item.itemName}</td>
                                     <td>{item.price}</td>
-                                    <td>{item.entity}</td>
-                                    <td> {item.price*item.entity}</td>
+                                    <td>{item.amount}</td>
+                                    <td> {item.price*item.amount}</td>
                                     <td>
                                         <Button style={{float:'right'}} color="primary" onClick={()=>removeLineCart(item)}><i className='fas fa-trash-alt'/></Button>&nbsp;&nbsp;&nbsp;
                                         <Button style={{float:'right',marginRight:'30px'}} color="primary" onClick={()=>removeOneCart(item)}><i className='fas fa-minus'/></Button>&nbsp;&nbsp;&nbsp;
@@ -197,4 +241,4 @@ const Cart = () => {
     )
 }
 
-export default Cart;
+export default Cart2;
