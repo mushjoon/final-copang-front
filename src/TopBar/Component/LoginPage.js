@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
 import { withRouter } from "react-router-dom";
 import { loginUser } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
@@ -85,6 +84,7 @@ function LoginPage(props) {
                         setFormErrorMessage('비밀번호 또는 계정을 확인해주세요')
                     }
                 })
+
                 .catch(err => {
                     setFormErrorMessage('비밀번호 또는 계정을 확인해주세요')
                     setTimeout(() => {
@@ -131,6 +131,16 @@ function LoginPage(props) {
                         autoComplete="current-password"
                         onChange={onPasswordHanlder}
                     />
+                   <div>
+                   {formErrorMessage && (
+                        <label >
+                            <p style={{ color: '#ff0000bf', fontSize: '0.7rem' }}>
+                                {formErrorMessage}
+                            </p>
+                        </label>
+                    )}
+                   </div>
+                    
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"

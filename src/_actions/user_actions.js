@@ -28,8 +28,11 @@ export function loginUser(dataToSubmit) {
     console.log("action 진입");
     console.log(dataToSubmit);
     const request = axios.post(`${USER_SERVER}/auth/login`, dataToSubmit)
-        .then(response => response.data);
+        .then(response => {
+            return response.data;
+        });
     console.log(request);
+
     return {
         type: LOGIN_USER,
         payload: request
@@ -37,8 +40,13 @@ export function loginUser(dataToSubmit) {
 }
 
 export function auth() {
-    const request = axios.get(`${USER_SERVER}/auth`)
-        .then(response => response.data);
+    //axios.defaults.header의 accesstoken값으로 사용자 인증
+    const request = axios.get(`${USER_SERVER}/user`)
+        .then(response => response.data)
+        .catch(err =>{
+            console.log(err.response.status);
+            
+        });
 
     return {
         type: AUTH_USER,
@@ -49,7 +57,7 @@ export function auth() {
 export function logoutUser() {
     const request = axios.get(`${USER_SERVER}/auth/logout`)
         .then(response => response.data);
-
+    
     return {
         type: LOGOUT_USER,
         payload: request
@@ -73,10 +81,6 @@ export function getCartItems(cartItems, userCart) {
     const request = axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
         .then(response => {
 
-
-            //Make CartDetail inside Redux Store 
-            // We need to add quantity data to Product Information that come from Product Collection. 
-
             userCart.forEach(cartItem => {
                 response.data.forEach((productDetail, i) => {
                     if (cartItem.id === productDetail._id) {
@@ -93,8 +97,6 @@ export function getCartItems(cartItems, userCart) {
         payload: request
     }
 }
-
-
 
 
 export function removeCartItem(id) {
