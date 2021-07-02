@@ -7,6 +7,9 @@ import './css/OrderList.css';
 import './css/Tab.css';
 
 import {MyCopangPay} from './MyCopangPay';
+import MyCopangAddress from './MyCopangAddress';
+import MyCopangAddressAddForm from './MyCopangAddressForm';
+
 // Navigation
 // const MyCopangNavi = () => {
 //     return (
@@ -194,7 +197,7 @@ const MyCopangTemplate = () => {
                                 <li className="title-mid">My정보</li>
                                 <li>개인정보확인/수정</li>
                                 <li><Link exact="true" to="co-pay">결제수단/쿠페이 관리</Link></li>
-                                <li>배송지 관리</li>
+                                <li><Link exact="true" to="/my-addr">배송지 관리</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -233,6 +236,8 @@ const MyCopangTemplate = () => {
                                 <Route path="/ticket" component={TicketRender} />
                                 <Route path="/refund-account" component={Refund} />
                                 <Route path="/co-pay" component={MyCopangPay} />
+                                <Route exact path="/my-addr" component={MyCopangAddress} />
+                                <Route exact path="/address-add-page" component={MyCopangAddressAddForm} />
                             </Switch>
                         </div>
                     </div>
