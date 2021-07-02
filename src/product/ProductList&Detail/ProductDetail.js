@@ -110,6 +110,7 @@ const ProductDetail = ({ match, history }) => {
                                     });
                                 }
                                 axiosAddOneCart();
+                                console.log(sendData)
                                 alert("장바구니에 담겼습니다.")
                                 }}>장바구니 담기</button>
                             <button className="perchase" onClick={
