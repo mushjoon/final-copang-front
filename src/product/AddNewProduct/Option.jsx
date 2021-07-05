@@ -18,26 +18,24 @@ const Option = (props) => {
   };
 
   const clickAddToList = () => {
-    // console.log(
-    //   `optionName: ${props.product2.optionName} & optionValue: ${props.product2.optionValue}`
-    // );
-    // const valueSplit = props.product2.optionValue.split(",");
-    // setSingleOptionValue(Object.keys(valueSplit).map((key) => valueSplit[key]));
-    if (optionList.length === 0) {
-      setOptionList({
-        optionName: optionName,
-        optionValue: optionValue,
-      });
-      setOptionName("");
-      setOptionValue("");
-    } else if (optionList.length > 0) {
-      optionList.push({
-        optionName: optionName,
-        optionValue: optionValue,
-      });
-    }
+    console.log(`optionName: ${optionName} & optionValue: ${optionValue}`);
+    const valueSplit = props.product2.optionValue.split(",");
+    setSingleOptionValue(Object.keys(valueSplit).map((key) => valueSplit[key]));
+    // if (optionList.length === 0) {
+    //   setOptionList({
+    //     optionName: optionName,
+    //     optionValue: optionValue,
+    //   });
+    //   setOptionName("");
+    //   setOptionValue("");
+    // } else if (optionList.length > 0) {
+    //   optionList.push({
+    //     optionName: optionName,
+    //     optionValue: optionValue,
+    //   });
+    // }
 
-    console.log(optionList);
+    // console.log(optionList);
   };
 
   const clickDeleteOption = () => {
@@ -125,14 +123,88 @@ const Option = (props) => {
               삭제
             </button>
           </div>
-          <OptionList
-            optionName={optionName}
-            optionValue={optionValue}
-            optionList={optionList}
-            handleChange2={props.handleChange2}
-            price={props.product2.price}
-            stockQuantity={props.product2.stockQuantity}
-          />
+
+          <div className="container-fluid">
+            <div className="row optionListCategory">
+              <div className="col-1 align-self-center">
+                <input type="checkbox" className="form-control-lg"></input>
+              </div>
+              <div className="col-2 my-auto mx-auto">
+                {/* <div className="row d-flex justify-content-center"> */}
+                <h5>옵션명</h5>
+                {/* </div> */}
+                {/* <div className="row d-flex justify-content-center">
+            <h5 style={{ color: "dodgerblue" }}>{props.optionName}</h5>
+          </div> */}
+              </div>
+              <div className="col-2 my-auto mx-auto">
+                <h5>옵션값</h5>
+              </div>
+              <div className="col-3 mx-auto">
+                <h5>단가(원)</h5>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  id="btnApplyAll"
+                >
+                  일괄적용
+                </button>
+              </div>
+
+              <div className="col-3 mx-auto">
+                <h5>재고수량</h5>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  id="btnApplyAll"
+                >
+                  일괄적용
+                </button>
+              </div>
+            </div>
+
+            {props.optionList.map((option) => {
+              return (
+                <div className="row optionList">
+                  <div className="col-1 align-self-center">
+                    <input type="checkbox" className="form-control-lg"></input>
+                  </div>
+                  <div
+                    className="col-3"
+                    style={{ textAlign: "center", lineHeight: "50px" }}
+                  >
+                    {option.optionName}
+                  </div>
+                  <div
+                    className="col-3"
+                    style={{ textAlign: "center", lineHeight: "50px" }}
+                  >
+                    {option.optionValue}
+                  </div>
+                  <div className="col-3 align-self-center">
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="price"
+                      placeholder="0"
+                      value={props.price}
+                      onChange={(e) => props.handleChange2(e)}
+                    ></input>
+                  </div>
+                  <div className="col-3 align-self-center">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="0"
+                      name="stockQuantity"
+                      value={props.stockQuantity}
+                      onChange={(e) => props.handleChange2(e)}
+                    ></input>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
