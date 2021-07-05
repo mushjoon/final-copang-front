@@ -12,6 +12,7 @@ import { FormControl as Form, Button, Input, Checkbox, Typography } from '@mater
 function UserMenu(props) {
   const user = useSelector(state => state.user)
   console.log("usermenu");
+  console.log(user);
   console.log(user.userData);
   const logoutHandler = () => {
     axios.get("https://alconn.co/api/auth/logout").then(response => {
@@ -23,12 +24,12 @@ function UserMenu(props) {
       }
     });
     delete axios.defaults.headers.common['Authorization'];
+    window.localStorage.removeItem('accessToken');
     window.localStorage.removeItem('userId');
+    document.cookie = "accessToken = ; expires = Wed; 01 Jan 1970";
     props.history.push('/login');
   };
-  // return (user.userData && !(user.userData.message==='success')) ? (
-  return (!user.userData) ? (
-
+  return (!window.localStorage.getItem('accessToken')) ? (
     <Breadcrumbs aria-label="breadcrumb" style={{ marginRight: '20px' }}>
       <div key="mail">
         <Link to="/login">로그인</Link>

@@ -10,13 +10,40 @@ import {
     ON_SUCCESS_BUY_USER
 } from './types';
 import { USER_SERVER } from '../TopBar/Config.js';
+export function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cValue = '';
+    if (start !== -1) {
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if (end === -1) end = cookieData.length;
+        cValue = cookieData.substring(start, end);
+    }
+    return unescape(cValue);
+}
 
+export function autoLoginWithAccessToken() {
+    if(getCookie("accessToken")!==""){
+        axios.defaults.headers.common['Authorization'] = `Bearer ${getCookie("accessToken")}`;
+        const res = axios.get('https://alconn.co/api/user')
+            .then(response => response.data);
+        ;
+    }
+}
 export function registerUser(dataToSubmit) {
-    console.log(dataToSubmit);
     const request = axios.post(`${USER_SERVER}/auth/signup`, dataToSubmit)
         .then(response => response.data);
-    console.log(request);
-    // console.log(request.data.getItem('payload'));
+
+    return {
+        type: REGISTER_USER,
+        payload: request
+    }
+}
+export function registerSeller(dataToSubmit) {
+    const request = axios.post(`${USER_SERVER}/auth/signup/seller`, dataToSubmit)
+        .then(response => response.data);
 
     return {
         type: REGISTER_USER,
@@ -25,13 +52,10 @@ export function registerUser(dataToSubmit) {
 }
 
 export function loginUser(dataToSubmit) {
-    console.log("action 진입");
-    console.log(dataToSubmit);
     const request = axios.post(`${USER_SERVER}/auth/login`, dataToSubmit)
         .then(response => {
             return response.data;
         });
-    console.log(request);
 
     return {
         type: LOGIN_USER,
@@ -44,8 +68,11 @@ export function auth() {
     const request = axios.get(`${USER_SERVER}/user`)
         .then(response => response.data)
         .catch(err =>{
-            console.log(err.response.status);
             
+            return ({
+                type: AUTH_USER,
+                message: err.response.data.message
+            });
         });
 
     return {
@@ -100,7 +127,7 @@ export function getCartItems(cartItems, userCart) {
 
 
 export function removeCartItem(id) {
-    const request = axios.get(`/api/users/removeFromCart?_id=${id}`)
+    const request = axios.get(`/api/user/removeFromCart?_id=${id}`)
         .then(response => {
 
             response.data.cart.forEach(item => {

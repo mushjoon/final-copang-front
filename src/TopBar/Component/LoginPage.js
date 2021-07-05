@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { withRouter } from "react-router-dom";
-import { loginUser } from "../../_actions/user_actions";
+import { loginUser, getCookie } from "../../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
 import axios from 'axios';
@@ -50,8 +50,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function LoginPage(props) {
 
+function LoginPage(props) {
     const [Username, setUsername] = useState("");
     const [Password, setPassword] = useState("");
 
@@ -78,7 +78,8 @@ function LoginPage(props) {
                     if (response.payload.message === 'success') {
                         window.localStorage.setItem('userId', response.payload.data.username);
                         window.localStorage.setItem('accessToken', accessToken);
-                        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+                        document.cookie = `accessToken=${accessToken}`;
+                        axios.defaults.headers.common['Authorization'] = `Bearer ${getCookie("accessToken")}`;
                         props.history.push("/");
                     } else {
                         setFormErrorMessage('비밀번호 또는 계정을 확인해주세요')
@@ -131,16 +132,16 @@ function LoginPage(props) {
                         autoComplete="current-password"
                         onChange={onPasswordHanlder}
                     />
-                   <div>
-                   {formErrorMessage && (
-                        <label >
-                            <p style={{ color: '#ff0000bf', fontSize: '0.7rem' }}>
-                                {formErrorMessage}
-                            </p>
-                        </label>
-                    )}
-                   </div>
-                    
+                    <div>
+                        {formErrorMessage && (
+                            <label >
+                                <p style={{ color: '#ff0000bf', fontSize: '0.7rem' }}>
+                                    {formErrorMessage}
+                                </p>
+                            </label>
+                        )}
+                    </div>
+
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"

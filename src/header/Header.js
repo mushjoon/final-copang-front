@@ -17,8 +17,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
     linkBasic: {
         color: 'inherit',
@@ -92,6 +93,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
+    const user = useSelector(state => state.user)
+    console.log(user.userData);
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -127,8 +130,12 @@ function Header() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <Link to="/cart">
+                <MenuItem onClick={handleMenuClose}>장바구니</MenuItem>
+            </Link>
+            <Link to="/mycopang">
+                <MenuItem onClick={handleMenuClose}>My Copang</MenuItem>
+            </Link>
         </Menu>
     );
 
@@ -143,26 +150,27 @@ function Header() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <Link to="/mycopang" className={classes.linkBasic}>
+                <MenuItem>
 
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
+                    <IconButton aria-label="" color="inherit">
+                        <Badge>
+                            <AccountCircle />
+                        </Badge>
+                    </IconButton>
+                    <p>MyCopang</p>
+                </MenuItem>
+            </Link>
+            <Link to="/cart" className={classes.linkBasic}>
+                <MenuItem onClick={handleProfileMenuOpen}>
+                    <IconButton aria-label="" color="inherit">
+                        <Badge badgeContent={3} color="secondary">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>장바구니</p>
+                </MenuItem>
+            </Link>
         </Menu>
     );
 
@@ -198,7 +206,7 @@ function Header() {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        
+
                         <IconButton aria-label="show 17 new notifications" color="inherit">
                             <Badge badgeContent={1} color="secondary">
                                 <NotificationsIcon />
@@ -206,7 +214,7 @@ function Header() {
                         </IconButton>
                         <IconButton aria-label="" color="inherit">
                             <Link to="/mycopang" className={classes.linkBasic}>
-                                <Badge>
+                                <Badge badgeContent={3} color="secondary">
                                     <AccountCircle />
                                 </Badge>
                             </Link>
@@ -218,7 +226,7 @@ function Header() {
                                 </Badge>
                             </Link>
                         </IconButton>
-                        <IconButton
+                        {/* <IconButton
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={menuId}
@@ -227,7 +235,7 @@ function Header() {
                             
                         >
                             <AccountCircle />
-                        </IconButton>
+                        </IconButton> */}
                         {/* count={user.userData && user.userData.cart.length} */}
                     </div>
                     <div className={classes.sectionMobile}>
@@ -244,7 +252,7 @@ function Header() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            {renderMenu}
+            {/* {renderMenu} */}
         </div>
     );
 }

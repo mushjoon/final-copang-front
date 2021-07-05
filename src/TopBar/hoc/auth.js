@@ -2,34 +2,36 @@ import React, { useEffect } from 'react';
 import { auth } from '../../_actions/user_actions';
 import { useSelector, useDispatch } from "react-redux";
 
+
+/*
+option : true - 로그인 되어야하는 컴포넌트
+option : false - 로그아웃 되었을때 볼 수 있는 컴포넌트
+option : null 로그인/아웃 상관없는 컴포넌트
+*/
 function Auth(Component, option, adminRoute = null) {
     function AuthenticationCheck(props) {
         let user = useSelector(state => state.user);
         const dispatch = useDispatch();
-    
+        
         useEffect(() => {
             console.log("effect called!")
             dispatch(auth())
                 .then(async response => {
-                    console.log("dispatch act's response")
-                    if ((!(response.payload.message === "success") & option))  //인증 실패하면 login 으로
+                    if (await (!(response.payload.message  === "success") && option))  //인증 실패하면 login 으로
+                    {
                         props.history.push('/login');
-                    // else if (adminRoute && !response.payload.message)
-                    //     props.history.push('/');
-                    else if (option === false)
+                    }
+                    else if ((adminRoute && response.payload.message !=="success") === 0){
+                        console.log(option === false);
                         props.history.push('/');
-                    
+                    }
+                        
+                    else if ((props.history.location.pathname==="/login"||props.history.location.pathname==="/register") && response.payload.message ==="success"){    
+                        console.log(option === false)
+                        props.history.push('/');
+                    }
                 }
                 )
-                .catch(async err => {
-                    if(await props.history.location.pathname!=="/"){
-                        // alert('로그인이 필요합니다.\n로그인 페이지로 이동합니다');
-                        props.history.push("/login");
-                    }
-                });
-            console.log("effect 끝");
-
-
         }, [props.history])
 
         return (
