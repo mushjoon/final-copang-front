@@ -1,27 +1,23 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, Button } from 'reactstrap';
-import './Cart.css';
+import { Button } from 'reactstrap';
+import { Table } from 'reactstrap';
+import './Cart2.css';
 
 
-const Cart2 = (props) => {
+const Cart2 = () => {
     const [cart, setCart] = useState();
     const [total, setTotal] = useState(0);
     const [refresh, setRefresh] = useState(0);
     const [idx, setIdx] = useState();
     const [allchk, setAllchk] = useState();
-    const [clientId, setClientId] = useState();
-    const [cartId, setCartId] = useState();
-    
-
-    //user의 카트리스트 받아와서 cart 에 저장
+ 
+    //userSID의 카트리스트 받아와서 cart 에 저장
     const axiosCartList = async () => {
         const {data} = await axios.get("https://alconn.co/api/cart");
         console.log("cartList 결과:");
         console.log(data);
         setCart(data.data.cartItems);
-        setClientId(data.data.clientId);
-        setCartId(data.data.cartId);
     }
 
     //refresh 될 때마다 카트리스트 리렌더링
@@ -91,27 +87,11 @@ const Cart2 = (props) => {
     }
     //카트 담긴 내역을 주문서로 이동
     const cartToOrder = () => {
+        console.log(total);
         if(total === 0 )
-            alert("주문할 항목을 선택해 주세요");
-        else
         {
-            const cartOrder = cart;
-            for(let i=idx-1; i>=0; i--)
-            {
-                const cartIdx = document.getElementById(i);
-                if(cartIdx.checked === false)
-                {
-                    cartOrder.splice(i, 1);
-                }
-            }
-            const cartData = {
-                from : "cart",
-                clientId : clientId,
-                cartId : cartId,
-                list : cartOrder,
-            }
-            console.log(cartData);
-            props.history.push("/order/do",cartData);
+            alert("주문할 항목을 선택해 주세요");
+            console.log("주문액 0");
         }
         //여기서 구매창으로 페이지 이동시킴. 밑의 axios는 원래 구매창에서 실행할 함수
         //여기서 history.push(url)로 구매창 이동시키면 알아서 토큰으로 장바구니 로드해오기
@@ -207,8 +187,11 @@ const Cart2 = (props) => {
             <hr/>
             {cart && cart[0] && <Button style={{alignItems:'center',float:'right'}} size="lg" color="primary" onClick={cartToOrder}>주문하기</Button>}
             <h2 style={{display:'inline',float:'right',marginRight:'30px'}}>
-                총 주문액 {numberFormat(total)} 원
+                총 주문액&nbsp;
+
+                {numberFormat(total)} 원
             </h2>
+            
         </div>
     )
 }

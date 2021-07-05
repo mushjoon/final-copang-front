@@ -2,24 +2,24 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import ProductList from '../product/ProductList&Detail/ProductList';
 import ProductDetail from '../product/ProductList&Detail/ProductDetail';
-// import test from './test';
+import ProductAddTest from './ProductAddTest';
 import ProductDescBottom from '../product/ProductList&Detail/ProductDescBottom';
 import ProductReviewBottom from '../product/ProductList&Detail/ProductReviewBottom';
 import ProductQuestionBottom from '../product/ProductList&Detail/ProductQuestionBottom';
 import OrderPageApp from "../purchase/OrderPageApp";
+import ProductReviewWriteForm from '../product/ProductList&Detail/ProductReviewWriteForm';
 
 const ProductListRouteMain = () =>{
     return (
         <div>
             <Route exact path="/member/4" component={ProductList}/>
-            <Route exact path="/" component={ProductList}/>
-            <Route path="/list" component={ProductList}/>
-            <Route path="/member/4/product/selectOne/:sid" component={ProductDetail}/>
-            <Route path="/member/4/product/selectOne/:sid/ProductDescBottom" component={ProductDescBottom}/>
-            <Route path="/member/4/product/selectOne/:sid/ProductReviewBottom" component={ProductReviewBottom}/>
-            <Route path="/member/4/product/selectOne/:sid/ProductQuestionBottom" component={ProductQuestionBottom}/>
-            {/* <Route path="/purchase/product/" component={test}/> */}
+            <Route path="/member/4/product/selectOne/:itemId" component={ProductDetail}/>
+            <Route path="/member/4/product/selectOne/:itemId/ProductDescBottom" component={ProductDescBottom}/>
+            <Route path="/member/4/product/selectOne/:itemId/ProductReviewBottom" component={ProductReviewBottom}/>
+            <Route path="/member/4/product/selectOne/:itemId/ProductQuestionBottom" component={ProductQuestionBottom}/>
+            <Route path="/member/4/ProductAddTest" component={ProductAddTest}/>
             <Route path="/member/4/orderpage" component={OrderPageApp} />
+            <Route path="/member/4/ProductReviewBottom/review/write" component={ProductReviewWriteForm}/>
         </div>
     )
 }

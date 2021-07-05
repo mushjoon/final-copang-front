@@ -7,6 +7,10 @@ import './css/OrderList.css';
 import './css/Tab.css';
 
 import {MyCopangPay} from './MyCopangPay';
+import MyCopangAddress from './MyCopangAddress';
+import MyCopangAddressAddForm from './MyCopangAddressForm';
+import AddressUpdateForm from './AddressUpdateForm';
+
 // Navigation
 // const MyCopangNavi = () => {
 //     return (
@@ -21,19 +25,19 @@ import {MyCopangPay} from './MyCopangPay';
 const Order = () => {
     const [orderList, setOrderList] = useState([]);
 
-    const orderListUrl = "https://yts.mx/api/v2/list_movies.json";
-    useEffect(() => {
-        //getOrderList 비동기 함수 생성 
-        const getOrderList = async () => {
-            const {
-                data: {
-                    data: { movies }
-                }
-            } = await axios.get(orderListUrl);
-            setOrderList(movies);
-        }
-        getOrderList();
-    }, []);
+    // const orderListUrl = "https://al.conn/api/order/client/";
+    // useEffect(() => {
+    //     //getOrderList 비동기 함수 생성 
+    //     const getOrderList = async () => {
+    //         const {
+    //             data: {
+    //                 data: { orderItems }
+    //             }
+    //         } = await axios.get(orderListUrl);
+    //         setOrderList(orderItems);
+    //     }
+    //     getOrderList();
+    // }, []);
 
     return (
         <div className="mc-main-content">
@@ -194,7 +198,7 @@ const MyCopangTemplate = () => {
                                 <li className="title-mid">My정보</li>
                                 <li>개인정보확인/수정</li>
                                 <li><Link exact="true" to="co-pay">결제수단/쿠페이 관리</Link></li>
-                                <li>배송지 관리</li>
+                                <li><Link exact="true" to="/my-addr">배송지 관리</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -233,6 +237,9 @@ const MyCopangTemplate = () => {
                                 <Route path="/ticket" component={TicketRender} />
                                 <Route path="/refund-account" component={Refund} />
                                 <Route path="/co-pay" component={MyCopangPay} />
+                                <Route exact path="/my-addr" component={MyCopangAddress} />
+                                <Route exact path="/address-add-page" component={MyCopangAddressAddForm} />
+                                <Route exact path="/address-update-page" component={AddressUpdateForm} />
                             </Switch>
                         </div>
                     </div>
