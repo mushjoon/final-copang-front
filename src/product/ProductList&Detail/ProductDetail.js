@@ -5,6 +5,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarIcon from '@material-ui/icons/Star';
 
 
+const numberFormat = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
 const ProductDetail = ({ match, history }) => {
     //history로 보낸 itemId를 match.params로 받음 
     let itemId = match.params.itemId;
@@ -27,14 +31,7 @@ const ProductDetail = ({ match, history }) => {
         }
         res();
     }, [])
-    const [Review, setReview] = useState([]);
-    useEffect(() => {
-        const res = async () => {
-            const result = await axios.get("http://192.168.0.13:9001/question/list");
-            setReview(result.data)
-        }
-        res();
-    }, [])
+    
 
     const [su, setSu] = useState(1);
     const upSu = () => {
@@ -45,13 +42,6 @@ const ProductDetail = ({ match, history }) => {
             setSu(su - 1);
         }
     }
-    // const addOneCart = () => {
-    //     const axiosAddOneCart = async () => {
-    //         await axios.post("https://alconn.co/api/cart/item",);
-    //     }
-    //     axiosAddOneCart();
-    //     alert("장바구니에 담았습니다.")
-    // }
 
     return (
         <div className="total-wrap">
@@ -61,7 +51,7 @@ const ProductDetail = ({ match, history }) => {
                     <div className="productdesc" >
                         <div className="productName" style={{ width: '479px', borderBottom: '1px sloid gray' }}><h2>{ProductOne.itemName}</h2>{ProductOne.description}</div>
                         <div className="productStar"><StarIcon className="smstar"></StarIcon></div>
-                        <div className="productPrice"><div style={{ marginTop: '10px' }}><strong style={{ fontSize: '16pt', color: '#AE0000' }}>{ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].price}</strong>원</div></div>
+                        <div className="productPrice"><div style={{ marginTop: '10px' }}><strong style={{ fontSize: '16pt', color: '#AE0000' }}>{ProductOne.itemDetailFormList&&numberFormat(ProductOne.itemDetailFormList[0].price)}</strong>원</div></div>
                         <div className="productSizeColor">
                             <div className="productSize">
                                 {ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionName} : &nbsp; <button onClick={() => history.push("/member/4/ProductAddTest")}>추가폼</button>
@@ -106,17 +96,18 @@ const ProductDetail = ({ match, history }) => {
                                     });
                                 }
                                 axiosAddOneCart();
+                                console.log(sendData)
                                 alert("장바구니에 담겼습니다.")
                                 }}>장바구니 담기</button>
                             <button className="perchase" onClick={
                                 () => {
                                     const data = {
-                                        name: ProductOne.itemName,
+                                        itemName: ProductOne.itemName,
                                         price: ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].price,
-                                        entity: su,
-                                        imageName: ProductOne.image,
-                                        userSID: 20,
-                                        itemNo : itemId
+                                        amount: su,
+                                        mainImg: ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].mainImg,
+                                        itemNo : itemId,
+                                        from : 'product'
                                     }
                                     history.push("/member/4/orderpage", data);
                                 }
@@ -147,7 +138,7 @@ const ProductDetail = ({ match, history }) => {
                                                     </div>
                                                     <div className="price-area">
                                                         <em className="sale">
-                                                            <strong className="price-value">{row.price}</strong>원
+                                                            <strong className="price-value">{numberFormat(row.price)}</strong>원
                                                         </em>
                                                     </div>
                                                 </div>
@@ -169,7 +160,7 @@ const ProductDetail = ({ match, history }) => {
                             () => {
                                 history.push("/member/4/product/selectOne/" + itemId + "/ProductReviewBottom");
                             }
-                        }>상품리뷰({Review.length})</li>
+                        }>상품리뷰</li>
                         <li className="ProductQuestionBottom" onClick={
                             () => {
                                 history.push("/member/4/product/selectOne/" + itemId + "/ProductQuestionBottom");
