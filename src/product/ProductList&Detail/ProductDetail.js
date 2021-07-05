@@ -110,7 +110,6 @@ const ProductDetail = ({ match, history }) => {
                                         optionValue:ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionValue,
                                         optionName:ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionName,
                                         itemDetailId:ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].itemDetailId,
-
                                         from : 'product'
                                     }
                                     history.push("/member/4/orderpage", data);
