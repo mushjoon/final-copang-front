@@ -304,8 +304,8 @@ span.user-photo{
 div.product-review-body{
     border-bottom: 1px solid #aaa ;
     width: 100%;
-    height: 150px;
-    margin-top: 5%;
+    height: 180px;
+    margin-top: 1%;
 }
 
 .smstar{
@@ -433,6 +433,8 @@ div.service-review-question{
 
 div.service-review-wrap{
     height: 150px;
+    border-bottom: 1px solid #ddd;
+
 }
 
 div.product-review-wrap{
