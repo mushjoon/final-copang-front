@@ -15,9 +15,22 @@ const AddNewProductApp = () => {
   const [mainImg, setMainImg] = useState(null);
   const [mainImgSrc, setMainImgSrc] = useState("");
 
-  const mainImageChange = (file, idx) => {
-    productData.itemDetailFormList[idx].mainImg = URL.createObjectURL(file);
-    // console.log(mainImg);
+  const mainImageChange = async (file, idx) => {
+    productData.itemDetailFormList[idx].mainImgShow = URL.createObjectURL(file);
+    //setMainImg(file);
+    const formData = new FormData();
+    formData.append("image", file);
+    const res = await axios.post("https://alconn.co/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    productData.itemDetailFormList[idx].mainImg = res.data.data.publicPath;
+    //console.log(file);
+    console.log(res);
+    setMainImgUrl(res.data.data.publicPath);
+    console.log(res.data.data.publicPath);
+    setIdx(idx);
     setRefresh((prev) => prev + 1);
   };
 
@@ -30,20 +43,25 @@ const AddNewProductApp = () => {
   };
 
   //=============== Image URL and set function ==============//
-  const [mainImgUrl, setMainImgUrl] = useState();
+  const [mainImgUrl, setMainImgUrl] = useState("");
   const [subImgUrl, setSubImgUrl] = useState();
 
-  const mainImageUpload = async () => {
-    const formData = new FormData();
-    formData.append("image", mainImg);
-    const res = await axios.post("https://alconn.co/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    console.log(res);
-    setMainImgUrl(res.data.data.publicPath);
+  const [idx, setIdx] = useState();
+
+  const mainImageUpload = async (idx) => {
+    console.log(`mainImg is = ${mainImg}`);
+
+    console.log(mainImgUrl);
   };
+
+  // useEffect(() => {
+  //   if (mainImgUrl === "") {
+  //     return;
+  //   } else {
+  //     console.log(mainImgUrl);
+  //     productData.itemDetailFormList[idx].mainImg = mainImgUrl;
+  //   }
+  // }, [mainImgUrl]);
 
   const subImageUpload = async () => {
     const formData = new FormData();
@@ -83,7 +101,12 @@ const AddNewProductApp = () => {
     const { name, value } = e.target;
     //console.log(e.target);
     //console.dir(productData);
-    setOptionInfo({ ...optionInfo, [name]: value, mainImg: null });
+    setOptionInfo({
+      ...optionInfo,
+      [name]: value,
+      mainImgShow: null,
+      mainImg: null,
+    });
   };
 
   //=============== THE MAIN DATA TO SEND TO THE SERVER ==============//
@@ -105,9 +128,13 @@ const AddNewProductApp = () => {
   const addProduct = () => {
     const axiosAddProduct = async () => {
       await axios.post("https://alconn.co/api/item/add", productData);
+      //=============================================================================================================//
+      //======================상품이 성공적으로 등록되면 메인 창으로 이동 하도록 코드 입력!!!!!!!!!!!!!==================//
+      //=============================================================================================================//
     };
     axiosAddProduct();
-    mainImageUpload();
+    //mainImageUpload();
+    consoleLog();
     //subImageUpload();
     alert("상품이 등록되었습니다.");
   };
@@ -499,7 +526,7 @@ const AddNewProductApp = () => {
                               }}
                               id="myImg"
                               alt=""
-                              src={option.mainImg}
+                              src={option.mainImgShow}
                             />
                           )}
                         </div>
@@ -507,13 +534,21 @@ const AddNewProductApp = () => {
                           <input
                             style={{ width: "100%", height: "100%" }}
                             type="file"
-                            name="subImg"
-                            id="subImg"
+                            name="mainImg"
+                            id="mainImg"
                             onChange={(e) =>
                               mainImageChange(e.target.files[0], idx)
                             }
                           />
                         </div>
+                        {/* <div>
+                          <button
+                            className="btn btn-outline-primary btn-sm"
+                            onClick={() => mainImageUpload(idx)}
+                          >
+                            사진등록
+                          </button>
+                        </div> */}
                       </div>
                       <div
                         className="col-2 align-self-center"
