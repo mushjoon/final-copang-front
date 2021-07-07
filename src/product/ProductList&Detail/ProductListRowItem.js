@@ -9,7 +9,6 @@ const ProductListRowItem = (props) => {
     }
 
     let itemId = props.row.itemId
-
     return (
         <li
             onClick={

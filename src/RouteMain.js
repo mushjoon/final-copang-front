@@ -19,6 +19,11 @@ import OrderPageApp from "./purchase/OrderPageApp";
 
 import Menu from "./Menu";
 
+import AddForm from "./youngjae/ProductAddTest";
+import Test22 from "./hyunjin/Test22";
+import Test from "./hyunjin/Test";
+import PaymentProcess from './purchase/PaymentProcess';
+
 //import SearchBox from "./header/SearchBox/SearchBox";
 
 const RouteMain = () => {
@@ -39,6 +44,11 @@ const RouteMain = () => {
             <Route path="/member/3" component={Container}/>
             <Route path="/member/4" component={ProductListRouteMain} />
             <Route path="/member/5" component={MyCopang} />
+            <Route path="/member/6" component={AddForm} />
+            <Route path="/member/7" component={Test22} />
+            <Route path="/member/8" component={Test} />
+            <Route path="/member/9" component={PaymentProcess} />
+            <Route path="/member/10" component={OrderComplete} />
             <Route path="/login" component={Auth(LoginPage, false)} />
             <Route path="/register" component={Auth(RegisterPage, false)} />
             <Route path="/sellerRegister" component={Auth(RegisterSellerPage, false)} />
@@ -49,6 +59,7 @@ const RouteMain = () => {
           </Switch>
         </div>
       </Suspense>
+
     </div>
   );
 };

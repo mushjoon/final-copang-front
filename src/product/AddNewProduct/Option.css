@@ -30,3 +30,7 @@
 .optionList {
   background-color: white;
 }
+
+.optionList div {
+  border: 0px solid black;
+}

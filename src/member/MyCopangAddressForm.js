@@ -1,32 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Typography,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Button
 } from "@material-ui/core";
 import axios from 'axios';
 
 export default function MyCopangAddressForm({ history }) {
   let xs = 10;
-  const [addrValues, setAddrValues] = useState({ address: "", detail:"", receiverName: "",  receiverPhone: "", preRequest: ""});
+  const [addrValues, setAddrValues] = useState({ address: "", detail: "", receiverName: "", receiverPhone: "", preRequest: "" });
+  // const [defaultAddr, setDeefaultAddr] = useState({ defaultAddress: "" })
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAddrValues({ ...addrValues, [name] : value });
+    setAddrValues({ ...addrValues, [name]: value });
   }
-  // const onClickChange = (e) => {
-  //   console.log(e.target.checked)
-  //   e.target.value = e.target.checked
-  // }
   const SubmitAddr = () => {
     const uri = 'https://alconn.co/api/address';
     const postAddr = async () => {
-      await axios.post(uri, addrValues);
+      await axios.post(uri, addrValues).then(history.push("/mycopang/my-addr"));
     }
     postAddr()
-    .then(history.push("/my-addr"))
   }
 
   return (
@@ -90,17 +85,6 @@ export default function MyCopangAddressForm({ history }) {
             label="요청 사항을 말씀해주세요"
             fullWidth
             onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={xs}>
-          <FormControlLabel
-            control={
-              <Checkbox color="primary" name="saveAddress" value={addrValues.saveAddress}
-              onChange={handleChange}
-              // onClick={onClickChange}
-              />
-            }
-            label="기본 배송지로 선택"
           />
         </Grid>
         <Grid container item xs={xs} justify="center" >

@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table, Button } from 'reactstrap';
 import './Cart.css';
+import productRedux from '../product/AddNewProduct/productRedux';
 
 
-const Cart2 = (props) => {
+const Cart = (props) => {
     const [cart, setCart] = useState();
     const [total, setTotal] = useState(0);
     const [refresh, setRefresh] = useState(0);
@@ -13,6 +14,10 @@ const Cart2 = (props) => {
     const [clientId, setClientId] = useState();
     const [cartId, setCartId] = useState();
     
+    const a = {
+        a:"a",
+        b:"b",
+    }
 
     //user의 카트리스트 받아와서 cart 에 저장
     const axiosCartList = async () => {
@@ -159,7 +164,7 @@ const Cart2 = (props) => {
 
     return(
         <div style={{width:'1000px',margin:'0 auto', padding:'20px'}}>
-            <h2><b><i class='fas fa-shopping-cart'></i> 장바구니</b></h2><br/>
+            <h2><b><i className='fas fa-shopping-cart'></i> 장바구니</b></h2><br/>
             <Table  hover>
                 <thead>
                     <tr>
@@ -213,4 +218,4 @@ const Cart2 = (props) => {
     )
 }
 
-export default Cart2;
+export default Cart;
