@@ -14,7 +14,10 @@ import Box from '@material-ui/core/Box';
 
 //리뷰작성하기클릭->주문목록(orderId보내기)->리뷰작성폼(현재 페이지/orderId받기)
 const ProductReviewWriteForm = (props) => {
-    let orderItemId=props.location.state.orderId;
+    let orderItemId=props.location.state.orderInfo.orderItems[0].orderItemId;
+    let itemId=props.location.state.orderInfo.orderItems[0].itemId;
+    let itemDetailId=props.location.state.orderInfo.orderItems[0].itemDetailId;
+    console.log(props.location.state);
     console.log(props)
     // 별점함수
     const [value, setValue] = React.useState(2);
@@ -64,12 +67,12 @@ const ProductReviewWriteForm = (props) => {
         const { name, value } = e.target;
         setReview({ ...review, [name]: value })
     }  
-    
+
 
     // console.log(itemId)
     const reviewData = {
-        // "itemId":Number(itemId),
-        // "itemDetailId" : itemDetailId,
+        "itemId":Number(itemId),
+        "itemDetailId" : itemDetailId,
         "orderItemId" : orderItemId,
         "title": review.title,
         "content": review.content,

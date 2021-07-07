@@ -4,9 +4,7 @@ import Modal from './ProductReviewModal';
 import StarIcon from '@material-ui/icons/Star';
 
 const ProductReviewBottom = (props) => {
-
     let itemId = props.match.params.itemId;
-
     //개별상품의 정보를 itemId로 받아 ProductOne에 저장 
     const [ProductOne, setProductOne] = useState([]);
     useEffect(() => {
@@ -22,6 +20,7 @@ const ProductReviewBottom = (props) => {
         const res = async () => {
             const result = await axios.get("https://alconn.co/api/review/"+itemId);
             setReview(result.data.data)
+            console.log(result.data)
         }
         res();
     }, [])
@@ -42,7 +41,20 @@ const ProductReviewBottom = (props) => {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div className="product-review-header">
 
-                    <div style={{ fontWeight: 'bold', fontSize: '1.5em', marginTop: '3%' }}>상품리뷰<button className="write-review" onClick={()=>props.history.push("/member/4/order")}>상품리뷰 작성</button><button className="review-rules" onClick={openModal}>상품리뷰 운영원칙</button></div>
+                    <div style={{ fontWeight: 'bold', fontSize: '1.5em', marginTop: '3%' }}>
+                        상품리뷰&nbsp;&nbsp;
+                        <span style={{ width: '300px', height: '44' }}>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        <StarIcon className="star"></StarIcon>
+                        &nbsp;&nbsp;
+                        <span className="reviewlength">{Review.length}</span>
+                        </span>
+                        <button className="write-review" onClick={()=>props.history.push("/member/4/order")}>상품리뷰 작성</button>
+                        <button className="review-rules" onClick={openModal}>상품리뷰 운영원칙</button>
+                    </div>
 
                     <Modal open={modalOpen} close={closeModal} header="상품평 운영원칙">
                         <div style={{fontWeight:'bold', fontSize:'1.5em'}}>※ 상품평 운영원칙 및 관련 법령에 위반되는 경우에는 해당 상품평에 대한 임시 대처, 비공개 전환, 삭제 등의 필요한 조치가 취해질 수 있습니다.</div>
@@ -75,22 +87,8 @@ const ProductReviewBottom = (props) => {
                         ⑤ 회사는 회사의 합병, 영업양도, 회사가 운영하는 사이트 간의 통합, 서비스 개편 등의 사유로 원래의 게시물
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의 내용을 변경하지 않고 게시물의 게시 위치를 변경할 수 있습니다<br />
                         </Modal><br />
-                    <div style={{ width: '300px', height: '44' }}>
-                        <StarIcon className="star"></StarIcon>
-                        <StarIcon className="star"></StarIcon>
-                        <StarIcon className="star"></StarIcon>
-                        <StarIcon className="star"></StarIcon>
-                        <StarIcon className="star"></StarIcon>
-                        &nbsp;&nbsp;&nbsp;
-                        <span className="reviewlength">{Review.length}</span>
-                    </div>
-                    {/* map 반복문 돌려야함.(li반복) */}
-                    <div>
-                        <ul className="product-review-header-image">
-                            <li><img alt="/에어맥스97.PNG" src="/에어맥스97.PNG" /></li>
-                            <li><img alt="/에어맥스97.PNG" src="/에어맥스97.PNG" /></li>
-                        </ul>
-                    </div><br /><br /><br /><br />
+                    
+                    <br /><br />
                     <div className="product-review-searchbar">
                         <div className="searchbar-btn" style={{ display: 'inline-block', float: 'left' }}>
                             <div style={{ display: 'inline-block', float: 'left' }}><button className="bestbtn">별점순&nbsp;&nbsp;&nbsp;|</button></div>
@@ -103,6 +101,7 @@ const ProductReviewBottom = (props) => {
 
                     </div>
                     {
+                        Review.length!==0?
                         Review && Review.map((row, idx) => {
                             return (
                                 <div className="product-review-body" row={row} key={idx}>
@@ -110,8 +109,8 @@ const ProductReviewBottom = (props) => {
                                         <span className="user-photo glyphicon glyphicon-user"></span>
                                     </div>
                                     <div style={{ float:'left' }}>
-                                        <div>{localStorage.getItem("userId")}</div>
-                                        <span>
+                                        <div style={{ float:'left' }}>{localStorage.getItem("userId")}</div>
+                                        <span style={{ float:'left' }}>
                                             <div>
                                                 {
                                                     row.rating === 1 ? <div><StarIcon className="smstar"></StarIcon><span className="writeDate">{row.registerDate}</span></div>
@@ -127,16 +126,16 @@ const ProductReviewBottom = (props) => {
                                         <span className="smstar glyphicon glyphicon-star"></span>&nbsp; */}
                                             </div>
                                         </span>
-                                    </div>
-                                    <div>{ProductOne.itemName},{ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionName}:{ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionValue},{row.amount}</div>
-                                    <br /><br /><br />
+                                    </div><br/>
+                                    <div style={{marginRight:'90%', color:'#777'}}>{ProductOne.itemName},{ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionName}:{ProductOne.itemDetailFormList&&ProductOne.itemDetailFormList[0].optionValue},{row.amount}</div>
+                                    <br />
                                     <div><strong>{row.title}</strong></div>
                                     <div className="product-review-content">
                                         {row.content}
                                     </div>
                                 </div>
                             )
-                        })
+                        }):<div style={{fontSize:'30pt',width:'100%',textAlign:'center',borderBottom:'2px solid #555555',height:'300px',lineHeight:'300px'}}>상품리뷰가 없습니다.</div>
                     }
                 </div>
             </div>
