@@ -37,6 +37,12 @@ const CategoryForm = () => {
   const mediumCategorySelect = (e) => {
     setSmallCategory(JSON.parse(e.target.value).cildCategory);
     setRefresh((prev) => prev + 1);
+    console.log(JSON.parse(e.target.value).categoryId);
+  };
+
+  const smallCategorySelect = (e) => {
+    setRefresh((prev) => prev + 1);
+    console.log(JSON.parse(e.target.value).categoryId);
   };
 
   useEffect(() => {
@@ -92,6 +98,7 @@ const CategoryForm = () => {
                 name="mediumCategory"
                 onChange={(e) => mediumCategorySelect(e)}
               >
+                <option selected>카테고리 선택</option>
                 {mediumCategory.map((entry, idx) => {
                   return (
                     <option
@@ -112,7 +119,9 @@ const CategoryForm = () => {
                 className="custom-select"
                 id="smallCategoryForm"
                 name="smallCategory"
+                onChange={(e) => smallCategorySelect(e)}
               >
+                <option selected>카테고리 선택</option>
                 {smallCategory.map((entry, idx) => {
                   return (
                     <option

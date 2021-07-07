@@ -65,8 +65,16 @@ const AddNewProductApp = () => {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // console.log(e.target);
-    setProduct({ ...product, [name]: value });
+    //console.log(e.target);
+    const test = {
+      ...product,
+      [name]: value,
+    };
+    //console.log(test);
+    setProductData({
+      ...productData,
+      [name]: value,
+    });
   };
 
   //=============== Changing product's other properties ==============//
@@ -88,9 +96,9 @@ const AddNewProductApp = () => {
   // };
 
   const [productData, setProductData] = useState({
-    itemName: "",
-    itemComment: "",
-    categoryId: "",
+    itemName: product.itemName,
+    itemComment: product.itemComment,
+    categoryId: product.categoryId,
     itemDetailFormList: [],
   });
 
@@ -100,7 +108,7 @@ const AddNewProductApp = () => {
     };
     axiosAddProduct();
     mainImageUpload();
-    subImageUpload();
+    //subImageUpload();
     alert("상품이 등록되었습니다.");
   };
 
@@ -156,8 +164,58 @@ const AddNewProductApp = () => {
     "일양로지스",
     "경동택배",
   ];
+
+  /////////////////////////////////////대분류 변수////////////////////////////////////////
+  const [largeCategory, setLargeCategory] = useState([]);
+  const [selectedLC, setSelectedLC] = useState([]);
+
+  /////////////////////////////////////중분류 변수////////////////////////////////////////
+  const [mediumCategory, setMediumCategory] = useState([]);
+  const [selectedMC, setSelectedMC] = useState([]);
+
+  /////////////////////////////////////소분류 변수////////////////////////////////////////
+  const [smallCategory, setSmallCategory] = useState([]);
+  const [selectedSC, setSelectedSC] = useState([]);
+
+  const largeCategorySelect = (e) => {
+    setMediumCategory(JSON.parse(e.target.value).cildCategory);
+    setRefresh((prev) => prev + 1);
+    setSmallCategory("");
+    productData.categoryId = JSON.parse(e.target.value).categoryId;
+    setRefresh((prev) => prev + 1);
+    console.log(productData.categoryId);
+  };
+
+  const mediumCategorySelect = (e) => {
+    setSmallCategory(JSON.parse(e.target.value).cildCategory);
+    setRefresh((prev) => prev + 1);
+    productData.categoryId = JSON.parse(e.target.value).categoryId;
+    setRefresh((prev) => prev + 1);
+    console.log(productData.categoryId);
+  };
+
+  const smallCategorySelect = (e) => {
+    setRefresh((prev) => prev + 1);
+    productData.categoryId = JSON.parse(e.target.value).categoryId;
+    setRefresh((prev) => prev + 1);
+    console.log(productData.categoryId);
+  };
   useEffect(() => {
     console.log(productData.itemDetailFormList);
+
+    const readAllCategory = async () => {
+      const result = await axios.get("https://alconn.co/api/category/list");
+      //console.log(result);
+
+      setLargeCategory(result.data.data.cildCategory);
+      // setMediumCategory(result.data.data.cildCategory[0].cildCategory);
+      // setSmallCategory(
+      //   result.data.data.cildCategory[0].cildCategory[0].cildCategory
+      // );
+      //console.log(largeCategory);
+    };
+
+    readAllCategory();
   }, [refresh]);
   return (
     <div>
@@ -181,7 +239,6 @@ const AddNewProductApp = () => {
                 id="itemName"
                 name="itemName"
                 required="required"
-                value={product.itemName}
                 onChange={handleChange}
               ></input>
             </div>
@@ -190,7 +247,82 @@ const AddNewProductApp = () => {
       </div>
       {/* ############################### 카테고리 출력 부분 ################################ */}
       {/* ############################################################################################ */}
-      <CategoryForm />
+      <div className="container-fluid">
+        <div className="jumbotron">
+          <div className="row" style={{ marginBottom: "30px" }}>
+            <h2>카테고리</h2>
+          </div>
+          <div className="row">
+            <div className="col-2">
+              <select
+                className="custom-select"
+                id="largeCategoryForm"
+                name="largeCategory"
+                onChange={(e) => largeCategorySelect(e)}
+              >
+                <option selected>카테고리 선택</option>
+                {largeCategory.map((entry, idx) => {
+                  return (
+                    <option
+                      key={entry.categoryId}
+                      value={JSON.stringify(entry)}
+                      name="largeCategory"
+                    >
+                      {entry.categoryName}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="col-2" id="mediumCategorySection">
+              {mediumCategory.length !== 0 ? (
+                <select
+                  className="custom-select"
+                  id="mediumCategoryForm"
+                  name="mediumCategory"
+                  onChange={(e) => mediumCategorySelect(e)}
+                >
+                  <option selected>카테고리 선택</option>
+                  {mediumCategory.map((entry, idx) => {
+                    return (
+                      <option
+                        key={entry.categoryId}
+                        value={JSON.stringify(entry)}
+                        name="mediumCategory"
+                      >
+                        {entry.categoryName}
+                      </option>
+                    );
+                  })}
+                </select>
+              ) : null}
+            </div>
+            <div className="col-2">
+              {smallCategory.length !== 0 ? (
+                <select
+                  className="custom-select"
+                  id="smallCategoryForm"
+                  name="smallCategory"
+                  onChange={(e) => smallCategorySelect(e)}
+                >
+                  <option selected>카테고리 선택</option>
+                  {smallCategory.map((entry, idx) => {
+                    return (
+                      <option
+                        key={entry.categoryId}
+                        value={JSON.stringify(entry)}
+                        name="smallCategory"
+                      >
+                        {entry.categoryName}
+                      </option>
+                    );
+                  })}
+                </select>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
       {/* ############################### 옵션 출력 부분 ################################ */}
       {/* ############################################################################################ */}
       <div className="container-fluid">
@@ -289,7 +421,7 @@ const AddNewProductApp = () => {
 
           <div className="row optionListHeader">
             <div className="col-5">
-              <h5>옵션 목록 (총 {productData.itemDetailFormList.length} 개)</h5>
+              {/* <h5>옵션 목록 (총 {productData.itemDetailFormList.length} 개)</h5> */}
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -353,7 +485,7 @@ const AddNewProductApp = () => {
                       <div className="col-3 align-self-center">
                         <div
                           style={{
-                            border: "1px solid black",
+                            border: "1px solid gray",
                             width: "80px",
                             height: "80px",
                           }}
@@ -361,7 +493,7 @@ const AddNewProductApp = () => {
                           {option.mainImg && (
                             <img
                               style={{
-                                border: "1px solid black",
+                                border: "0px solid gray",
                                 width: "100%",
                                 height: "100%",
                               }}
@@ -416,7 +548,7 @@ const AddNewProductApp = () => {
       </div>
       {/* ############################### 상품 이미지 업로드 부분 ################################ */}
       {/* ############################################################################################ */}
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
         <div className="jumbotron">
           <div className="row">
             <h2>이미지 업로드</h2>
@@ -460,11 +592,11 @@ const AddNewProductApp = () => {
               >
                 이미지 등록
               </button>
-            </div> */}
-            </div>
+            </div> 
+       </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* ############################### 상품 상세 정보 입력 부분 ################################ */}
       {/* ############################################################################################ */}
       <div className="container-fluid">
@@ -479,7 +611,6 @@ const AddNewProductApp = () => {
                 style={{ height: "500px" }}
                 placeholder="상품 상세 정보를 입력해주세요"
                 name="itemComment"
-                value={product.itemComment}
                 onChange={handleChange}
               ></textarea>
             </div>
@@ -578,7 +709,7 @@ const AddNewProductApp = () => {
               <button
                 type="button"
                 className="btn btn-primary btn-block"
-                onClick={consoleLog}
+                onClick={addProduct}
                 style={{ height: "100px", fontSize: "2em" }}
                 id="btnConfirm"
               >
