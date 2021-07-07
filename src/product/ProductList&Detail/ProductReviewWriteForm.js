@@ -17,6 +17,7 @@ const ProductReviewWriteForm = (props) => {
     let orderItemId=props.location.state.orderInfo.orderItems[0].orderItemId;
     let itemId=props.location.state.orderInfo.orderItems[0].itemId;
     let itemDetailId=props.location.state.orderInfo.orderItems[0].itemDetailId;
+    let mainImg=props.location.state.orderInfo.orderItems[0].mainImg;
     console.log(props.location.state);
     console.log(props)
     // 별점함수
@@ -132,7 +133,8 @@ const ProductReviewWriteForm = (props) => {
                         <div style={{ fontSize: '11pt' }}>이 상품의 품질에 대해서 얼마나 만족하시나요?</div>
                     </div>
                     <div className="service-review-wrap">
-                        <span style={{ margin: '3%' }}>
+                        <div style={{border:'1px solid black', width:'100px', height:'100px',margin:'3%',padding:'0'}}><img alt="" src={mainImg} style={{width:'100%',height:'100%'}}/></div>
+                        <span style={{}}>
                             <Box component="fieldset" mb={3} borderColor="transparent">
                                 <Typography component="legend"></Typography>
                                 <Rating
@@ -153,7 +155,9 @@ const ProductReviewWriteForm = (props) => {
                     </div>
                     <div className="review-image-wrap">
                         <div style={{ float: 'left', margin:'3%' }}><span>사진첨부</span></div>
-                        <span><button style={{float:'right'}} onClick={imgUpload}>사진등록</button><input type="file" onChange={onChange} style={{ float:'right',width:'200px'}}></input></span>
+                        <div style={{float:'left', width:'100px',height:'100px', border:'1px solid black',marginTop:'3%',marginLeft:'7%'}}></div>
+                        <div><input type="file" onChange={onChange} style={{ float:'left',marginTop:'3%',width:'210px',marginLeft:'70px'}}></input></div>
+                        <div><button style={{float:'left',marginTop:'3%'}} onClick={imgUpload}>사진등록</button></div>
                     </div>
                     <div style={{ borderTop: '1px solid #ddd',borderBottom:'1px solid #ddd',height:'150px' }}>
                         <div style={{ float: 'left', margin: '3%' }}><span>한줄요약</span></div>

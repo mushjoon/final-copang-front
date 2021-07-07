@@ -110,22 +110,23 @@ const ProductQuestionBottom = (props) => {
         alert("문의등록이 되었습니다.")
     }
 
-    const addReply = (idx) => {
-        const axiosAddReply = async () => {
-            const replyData = {
-                "inquiry": Question[idx].inquiryId,
-                "content": replyContent.replyContent,
-            }
-            await axios.post("https://alconn.co/api/inquiry/" + Question[idx].inquiryId + "/reply", replyData);
-            const result = await axios.get("https://alconn.co/api/inquiry/" + itemId + "/item");
-            setQuestion(result.data.data);
-            setRefresh(prev => prev + 1)
-        }
-        axiosAddReply();
+    //답변등록 API
+    // const addReply = (idx) => {
+    //     const axiosAddReply = async () => {
+    //         const replyData = {
+    //             "inquiry": Question[idx].inquiryId,
+    //             "content": replyContent.replyContent,
+    //         }
+    //         await axios.post("https://alconn.co/api/inquiry/" + Question[idx].inquiryId + "/reply", replyData);
+    //         const result = await axios.get("https://alconn.co/api/inquiry/" + itemId + "/item");
+    //         setQuestion(result.data.data);
+    //         setRefresh(prev => prev + 1)
+    //     }
+    //     axiosAddReply();
 
-        alert("답변등록이 되었습니다.");
+    //     alert("답변등록이 되었습니다.");
 
-    }
+    // }
 
     const fixQuestion = (idx) => {
         const axiosfixQuestion = async () => {
@@ -145,12 +146,12 @@ const ProductQuestionBottom = (props) => {
                     <div style={{ fontWeight: 'bold', fontSize: '1.5em', marginTop: '3%' }}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         상품문의<span className="product-question-span"><button type="button" className="product-question-button" onClick={openModal}>문의하기</button></span></div>
                     <ProductQuestionModal open={modalOpen} close={closeModal} header="상품 문의">
-                        <table className="table table-bordered" style={{ width: '500px', height: '600px' }}>
-                            <tbody>
-                                <tr style={{ height: '50px' }}>
-                                    <th>상품정보</th>
-                                    <td>
-                                        <div>
+                        <table style={{ width: '100%', height: '90%', border:'1px solid #777777',textAlign:'center'}}>
+                            <tbody className="question-tbody">
+                                <tr style={{ border:'1px solid #777777'}}>
+                                    <th style={{width:'10%',  border:'1px solid #777777'}}>상품정보</th>
+                                    <td style={{ border:'1px solid #777777'}}>
+                                        <div style={{textAlign:'left'}}>
                                             <div>
                                                 {ProductOne.itemDetailFormList && ProductOne.itemDetailFormList[0].optionName} :
                                                 <select onChange={(e)=>handleChange2(e)}>
@@ -168,21 +169,21 @@ const ProductQuestionBottom = (props) => {
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>판매자</th>
-                                    <td>
-
+                                <tr style={{ border:'1px solid #777777'}}>
+                                    <th style={{ border:'1px solid #777777'}}>판매자</th>
+                                    <td style={{textAlign:'left'}}>
+                                        <div>판매자.</div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>문의내용</th>
+                                <tr style={{ border:'1px solid #777777'}}>
+                                    <th style={{ border:'1px solid #777777'}}>문의내용</th>
                                     <td>
-                                        <textarea cols="100" name="content" value={content.content} onChange={handleChange}></textarea>
+                                        <input type="text" row="2" style={{ width:'100%',height:'100%'}} name="content" value={content.content} onChange={handleChange}></input>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div style={{ textAlign: 'center' }}>
+                        <div style={{ textAlign: 'center',marginTop:'30px' }}>
                             <button type="submit" className="question-submit-btn" onClick={addQuestion}><span>확인</span></button>
                             <button type="button" className="question-cancel-btn" onClick={closeModal}><span>취소</span></button>
                         </div>

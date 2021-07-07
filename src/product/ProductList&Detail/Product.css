@@ -432,8 +432,7 @@ div.service-review-question{
 }
 
 div.service-review-wrap{
-    height: 8%;
-    min-height: 7%;
+    height: 150px;
 }
 
 div.product-review-wrap{
@@ -457,4 +456,9 @@ div.review-image-wrap{
 
 .clickedstar {
     color: rgb(212, 180, 0);
+}
+
+table tbody.question-tbody td{
+    height: 100px;
+    line-height: 0px;
 }
