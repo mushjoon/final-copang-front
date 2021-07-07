@@ -13,10 +13,16 @@ import ProductListRouteMain from './youngjae/ProductListRouteMain';
 import MyCopang from "./member/MyCopang";
 import LoginPage from "./TopBar/Component/LoginPage";
 import RegisterPage from "./TopBar/Component/RegisterPage";
+import RegisterSellerPage from "./Seller/Component/RegisterSellerPage";
 import OrderComplete from "./purchase/OrderComplete";
 import OrderPageApp from "./purchase/OrderPageApp";
 
 import Menu from "./Menu";
+
+import AddForm from "./youngjae/ProductAddTest";
+import Test22 from "./hyunjin/Test22";
+import Test from "./hyunjin/Test";
+import PaymentProcess from './purchase/PaymentProcess';
 
 //import SearchBox from "./header/SearchBox/SearchBox";
 
@@ -25,7 +31,7 @@ const RouteMain = () => {
   return (
     <div>
       {/* 자동로그인 */}
-      {autoLoginWithAccessToken()}    
+      { autoLoginWithAccessToken()}
       <Suspense fallback={(<div>Loading...</div>)}>
         <div style={{minWidth:'940px', maxWidth: '1280px', margin: 'auto'}}>
           <TopBar />
@@ -38,15 +44,22 @@ const RouteMain = () => {
             <Route path="/member/3" component={Container}/>
             <Route path="/member/4" component={ProductListRouteMain} />
             <Route path="/member/5" component={MyCopang} />
+            <Route path="/member/6" component={AddForm} />
+            <Route path="/member/7" component={Test22} />
+            <Route path="/member/8" component={Test} />
+            <Route path="/member/9" component={PaymentProcess} />
+            <Route path="/member/10" component={OrderComplete} />
             <Route path="/login" component={Auth(LoginPage, false)} />
             <Route path="/register" component={Auth(RegisterPage, false)} />
+            <Route path="/sellerRegister" component={Auth(RegisterSellerPage, false)} />
             <Route path="/cart" component={Auth(Cart, true)} />
             <Route path="/mycopang" component={Auth(MyCopang, true)} />
-            <Route path="/order/complete" component={OrderComplete} />
-            <Route path="/order/do" component={OrderPageApp} />
+            <Route path="/order/complete" component={Auth(OrderComplete)} />
+            <Route path="/order/do" component={Auth(OrderPageApp)} />
           </Switch>
         </div>
       </Suspense>
+
     </div>
   );
 };

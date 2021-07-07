@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Link, NavLink, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+// import DaumPostcode from "react-daum-postcode";
 
 import './css/MyCopang.css';
 import './css/OrderList.css';
 import './css/Tab.css';
 
-import {MyCopangPay} from './MyCopangPay';
+import { MyCopangPay } from './MyCopangPay';
 import MyCopangAddress from './MyCopangAddress';
 import MyCopangAddressAddForm from './MyCopangAddressForm';
 import AddressUpdateForm from './AddressUpdateForm';
+import MyCopangReview from './MyCopangReview';
+import ProductReviewWriteForm from '../product/ProductList&Detail/ProductReviewWriteForm';
+import MyCopangOrderDetail from './MyCopangOrderDetail';
+import MyCopangShip from './MyCopangShip';
 
 // Navigation
 // const MyCopangNavi = () => {
@@ -22,22 +27,33 @@ import AddressUpdateForm from './AddressUpdateForm';
 //     )
 // }
 
-const Order = () => {
+export const Order = ({ history }) => {
     const [orderList, setOrderList] = useState([]);
 
-    // const orderListUrl = "https://al.conn/api/order/client/";
-    // useEffect(() => {
-    //     //getOrderList 비동기 함수 생성 
-    //     const getOrderList = async () => {
-    //         const {
-    //             data: {
-    //                 data: { orderItems }
-    //             }
-    //         } = await axios.get(orderListUrl);
-    //         setOrderList(orderItems);
-    //     }
-    //     getOrderList();
-    // }, []);
+    const orderListUrl = "https://alconn.co/api/orders/client";
+    //getOrderList 비동기 함수 생성 
+    useEffect(() => {
+        const getOrderList = async () => {
+            const { data: { data } } = await axios.get(orderListUrl);
+            setOrderList(data);
+            console.log(data)
+        }
+        getOrderList();
+    }, [])
+    // 주문 목록 -> 장바구니 담기 
+    const onSendCart = (product) => {
+        const sendData = {
+            itemDetailId: product.itemDetailId,
+            itemId : product.itemId,
+            amount: product.amount
+        }
+
+        const axiosAddOneCart = async () => {
+            await axios.post("https://alconn.co/api/cart/item", sendData);
+        }
+        axiosAddOneCart();
+        alert("장바구니에 담겼습니다.")
+    }
 
     return (
         <div className="mc-main-content">
@@ -46,32 +62,38 @@ const Order = () => {
                 orderList.map(order => (
                     <div className="container">
                         <div className="box-header">
-                            <div className="header-date">{order.year}</div>
-                            <div className="header-detail">주문 상세 정보 보기 </div>
+                            {/* <div className="header-date">{order.orderId}</div> */}
+                            <div>{order.orderDate.substring(0,10)}</div>
+                            <div className="header-detail"><Link to ={{pathname : '/mycopang/detail', state:{order}}}>주문 상세 정보 보기</Link></div>
                         </div>
-                        <div className="product-container">
-                            <div className="product-image">
-                                <img src="favicon.ico" alt="product" />
-                            </div>
-                            <div className="title-price-divide">
-                                <div >{order.title}</div>
-                                <div className="price-ea-basket-container">
-                                    <div className="price-ea-container">
-                                        <div>가격</div>
-                                        <div>점?</div>
-                                        <div>갯수</div>
+                        {/* <div >{order.orderStatus}</div> */}
+                        {order.orderItems.map(product => (
+                            <div className="product-container">
+
+
+                                <div className="product-image">
+                                    <img src={product.mainImg} style={{width:'100%'}} alt="product" />
+                                </div>
+                                <div className="title-price-divide">
+                                    <div>아이템 이름 : {product.itemName}</div>
+                                    <div className="price-ea-basket-container">
+                                        <div className="price-ea-container">
+                                            <div>{product.price} 원</div>
+                                        </div>
+                                        <div>{product.amount} 개</div>
+                                        <button className="btn-basket" onClick={()=>onSendCart(product)}>장바구니 담기</button>
                                     </div>
-                                    <button className="btn-basket">장바구니 담기</button>
+                                    <br></br>
+                                </div>
+                                <div className="btn-container">
+                                    <div className="btn-container-flex">
+                                        <button className="content-btn btn-1" onClick={() => history.push("/ship-tracking")}>배송 조회</button>
+                                        <button className="content-btn btn-2">교환, 반품 신청</button>
+                                        <button className="content-btn btn-3" onClick={() => history.push({ pathname: "/mycopang/review", state: { orderInfo : order } })}>리뷰 작성하기</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="btn-container">
-                                <div className="btn-container-flex">
-                                    <button className="content-btn btn-1">배송 조회</button>
-                                    <button className="content-btn btn-2">교환, 반품 신청</button>
-                                    <button className="content-btn btn-3">리뷰 작성하기</button>
-                                </div>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 ))
             }
@@ -102,8 +124,8 @@ const CancelTab = () => {
     }
     return (
         <div className="tab-box">
-            <NavLink to='/cancel-return' activeStyle={activeStyle} className="tab-box-label">취소 / 반품 </NavLink>
-            <NavLink to='/refund-account' activeStyle={activeStyle} className="tab-box-label"> 무통장 환불 </NavLink>
+            <NavLink to='/mycopang/cancel-return' activeStyle={activeStyle} className="tab-box-label">취소 / 반품 </NavLink>
+            <NavLink to='/mycopang/refund-account' activeStyle={activeStyle} className="tab-box-label"> 무통장 환불 </NavLink>
         </div>
     )
 }
@@ -134,10 +156,10 @@ const MainTab = () => {
     }
     return (
         <div className="main-tab">
-            <NavLink exact to='/order' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label" >전체</NavLink>
-            <NavLink to='/order' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label">배송상품</NavLink>
-            <NavLink to='/trip' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label">여행상품</NavLink>
-            <NavLink to='/ticket' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label">티켓상품</NavLink>
+            <NavLink exact to='/mycopang' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label" >전체</NavLink>
+            <NavLink exact to='/mycopang' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label">배송상품</NavLink>
+            <NavLink to='/mycopang/trip' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label">여행상품</NavLink>
+            <NavLink to='/mycopang/ticket' style={{ textDecoration: 'none' }} activeStyle={activeStyle} className="tab-box-label">티켓상품</NavLink>
         </div>
     )
 }
@@ -171,8 +193,8 @@ const MyCopangTemplate = () => {
                         <div className="mc-shopping">
                             <ul>
                                 <li className="title-mid">My쇼핑</li>
-                                <li><Link exact="true" to="/order" style={{ textDecoration: 'none' }}>주문목록</Link></li>
-                                <li><Link exact="true" to="/cancel-return" style={{ textDecoration: 'none' }}>취소/반품/교환/환불내역</Link></li>
+                                <li><Link exact="true" to="/mycopang" style={{ textDecoration: 'none' }}>주문목록</Link></li>
+                                <li><Link exact="true" to="/mycopang/cancel-return" style={{ textDecoration: 'none' }}>취소/반품/교환/환불내역</Link></li>
                                 <li>정기배송관리</li>
                                 <li>영수증 조회/출력</li>
                             </ul>
@@ -189,7 +211,7 @@ const MyCopangTemplate = () => {
                                 <li className="title-mid">My 활동</li>
                                 <li>문의하기</li>
                                 <li>문의내역 확인</li>
-                                <li>리뷰 관리</li>
+                                <li><Link exact="true" to="/review-page">리뷰 관리</Link></li>
                                 <li>찜 리스트</li>
                             </ul>
                         </div>
@@ -198,7 +220,7 @@ const MyCopangTemplate = () => {
                                 <li className="title-mid">My정보</li>
                                 <li>개인정보확인/수정</li>
                                 <li><Link exact="true" to="co-pay">결제수단/쿠페이 관리</Link></li>
-                                <li><Link exact="true" to="/my-addr">배송지 관리</Link></li>
+                                <li><Link exact="true" to="/mycopang/my-addr">배송지 관리</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -231,15 +253,19 @@ const MyCopangTemplate = () => {
                         </div>
                         <div className="mc-main-content">
                             <Switch>
-                                <Route exact path="/order" component={Order} />
-                                <Route exact path="/cancel-return" component={Cancel} />
-                                <Route path="/trip" component={TripRender} />
-                                <Route path="/ticket" component={TicketRender} />
-                                <Route path="/refund-account" component={Refund} />
-                                <Route path="/co-pay" component={MyCopangPay} />
-                                <Route exact path="/my-addr" component={MyCopangAddress} />
-                                <Route exact path="/address-add-page" component={MyCopangAddressAddForm} />
-                                <Route exact path="/address-update-page" component={AddressUpdateForm} />
+                                <Route exact path="/mycopang" component={Order} />
+                                <Route path="/mycopang/cancel-return" component={Cancel} />
+                                <Route path="/mycopang/trip" component={TripRender} />
+                                <Route path="/mycopang/ticket" component={TicketRender} />
+                                <Route path="/mycopang/refund-account" component={Refund} />
+                                <Route path="/mycopang/co-pay" component={MyCopangPay} />
+                                <Route exact path="/mycopang/my-addr" component={MyCopangAddress} />
+                                <Route exact path="/mycopang/address-add-page" component={MyCopangAddressAddForm} />
+                                <Route exact path="/mycopang/address-update-page" component={AddressUpdateForm} />
+                                <Route exact path="/mycopang/review" component={ProductReviewWriteForm} />
+                                <Route exact path="/review-page" component={MyCopangReview} />
+                                <Route exact path="/ship-tracking" component={MyCopangShip} />
+                                <Route path="/mycopang/detail" component={MyCopangOrderDetail} />
                             </Switch>
                         </div>
                     </div>
