@@ -9,7 +9,7 @@ import CategoryForm from './header/SearchBox/CategoryForm';
 import Cart from "./purchase/Cart";
 import AddNewProductApp from "./product/AddNewProduct/AddNewProductApp";
 import Container from './product/AddNewProduct/productRedux';
-import ProductListRouteMain from './youngjae/ProductListRouteMain';
+import ProductListRouteMain from './product/ProductList&Detail/ProductListRouteMain';
 import MyCopang from "./member/MyCopang";
 import LoginPage from "./TopBar/Component/LoginPage";
 import RegisterPage from "./TopBar/Component/RegisterPage";
