@@ -3,18 +3,41 @@ import axios from 'axios';
 
 const ProductAddTest = () => {
 
+    const [img, setImg] = useState(null);
+    const [input, setInput] = useState();
+
+    const onChange = (e) => {
+        setImg(e.target.files[0]);
+        console.log(e.target.files[0].name);
+    }
+
+    const [imgUrl, setimgUrl] = useState()
+    const imgUpload = async () => {
+        const formData = new FormData()
+        formData.append('image', img);
+        const res = await axios.post("https://alconn.co/upload", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        console.log(res);
+        setimgUrl(res.data.data.publicPath)
+    }
+
+
+
+
     const [product2, setProduct2] = useState({
-            "price": "",
-            "stockQuantity": "",
-            "optionName": "",
-            "optionValue": "",
-            "mainImg": ""
+        "price": 10,
+        "stockQuantity": 10,
+        "optionName": "",
+        "optionValue": ""
     })
 
-    const handleChange2 = (e) =>{
-        const {name,value} =e.target;
-        
-        setProduct2({...product2, [name]:value})
+    const handleChange2 = (e) => {
+        const { name, value } = e.target;
+        console.log(e.target)
+        setProduct2({ ...product2, [name]: value })
     }
 
     const [product, setProduct] = useState({
@@ -22,39 +45,65 @@ const ProductAddTest = () => {
     })
     const handleChange = (e) => {
         const { name, value } = e.target;
-        
-        setProduct({...product, [name]:value})
+        console.log(e.target)
+        setProduct({ ...product, [name]: value })
     }
 
     const productData = {
         "itemName": product.itemName,
-        "itemDetailFormList": [{
-            "price": product2.price,
-            "stockQuantity": product2.stockQuantity,
-            "optionName": product2.optionName,
-            "optionValue": product2.optionValue,
-            "mainImg": product2.mainImg
-        }]
+        "categoryId": product.categoryId,
+        "itemComment" : "상품설명입니다.",
+        "itemDetailFormList": [
+            {
+                "price": product2.price,
+                "stockQuantity": product2.stockQuantity,
+                "optionName": product2.optionName,
+                "optionValue": product2.optionValue,
+                "mainImg": imgUrl
+            },
+            {
+                price: 3000,
+                stockQuantity: 33,
+                optionName: "2nd option",
+                optionValue: "2nd value",
+                mainImg: imgUrl,
+            },
+            {
+                price: 4500,
+                stockQuantity: 22,
+                optionName: "3rd option",
+                optionValue: "3rd value",
+                mainImg: imgUrl,
+            }
+        ]
     }
 
 
     const addProduct = () => {
         const axiosAddProduct = async () => {
-            await axios.post("https://alconn.co/api/item/add", productData)
+            const result = await axios.post("https://alconn.co/api/item/add", productData)
+            console.log(result);
         }
         axiosAddProduct();
         alert("상품이 등록되었습니다.");
     }
 
+    const deleteProduct = async () => {
+        const result = await axios.delete("https://alconn.co/api/item/delete/"+input);
+        console.log(result);
+    }
+
     return (
         <div>
+            input : <input onChange={(e)=>setInput(e.target.value)}/><br/>
+            <button onClick={deleteProduct}>상품삭제byitemID</button>
             <div>
                 <div style={{ float: 'left' }}>itemName</div>
                 <input type="text" name="itemName" value={product.itemName} onChange={handleChange} placeholder="상품명을 입력하시오." />
             </div>
             <div>
                 <div style={{ float: 'left' }}>price</div>
-                <input type="text" name="price" value={product2.price} onChange={handleChange2}  placeholder="상품 가격 입력하시오." />
+                <input type="text" name="price" value={product2.price} onChange={handleChange2} placeholder="상품 가격 입력하시오." />
             </div>
             <div>
                 <div style={{ float: 'left' }}>stockQuantity</div>
@@ -69,10 +118,18 @@ const ProductAddTest = () => {
                 <input type="text" name="optionValue" value={product2.optionValue} onChange={handleChange2} placeholder="옵션값 입력하시오." />
             </div>
             <div>
-                <div style={{ float: 'left' }}>mainImg</div>
-                <input type="text" name="mainImg" value={product2.mainImg} onChange={handleChange2} placeholder="이미지명을 입력하시오(테스트)" />
+                <div style={{ float: 'left' }}>카테고리id</div>
+                <input type="text" name="categoryId" value={product.categoryId} onChange={handleChange} placeholder="카테고리값 입력하시오." />
             </div>
-            <button type="submit" onClick={addProduct}>상품등록하기</button>
+            <div>
+                <div style={{ float: 'left' }}>대표이미지</div><br /><br />
+                <div><input style={{ width: '100%', height: '100%', }} type="file" onChange={onChange} /></div><br />
+                <div style={{ border: '1px solid black', width: '200px', height: '200px' }}>
+                    <img style={{ border: '1px solid black', width: '100%', height: '100%' }} alt="" src={imgUrl} />
+                </div><br />
+                <div style={{ float: 'left' }}><button onClick={imgUpload}>이미지 등록</button></div>
+            </div>
+            <button onClick={addProduct}>상품등록하기</button>
         </div>
     )
 }

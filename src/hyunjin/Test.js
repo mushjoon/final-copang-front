@@ -1,274 +1,217 @@
 import axios from 'axios';
+import React, { useState } from 'react';
 
 const Test = () => {
 
-    const server = "http://192.168.0.13:9001"
-    const productData1 = {
-        name : "냄비3",
-        price : 18000,
-        description : '냄비 3입니다',
-        image : '냄비3.png',
-        sellerSID : 'seller2'
-    }
-    const productData2 = {
-        sid : 3,
-        name : "과자2",
-        price : 3300,
-        description : '과자2입니다',
-        image : '이미지2.png',
-        sellerSID : 'sellerID2'
-    }
-    const sellerData1 = {
-        username : "seller1",
-        password : "seller1",
-    }
-    const sellerData2 = {
-        sid : 3,
-        username : "seller2",
-        password : "seller2",
-    }
-    const customerData1 = {
-        username : "cus1",
-        password : "cus1",
-    }
-    const customerData2 = {
-        sid : 3,
-        username : "cus2",
-        password : "cus2",
-    }
-    const productSID = 13;
-    const sellerSID = 3;
-    const customerSID = 3;
+    const [res, setRes] = useState();
+    const [input, setInput] = useState();
+    const [data,setData] = useState();
 
-    const productList = () => {
-        const axiosProductList = async () => {
-            const result = await axios.get(server+"/product/selectAll");
-            console.log("productList 결과:");
-            console.log(result);
-        }
-        axiosProductList();
+    const getProductList = async () => {
+        const result = await axios.get("https://alconn.co/api/item/list");
+        setRes(result.data.data);
     }
-    const productOne = () => {
-        const axiosProductOne = async () => {
-            const result = await axios.get(server+"/product/selectOne/"+productSID);
-            console.log("productOne 결과:");
-            console.log(result);
-        }
-        axiosProductOne();
+    const getProductId = async () => {
+        const result = await axios.get("https://alconn.co/api/item/list/itemid="+input);
+        setRes(result.data.data);
     }
-    const insertProduct = () => {
-        const axiosInsertProduct = async () => {
-            const result = await axios.post(server+"/product/insert",productData1);
-            console.log("insertProduct 결과:");
-            console.log(result);
-        }
-        axiosInsertProduct();
+    const getProductReview = async () => {
+        const result = await axios.get("https://alconn.co/api/review/"+input)
     }
-    const deleteProduct = () => {
-        const axiosDeleteProduct = async () => {
-            const result = await axios.delete(server+"/product/delete/"+productSID);
-            console.log("deleteProduct 결과:");
-            console.log(result);
-        }
-        axiosDeleteProduct();
+    const getProductCategory = async () => {
+        const result = await axios.get("https://alconn.co/api/item/list/categoryid="+input);
+        setRes(result.data.data);
     }
-    const updateProduct = () => {
-        const axiosUpdateProduct = async () => {
-            const result = await axios.put(server+"/product/update",productData2);
-            console.log("updateProduct 결과:");
-            console.log(result);
-        }
-        axiosUpdateProduct();
+    const getUserInfo = async () => {
+        const result = await axios.get("https://alconn.co/api/user");
+        setRes(result.data.data);
+    }
+    const getUserOrder = async () => {
+        const result = await axios.get("https://alconn.co/api/orders/client");
+        setRes(result.data.data);
+    }
+    const getUserCart = async () => {
+        const result = await axios.get("https://alconn.co/api/cart");
+        setRes(result.data.data);
+    }
+    const getUserReview = async () => {
+        const result = await axios.get("https://alconn.co/api/review/user");
+        setRes(result.data.data);
+    }
+    const getCategoryMain = async () => {
+        const result = await axios.get("https://alconn.co/api/category/main");
+        setRes(result.data.data);
+    }
+    const getCategoryList = async () => {
+        const result = await axios.get("https://alconn.co/api/category/list");
+        setRes(result.data.data);
     }
 
-    const sellerList = () => {
-        const axiosSellerList = async () => {
-            const result = await axios.get(server+"/seller/selectAll");
-            console.log("sellerList 결과:");
-            console.log(result);
-        }
-        axiosSellerList();
+    const reviewData = {
+        content: "content 수정!",
+        rating: 2,
     }
-    const sellerOne = () => {
-        const axiosSellerOne = async () => {
-            const result = await axios.get(server+"/seller/selectOne/"+sellerSID);
-            console.log("sellerOne 결과:");
-            console.log(result);
-        }
-        axiosSellerOne();
-    }
-    const insertSeller = () => {
-        const axiosInsertSeller = async () => {
-            const result = await axios.post(server+"/seller/insert",sellerData1);
-            console.log("insertSeller 결과:");
-            console.log(result);
-        }
-        axiosInsertSeller();
-    }
-    const deleteSeller = () => {
-        const axiosDeleteSeller = async () => {
-            const result = await axios.delete(server+"/seller/delete/"+sellerSID);
-            console.log("deleteSeller 결과:");
-            console.log(result);
-        }
-        axiosDeleteSeller();
-    }
-    const updateSeller = () => {
-        const axiosUpdateSeller = async () => {
-            const result = await axios.put(server+"/seller/update",sellerData2);
-            console.log("updateSeller 결과:");
-            console.log(result);
-        }
-        axiosUpdateSeller();
+    const updateReview = async () => {
+        const result = await axios.put("https://alconn.co/api/review/"+input,reviewData);
+        setData(reviewData);
+        setRes(result.data.data);
     }
 
-    const customerList = () => {
-        const axiosCustomerList = async () => {
-            const result = await axios.get(server+"/customer/selectAll");
-            console.log("customerList 결과:");
-            console.log(result);
+    const addOptionData = {
+        "itemId" : 53,
+        "itemName" : "1122",
+        "itemComment" : "상품설명입니다",
+        "detailForm" : {
+          "price" : 100,
+          "stockQuantity" : 20,
+          "optionName" : "색상",
+          "optionValue" : "검은색",
+          "mainImg" : "양말사진",
+          "subImg" : "양말추가사진"
         }
-        axiosCustomerList();
-    }
-    const customerOne = () => {
-        const axiosCustomerOne = async () => {
-            const result = await axios.get(server+"/customer/selectOne/"+customerSID);
-            console.log("customerOne 결과:");
-            console.log(result);
-        }
-        axiosCustomerOne();
-    }
-    const insertCustomer = () => {
-        const axiosInsertCustomer = async () => {
-            const result = await axios.post(server+"/customer/insert",customerData1);
-            console.log("insertCustomer 결과:");
-            console.log(result);
-        }
-        axiosInsertCustomer();
-    }
-    const deleteCustomer = () => {
-        const axiosDeleteCustomer = async () => {
-            const result = await axios.delete(server+"/customer/delete/"+customerSID);
-            console.log("deleteSeller 결과:");
-            console.log(result);
-        }
-        axiosDeleteCustomer();
-    }
-    const updateCustomer = () => {
-        const axiosUpdateCustomer = async () => {
-            const result = await axios.put(server+"/customer/update",customerData2);
-            console.log("updateCustomer 결과:");
-            console.log(result);
-        }
-        axiosUpdateCustomer();
     }
 
-    const cartData1 = {
-        userSID : 3,
-        productSID : 12,
-        entity : 1,
+    const addOption = async () => {
+        const result = await axios.post("https://alconn.co/api/item/add/detail",addOptionData);
+        setData(addOptionData);
+        setRes(result.data.data);
     }
-    const cartData2 = {
-        userSID : 3,
-        productSID : 13,
-        entity : 1,
-    }
-    // const cartData3 = {
-    //     userSID : 4,
-    //     productSID : 12,
-    //     entity : 1,
-    // }
-    // const cartData4 = {
-    //     userSID : 4,
-    //     productSID : 13,
-    //     entity : 1,
-    // }
-    const userSID = 3;
-
-
-    // const cartList = () => {
-    //     const axiosCartList = async () => {
-    //         const result = await axios.get(server+"/cart/selectuser/"+userSID);
-    //         console.log("cartList 결과:");
-    //         console.log(result);
-    //     }
-    //     axiosCartList();
-    // }
-    const addCart = () => {
-        const axiosAddOneCart = async () => {
-            const result = await axios.post(server+"/cart/add",cartData1);
-            console.log("addCart 결과:");
-            console.log(result);
-        }
-        axiosAddOneCart();
-    }
-    const addTwoCart = () => {
-        const axiosAddOneCart = async () => {
-            const result = await axios.post(server+"/cart/add",cartData2);
-            console.log("addTwoCart 결과:");
-            console.log(result);
-        }
-        axiosAddOneCart();
-    }
-    const removeOneCart = () => {
-        const axiosRemoveOneCart = async () => {
-            const result = await axios.post(server+"/cart/removeone",cartData1);
-            console.log("removeOneCart 결과:");
-            console.log(result);
-        }
-        axiosRemoveOneCart();
-    }
-    const removeLineCart = () => {
-        const axiosRemoveLineCart = async () => {
-            const result = await axios.post(server+"/cart/removeline",cartData1);
-            console.log("removeLineCart 결과:");
-            console.log(result);
-        }
-        axiosRemoveLineCart();
-    }
-    const removeUserCart = () => {
-        const axiosRemoveUserCart = async () => {
-            const result = await axios.delete(server+"/cart/removeuser/"+userSID);
-            console.log("removeUserCart 결과:");
-            console.log(result);
-        }
-        axiosRemoveUserCart();
+    const deleteOption = async () => {
+        const result = await axios.delete("https://alconn.co/api/item/delete/item-detail/"+1183);
+        setRes(result.data.data);
     }
 
+    const updateOptionData = {
+        "itemId" : 53,
+        "itemName" : "신발",
+        "itemComment" : "신발설명",
+        "categoryId" : 18,
+        "detailUpdateClass" : {
+          "itemDetailId" : 54,
+          "price" : 10000,
+          "stockQuantity" : 10,
+          "optionName" : "색상",
+          "optionValue" : "초록",
+          "mainImg" : "신발초록색사진",
+          "subImg" : "추가옵션사진"
+        }
+    }
+
+    const updateOption = async () => {
+        const result = await axios.put("https://alconn.co/api/item/update",updateOptionData);
+        setData(updateOptionData);
+        setRes(result.data.data);
+    }
+
+    const updateOptionListData = {
+        "itemId" : 53,
+        "itemName" : "상품명",
+        "itemComment" : "상품설명",
+        "categoryId" : 18,
+        "itemDetailUpdateClassList" : [ {
+          "itemDetailId" : 54,
+          "price" : 20000,
+          "stockQuantity" : 30,
+          "optionName" : "수정",
+          "optionValue" : "수정테스트",
+          "mainImg" : "수정사진",
+          "subImg" : "수정이미지"
+        } ]
+    }
+    const updateOptionList = async () => {
+        const result = await axios.put("https://alconn.co/api/item/update/list",updateOptionListData);
+        setData(updateOptionListData);
+        setRes(result.data.data);
+    }
+    
+    const proceedOrder = async () => {
+        const result = await axios.patch("https://alconn.co/api/orders/"+83+"/proceed");
+        setRes(result.data.data);
+    }
+    const getOrderOne = async () => {
+        const result = await axios.get("https://alconn.co/api/orders/"+83);
+        setRes(result.data.data);
+    }
+
+    const question = {
+        "content" : "상품 문의",
+        "itemDetailId" : 54,
+    }
+    const addQuestion = async () => {
+        const result = await axios.post("https://alconn.co/api/inquiry",question);
+        setData(question);
+        setRes(result.data.data);
+    }
+    const getQuestionUser = async () => {
+        const result = await axios.get("https://alconn.co/api/inquiry/client");
+        setRes(result.data.data);
+    }
+    const getQuestionSeller = async () => {
+        const result = await axios.get("https://alconn.co/api/inquiry/seller");
+        setRes(result.data.data);
+    }
+    const getQuestionProduct = async () => {
+        const result = await axios.get("https://alconn.co/api/inquiry/"+53+"/item");
+        setRes(result.data.data);
+    }
+
+    const reply = { content : "문의사항에 대한 답변" };
+    const addReply = async () => {
+        const result = await axios.post("https://alconn.co/api/inquiry/"+151+"/reply",reply);
+        setData(reply);
+        setRes(result.data.data);
+    }
+
+    const question2 = { content : "문의 수정3333" };
+    const updateQuestion = async () => {
+        const result = await axios.put("https://alconn.co/api/inquiry/"+151,question2);
+        setData(question2);
+        setRes(result.data.data);
+    }
+
+    const reply2 = { content : "답변 수정" };
+    const updateReply = async () => {
+        const result = await axios.put("https://alconn.co/api/inquiry/"+151+"/reply",reply2);
+        setData(reply2);
+        setRes(result.data.data);
+    }
 
     return (
         <div>
-            <b>Cart 테스트</b><br/>
-            <button onClick={addCart}>Add One</button>
-            <button onClick={addTwoCart}>Add Two</button>
-            <button onClick={removeOneCart}>Remove One</button>
-            <button onClick={removeLineCart}>Remove Line</button>
-            <button onClick={removeUserCart}>Remove User</button>
-            <hr/>
-            <b>Product 테스트</b><br/>
-            <button onClick={productList}>Product List</button>
-            <button onClick={productOne}>Product One</button>
-            <button onClick={insertProduct}>Insert Product</button>
-            <button onClick={deleteProduct}>Delete Product</button>
-            <button onClick={updateProduct}>Update Product</button>
-            <hr/>
-            <b>Seller 테스트</b><br/>
-            <button onClick={sellerList}>Seller List</button>
-            <button onClick={sellerOne}>Seller One</button>
-            <button onClick={insertSeller}>Insert Seller</button>
-            <button onClick={deleteSeller}>Delete Seller</button>
-            <button onClick={updateSeller}>Update Seller</button>
-            <hr/>
-            <b>Customer 테스트</b><br/>
-            <button onClick={customerList}>Customer List</button>
-            <button onClick={customerOne}>Customer One</button>
-            <button onClick={insertCustomer}>Insert Customer</button>
-            <button onClick={deleteCustomer}>Delete Customer</button>
-            <button onClick={updateCustomer}>Update Customer</button>
-            <hr/>
-
+            서버 API 응답 테스트<br/>
+            input 입력: <input onChange={(e)=>setInput(e.target.value)}/><br/>
+            <button onClick={ () => {setRes(); setData();}}>결과창 비우기</button>
+            <button onClick={getProductList}>상품목록</button>
+            <button onClick={getProductId}>상품byID</button>
+            <button onClick={getProductReview}>리뷰by상품ID</button>
+            <button onClick={getProductCategory}>상품byCategoryID</button><br/>
+            <button onClick={getUserInfo}>유저정보</button>
+            <button onClick={getUserOrder}>유저주문</button>
+            <button onClick={getUserCart}>유저카트</button>
+            <button onClick={getUserReview}>유저리뷰</button><br/>
+            <button onClick={getCategoryMain}>카테고리 대소분류</button>
+            <button onClick={getCategoryList}>카테고리 목록</button>
+            <button onClick={updateReview}>리뷰 수정by reviewID</button><br/>
+            <button onClick={addOption}>상품 옵션 추가</button>
+            <button onClick={deleteOption}>상품 옵션 삭제</button>
+            <button onClick={updateOption}>상품 옵션 수정</button>
+            <button onClick={updateOptionList}>상품 옵션 다중 수정</button><br/>
+            <button onClick={proceedOrder}>주문 진행</button>
+            <button onClick={getOrderOne}>주문 단건 조회</button>
+            <button onClick={addQuestion}>문의 등록</button>
+            <button onClick={getQuestionUser}>문의 조회(유저)</button>
+            <button onClick={getQuestionSeller}>문의 조회(셀러)</button>
+            <button onClick={getQuestionProduct}>문의 조회(상품)</button>
+            <button onClick={addReply}>문의 답변</button>
+            <button onClick={updateQuestion}>문의 수정</button>
+            <button onClick={updateReply}>답변 수정</button>
+            <br/>넘겨준 값: <br/>
+            {JSON.stringify(data)}<br/>
+            <br/>결과값:<br/>
+            {res && JSON.stringify(res)}
+            
         </div>
-    )
-}
+    );
+};
 
 export default Test;

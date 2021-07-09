@@ -1,59 +1,75 @@
-import axios from "axios";
-import { useState } from "react";
+import { MailRounded, Restaurant } from "@material-ui/icons";
+import { useEffect, useState } from "react";
 
 const Test22 = () => {
+    const [imgList, setImglist] = useState([]);
+    const [itemList, setItemList] = useState([]);
+    const [item, setItem] = useState({});
+    const [idx, setIdx] = useState();
+    const [test,setTest] = useState();
+    const [refresh, setRefresh] = useState(0);
 
-    const [imgname, setImgname] = useState();
-
-    const getCart = () => {
-        const axiosGetCart = async () => {
-            const token = localStorage.getItem("accessToken");
-            console.log(token);
-            const data = {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                  }
+    const inputChange = (e) => {
+        setItem({
+            ...item,
+            [e.target.name] : e.target.value,
+        })
+    }
+    const addItem = () => {
+        setItemList([
+            ...itemList,
+            {
+                ...item,
             }
-            const result = await axios.get("https://alconn.co/api/cart",data);
-            console.log("reslut:");
-            console.log(result);
-        }
-        axiosGetCart();
+        ])
+    }
+    const deleteItem = (idx) => {
+        setItemList(
+            itemList.filter( (row,rowidx) => rowidx != idx )
+        )
+    }
+    const addItemImg = (file, idx) => {
+        
+        itemList[idx].img = URL.createObjectURL(file);
+
+        setRefresh(prev => prev+1);
     }
 
-    const axiosTest = () => {
-        axios.defaults.baseURL = "http://localhost:9001/cart/selectall";
-        axios.defaults.headers.common['Authorization'] = 'bearer aaaa';
-
-        const getCart = async () => {
-            const result = await axios.get();
-            console.log(result);
-        }
-        getCart();
-    }
-
-    const onchangeInput = (e) => {
-        setImgname(e.target.files[0].name);
-    }
-
-    const printProduct = () => {
-        console.log(Product.filename);
-    }
-
-    const Product = {
-        "filename" : imgname,
-    }
-
-     return (
+    useEffect( () => {
+        console.log(itemList);
+    },[refresh])
+    
+    
+    return (
         <div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" value=""/>Option 1
-            </div>
-            <button onClick={getCart}>카트토큰 예제</button>
-            <button onClick={axiosTest}>axios default 테스트</button>
-            <input onChange={onchangeInput} type="file"/>
-            <button onClick={printProduct}>Product 출력</button>
-            
+            <select>
+                <option>1</option>
+            </select>
+            {JSON.stringify(itemList)}
+            <br/><input type="file" name="test" onChange={(e)=>setTest(URL.createObjectURL(e.target.files[0]))}/><br/>
+            {test && <img src={test}/>}<br/>
+            idx : <input name="idx" onChange={(e)=>setIdx(e.target.value)}/><br/>
+            name : <input name="name" onChange={inputChange}/><br/>
+            desc : <input name="desc" onChange={inputChange}/><br/>
+            <button onClick={addItem}>옵션 추가</button>
+            <button onClick={()=>deleteItem(idx)}>옵션 제거</button>
+            <br/>
+            <table className="table table-bordered">
+                <tbody>
+                    <tr><td>idx</td><td>name</td><td>desc</td><td>img</td><td>imgInput</td></tr>
+                { itemList && itemList.map( (row,idx) => 
+                    <tr>
+                        <td>{idx}</td>
+                        <td>{row.name}</td>
+                        <td>{row.desc}</td>
+                        <td>{row.img && <img src={row.img}/>}</td>
+                        <td>
+                            <input type="file" name="img" onChange={(e)=>addItemImg(e.target.files[0], idx)}/>
+                        </td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
         </div>
     )
 }

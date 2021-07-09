@@ -6,6 +6,7 @@ ul.searchproduct{
 
 div.total-wrap{
     float: left;
+    width: 100%;
 }
 
 
@@ -14,8 +15,8 @@ div.header{
     display: flex;
     justify-content: space-between;
     min-width: 60%; 
-    width: 60%;
-    margin-left: 25%;
+    width: 80%;
+    margin-left: 10%;
 }
 
 div.dsecImage{
@@ -65,7 +66,7 @@ em.sale{
 div.productlist{
     margin-left: 18%;
     margin-top: 5%;
-    width: 75%;
+    width: 100%;
 }
 div.productdesc{
     width: 479px;
@@ -138,13 +139,12 @@ div.cartPerchase{
 }
 
 div.otherProduct{
-    width : 80%;
-    margin-left: 23%;
+    width : 100%;
+    margin-left: 10%;
 }
 
 div.productMenuBar{
-    margin-left: 18%;
-    width: 75%;
+    width: 100%;
 }
 
 ul.productMenuBarUl li{
@@ -154,7 +154,7 @@ ul.productMenuBarUl li{
     border-right: 1px solid #aaa;
     border-left: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
-    width: 32%;
+    width:33.3%;
     height: 50px;
     line-height: 50px;
     font-size: 1.5em;
@@ -166,25 +166,23 @@ ul.productMenuBarUl li{
 }
 
 div.product-detail-desc{
-    width : 75%;
-    margin-left: 12%;
+    width : 100%;
     text-align: center;
 }
 
 div.product-question-desc{
-    width : 75.5%;
-    margin-left: 9.5%;
+    width : 100%;
 }
 
 div.product-question-desc-header{
-    margin-left: 9%;
-    width: 83%;
-    height: 1000px;
+    width: 100%;
+    height: auto;
+    min-height: 700px;
     border:1px solid #aaa;
 }
 
 ul.product-question-desc{
-    margin-left: 2%;
+    margin-left: 4%;
 }
 
 div.product-question-body-wrap{
@@ -218,20 +216,17 @@ div.question-reply-wrap{
 }
 
 div.product-review{
-    width: 83%;
-    width : 75.5%;
-    margin-left: 9.5%;
+    width:100%;
 }
 
 div.product-review-header{
-    margin-left: 9%;
-    width: 83%;
+    width: 100%;
     height: 1000px;
     border-top:1px solid #aaa;
 }
 
 .star{
-    font-size:50px;
+    width: 50px;
     color: orange;
 }
 
@@ -310,8 +305,8 @@ span.user-photo{
 div.product-review-body{
     border-bottom: 1px solid #aaa ;
     width: 100%;
-    height: 200px;
-    margin-top: 5%;
+    height: 180px;
+    margin-top: 1%;
 }
 
 .smstar{
@@ -321,12 +316,12 @@ div.product-review-body{
 div.product-review-content{
     
     width: 100%;
-    height: 100px;
+    height: 70px;
 }
 
 div.prod-quantity__form{
     display: table;
-    width: 83px;
+    width: 100%;
     height: 40px;
     border: 1px solid #ccc;
 }
@@ -391,4 +386,89 @@ button.question-cancel-btn{
 span.writeDate{
     font-size: 10pt;
     color: #aaa;
+}
+
+button.review-rules{
+    float: right;
+    font-size: 10pt;
+    color: #346aff;
+    background-color: white;
+    border: none;
+}
+
+button.write-review{
+    float: right;
+    background-color: #346aff;
+    width: 106px;
+    height: 32px;
+    font-size: 10pt;
+    color: #eee;
+    border: none;
+    border-radius: 10px;
+    margin-left: 1%;   
+}
+
+div.review-header-section{
+    border-top: 1px solid #346aff;
+    border-left:1px solid #ddd;
+    border-right:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    height: 10%;
+}
+
+div.review-header-section-content{
+    width: 90%;
+    height: 100%;
+    float: right;
+}
+
+div.service-review-question-wrap{
+    border-top: 1px solid black;
+
+}
+
+div.service-review-question{
+    border-bottom: 1px solid #ddd;
+    height: 100px;
+}
+
+div.service-review-wrap{
+    height: 150px;
+    border-bottom: 1px solid #ddd;
+}
+
+div.product-review-wrap{
+    height: 600px;
+}
+
+div.product-review-question{
+    border-bottom: 1px solid #ddd;
+    height: 100px;
+}
+
+div.review-content{
+    border-top: 1px solid #ddd;
+    height: 150px;
+}
+
+div.review-image-wrap{
+    height: 150px;
+    border-top: 1px solid #ddd
+}
+
+.clickedstar {
+    color: rgb(212, 180, 0);
+}
+
+table tbody.question-tbody td{
+    height: 100px;
+    line-height: 0px;
+}
+
+ul.MainImage li{
+    margin: 3px;
+    float: left;
+    cursor: pointer;
+    border: 1px solid #777;
+    padding: 0%;
 }

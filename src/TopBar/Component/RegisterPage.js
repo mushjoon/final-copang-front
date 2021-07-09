@@ -64,8 +64,8 @@ export default function RegisterPage(props) {
             let dataToSubmit = {
                 username: Username,
                 password: Password,
-                realname: RealName,
-                mobile: Mobile,
+                phone: Mobile,
+                realName: RealName,
                 description: Description
             };
 
@@ -100,7 +100,7 @@ export default function RegisterPage(props) {
                                 required
                                 fullWidth
                                 id="realName"
-                                label="Name"
+                                label="실명"
                                 autoFocus
                                 onChange={(e) => { setRealName(e.currentTarget.value) }}
                             />
@@ -123,7 +123,7 @@ export default function RegisterPage(props) {
                                 required
                                 fullWidth
                                 id="username"
-                                label="Username"
+                                label="아이디"
                                 name="username"
                                 autoComplete="username"
                                 onChange={(e) => { setUsername(e.currentTarget.value) }}
