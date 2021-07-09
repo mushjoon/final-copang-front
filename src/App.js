@@ -41,7 +41,7 @@ const App = () => {
                 <Suspense fallback={(
                     <div className={classes.root}>
                         <LinearProgress />
-
+                        
                     </div>
                 )}>
                     <LazyRoute />

@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import Drawer from '../hyunjin/Drawer';
 const useStyles = makeStyles((theme) => ({
     linkBasic: {
         color: 'inherit',
@@ -169,7 +170,6 @@ function Header() {
         >
             <Link to="/mycopang" className={classes.linkBasic}>
                 <MenuItem>
-
                     <IconButton aria-label="" color="inherit">
                         <Badge>
                             <AccountCircle />
@@ -195,14 +195,9 @@ function Header() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color={"#333"}
-                        aria-label="open drawer"
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    
+                    <Drawer />
+                    
                     <Typography className={classes.title} variant="h6" noWrap>
                         <Link exact to="/" className={classes.linkBasic}>
                             COPANG
