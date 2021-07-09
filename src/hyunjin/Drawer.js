@@ -1,67 +1,75 @@
-import React, { useState } from "react";
+import axios from 'axios';
+import React, { useEffect, useState } from "react";
 import { Menu, MenuItem, Typography } from "@material-ui/core";
 
 import NestedMenuItem from "material-ui-nested-menu-item";
 
-export const Drawer = () => {
-  const [menuPosition, setMenuPosition] = useState(null);
+export const Drawer = ({position}) => {
+  const [menuPosition, setMenuPosition] = useState({
+    top: 100,
+    left: 50,
+  })
+  const [open, setOpen] = useState(true);
 
-  const handleRightClick = (event: React.MouseEvent) => {
-    if (menuPosition) {
-      return;
+  const [list,setList] = useState();
+  useEffect( () => {
+    const axiosList = async () => {
+        const result = await axios.get("https://alconn.co/api/category/list");
+        console.log("카테고리 출력");
+        console.log(result);
+        setList(result.data.data.cildCategory);
     }
-    event.preventDefault();
-    setMenuPosition({
-      top: event.pageY,
-      left: event.pageX
-    });
-  };
+    axiosList();
+  },[])
 
-  const handleItemClick = (event: React.MouseEvent) => {
-    setMenuPosition(null);
-  };
+  const handleClick = (event: React.MouseEvent) => {
+    setOpen(null);
+  }
 
-  const testBtn = (e) => {
-      
+  const menuClick = (e) => {
+    console.log("좌표값");
+    console.log(e.target.getBoundingClientRect().top);
+    console.log(e.target.getBoundingClientRect().left);
+  }
+
+  const categoryList = (cild, num) => {
+    if(num>=3)
+        return;
+    
+    if(cild.cildCategory.length>0 && num<2)
+      return (
+          <NestedMenuItem onClick={handleClick} label={cild.categoryName} parentMenuOpen={open}>
+              
+              {
+                  cild.cildCategory && cild.cildCategory.map( (row, idx) =>
+                     categoryList(row, num+1)
+                  )
+              }
+
+          </NestedMenuItem>
+      )
+    else 
+      return (
+        <MenuItem onClick={handleClick}>
+         {cild.categoryName}
+
+        </MenuItem>
+      )
   }
 
   return (
-    <div onContextMenu={handleRightClick}>
-        <button onClick={() => {}}>테스트버튼</button>
-      <Typography>Right click to open menu</Typography>
-      <Menu
-        open={!!menuPosition}
-        onClose={() => setMenuPosition(null)}
+    <div onClick={menuClick}>
+        <Menu
+        open={open}
+        onClose={()=>setOpen(null)}
         anchorReference="anchorPosition"
         anchorPosition={menuPosition}
       >
-        <MenuItem onClick={handleItemClick}>Button 1</MenuItem>
-        <MenuItem onClick={handleItemClick}>Button 2</MenuItem>
-        <NestedMenuItem
-          label="Button 3"
-          parentMenuOpen={!!menuPosition}
-          onClick={handleItemClick}
-        >
-          <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
-          <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
-          <NestedMenuItem
-            label="Sub-Button 3"
-            parentMenuOpen={!!menuPosition}
-            onClick={handleItemClick}
-          >
-            <MenuItem onClick={handleItemClick}>Sub-Sub-Button 1</MenuItem>
-            <MenuItem onClick={handleItemClick}>Sub-Sub-Button 2</MenuItem>
-          </NestedMenuItem>
-        </NestedMenuItem>
-        <MenuItem onClick={handleItemClick}>Button 4</MenuItem>
-        <NestedMenuItem
-          label="Button 5"
-          parentMenuOpen={!!menuPosition}
-          onClick={handleItemClick}
-        >
-          <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
-          <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
-        </NestedMenuItem>
+          {
+              list && list.map( (row,idx) => 
+                categoryList(row, 0)
+              )
+          }
       </Menu>
     </div>
   );
