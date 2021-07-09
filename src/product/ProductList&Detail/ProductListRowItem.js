@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import './Product.css';
 
 const ProductListRowItem = (props) => {
-
+    
     const numberFormat = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
@@ -13,7 +13,7 @@ const ProductListRowItem = (props) => {
         <li
             onClick={
                 () => {
-                    props.history.push("/member/4/product/selectOne/" + itemId);
+                    props.history.push("/product/selectOne/" + itemId);
                 }
             }>
             <dl>

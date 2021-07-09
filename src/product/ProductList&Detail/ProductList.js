@@ -5,22 +5,32 @@ import './Product.css';
 import ProductListRowItem from './ProductListRowItem';
 
 
-const ProductList = (history) =>{
+const ProductList = (props,{history}) =>{
     const [ProductList, setProductList] = useState([]);
+    console.log(props.match.params.categoryId)
+    let categoryId=props.match.params.categoryId;
 
-    useEffect( ()=>{
-        const res = async() =>{
-            const result= await axios.get("https://alconn.co/api/item/list");
-            setProductList(result.data.data)
-        }
-        res();
-    },[])
-
+    useEffect(() => {
+        if(props.match.path==="/product"){
+            const res = async() =>{
+                const result= await axios.get("https://alconn.co/api/item/list/0");
+                setProductList(result.data.data)
+            }
+            res();
+        }else{
+            const res = async () => {
+                const result = await axios.get("https://alconn.co/api/item/list/categoryid=" + categoryId);
+                setProductList(result.data.data)
+                console.log(result.data)
+            }
+            res();
+        }    
+    }, [])
     return (
         <div className="productlist">
             <ul className="searchproduct">
                 {   
-                    ProductList&&ProductList.map((row,idx)=>
+                    ProductList.list&&ProductList.list.map((row,idx)=>
                     <ProductListRowItem row={row} key={idx} no={idx+1}
                         history={history} />
                 )}

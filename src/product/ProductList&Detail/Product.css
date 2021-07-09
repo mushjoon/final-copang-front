@@ -6,6 +6,7 @@ ul.searchproduct{
 
 div.total-wrap{
     float: left;
+    width: 100%;
 }
 
 
@@ -434,7 +435,6 @@ div.service-review-question{
 div.service-review-wrap{
     height: 150px;
     border-bottom: 1px solid #ddd;
-
 }
 
 div.product-review-wrap{
@@ -463,4 +463,12 @@ div.review-image-wrap{
 table tbody.question-tbody td{
     height: 100px;
     line-height: 0px;
+}
+
+ul.MainImage li{
+    margin: 3px;
+    float: left;
+    cursor: pointer;
+    border: 1px solid #777;
+    padding: 0%;
 }
