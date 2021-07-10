@@ -20,23 +20,23 @@ const AddNewProductApp = () => {
     const objectURL = URL.createObjectURL(file);
     const formData = new FormData();
     formData.append("image", file);
-    const res = await axios.post("https://alconn.co/upload", formData, {
+    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
     setProductData({
       ...productData,
-      itemComment : res.data.data.publicPath,
-    })
-  }
+      itemComment: res.data.data.publicPath,
+    });
+  };
 
   const mainImageChange = async (file, idx) => {
     productData.itemDetailFormList[idx].mainImgShow = URL.createObjectURL(file);
     //setMainImg(file);
     const formData = new FormData();
     formData.append("image", file);
-    const res = await axios.post("https://alconn.co/upload", formData, {
+    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -84,7 +84,7 @@ const AddNewProductApp = () => {
   const subImageUpload = async () => {
     const formData = new FormData();
     formData.append("image", subImg);
-    const res = await axios.post("https://alconn.co/upload", formData, {
+    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -169,13 +169,13 @@ const AddNewProductApp = () => {
   });
 
   useEffect(() => {
-    console.log("ProductData 값 업데이트")
+    console.log("ProductData 값 업데이트");
     console.log(productData);
   }, [productData]);
 
   const addProduct = () => {
     const axiosAddProduct = async () => {
-      await axios.post("https://alconn.co/api/item/add", productData);
+      await axios.post("http://192.168.0.86:8080/api/item/add", productData);
       //=============================================================================================================//
       //======================상품이 성공적으로 등록되면 메인 창으로 이동 하도록 코드 입력!!!!!!!!!!!!!==================//
       //=============================================================================================================//
@@ -277,7 +277,9 @@ const AddNewProductApp = () => {
     console.log(productData.itemDetailFormList);
 
     const readAllCategory = async () => {
-      const result = await axios.get("https://alconn.co/api/category/list");
+      const result = await axios.get(
+        "http://192.168.0.86:8080/api/category/list"
+      );
       //console.log(result);
 
       setLargeCategory(result.data.data.cildCategory);
@@ -703,8 +705,11 @@ const AddNewProductApp = () => {
           </div>
           <div className="row">
             <div className="col-8">
-              <input type="file" onChange={(e)=>itemCommentChange(e.target.files[0])}/>
-              { productData.itemComment && <img src={productData.itemComment}/> }
+              <input
+                type="file"
+                onChange={(e) => itemCommentChange(e.target.files[0])}
+              />
+              {productData.itemComment && <img src={productData.itemComment} />}
               <textarea
                 className="form-control"
                 style={{ height: "500px" }}

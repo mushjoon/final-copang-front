@@ -1,10 +1,10 @@
-const {createProxyMiddleware} = require('http-proxy-middleware');
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
-    app.use(
-        createProxyMiddleware('/api', {
-            target: 'https://alconn.co',
-            changeOrigin: true
-        })
-    );
+  app.use(
+    createProxyMiddleware("/api", {
+      target: "http://192.168.0.86:8080",
+      changeOrigin: true,
+    })
+  );
 };

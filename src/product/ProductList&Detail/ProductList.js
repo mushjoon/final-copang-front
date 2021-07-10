@@ -6,7 +6,6 @@ import "./Product.css";
 import ProductListRowItem from "./ProductListRowItem";
 
 const ProductList = (props) => {
-
   const convertDate = () => {
     const dt = new Date();
     let year = dt.getFullYear() + "-";
@@ -28,22 +27,27 @@ const ProductList = (props) => {
 
   const clickOptionSearch = () => {
     const data = {
-      price, priceOpt, priceCheck,
-      date, dateOpt, dateCheck,
+      price,
+      priceOpt,
+      priceCheck,
+      date,
+      dateOpt,
+      dateCheck,
       keyword,
     };
     props.history.push("/product/search/option", data);
   };
 
   const enterPress = (e) => {
-    if(e.key == 'Enter')
-      clickOptionSearch();
-  }
+    if (e.key == "Enter") clickOptionSearch();
+  };
 
   useEffect(() => {
     if (props.match.path === "/product") {
       const res = async () => {
-        const result = await axios.get("https://alconn.co/api/item/search");
+        const result = await axios.get(
+          "http://192.168.0.86:8080/api/item/search"
+        );
         setProductList(result.data.data.list);
       };
       res();
@@ -52,37 +56,30 @@ const ProductList = (props) => {
 
       // history에서 받아온 data로 string query 추가
       let params = {};
-      if(data.keyword !=="")
-        params.keyword = data.keyword.replaceAll(" ","+");
-      if(data.priceCheck === true)
-      {
-        if(data.priceOpt === "이상")
-          params.priceOver = data.price;
-        else
-          params.priceUnder = data.price;
+      if (data.keyword !== "")
+        params.keyword = data.keyword.replaceAll(" ", "+");
+      if (data.priceCheck === true) {
+        if (data.priceOpt === "이상") params.priceOver = data.price;
+        else params.priceUnder = data.price;
       }
-      if(data.dateCheck === true)
-      {
-        if(data.dateOpt === "이전")
-          params.endDate = data.date;
-        else
-          params.startDate = data.date;
+      if (data.dateCheck === true) {
+        if (data.dateOpt === "이전") params.endDate = data.date;
+        else params.startDate = data.date;
       }
 
       const res = async () => {
-        const result = await axios
-        .request({
-          url:"https://alconn.co/api/item/search",
-          method:"get",
+        const result = await axios.request({
+          url: "http://192.168.0.86:8080/api/item/search",
+          method: "get",
           params,
-        })
+        });
         setProductList(result.data.data.list);
       };
       res();
     } else {
       const res = async () => {
         const result = await axios.get(
-          "https://alconn.co/api/item/list/categoryid=" +
+          "http://192.168.0.86:8080/api/item/list/categoryid=" +
             props.match.params.categoryId
         );
         setProductList(result.data.data);
@@ -101,7 +98,11 @@ const ProductList = (props) => {
       >
         조건 검색
       </button>
-      <div id="search-collapse" className="collapse" style={{ marginTop: "10px" }}>
+      <div
+        id="search-collapse"
+        className="collapse"
+        style={{ marginTop: "10px" }}
+      >
         <div className="row col-10">
           <div className="col-3">
             <input
@@ -142,7 +143,6 @@ const ProductList = (props) => {
             등록일
             <br />
             <br />
-
             <select
               value={dateOpt}
               onChange={(e) => setDateOpt(e.target.value)}
@@ -153,13 +153,18 @@ const ProductList = (props) => {
               <option>이후</option>
             </select>
           </div>
-          
         </div>
-        <br/>
+        <br />
         <div className="row col-10">
           <div className="col-3">
             검색할 상품명
-            <input onKeyPress={enterPress} value={keyword} onChange={(e)=>setKeyword(e.target.value)} type="text" className="form-control"/>
+            <input
+              onKeyPress={enterPress}
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              type="text"
+              className="form-control"
+            />
           </div>
           <div className="col-2">
             <button
@@ -172,7 +177,6 @@ const ProductList = (props) => {
             </button>
           </div>
         </div>
-
       </div>
       <br />
       <br />

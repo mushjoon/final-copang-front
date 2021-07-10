@@ -71,7 +71,7 @@ function ProductInfo({ location, history}) {
   }, []);
 
   const getAddr = async () => {
-    const result = await axios.get("https://alconn.co/api/address");
+    const result = await axios.get("http://192.168.0.86:8080/api/address");
     const address = result.data.data;
     let idx;
     for(let i=0; i<address.length;i++)
