@@ -27,7 +27,7 @@ import ProductReviewUpdateForm from "./ProductReviewUpdateForm";
 export const Order = ({ history }) => {
   const [orderList, setOrderList] = useState([]);
 
-  const orderListUrl = "http://192.168.0.86:8080/api/orders/client";
+  const orderListUrl = "https://alconn.co/api/orders/client";
   //getOrderList 비동기 함수 생성
   useEffect(() => {
     const getOrderList = async () => {
@@ -48,7 +48,7 @@ export const Order = ({ history }) => {
     };
 
     const axiosAddOneCart = async () => {
-      await axios.post("http://192.168.0.86:8080/api/cart/item", sendData);
+      await axios.post("https://alconn.co/api/cart/item", sendData);
     };
     axiosAddOneCart();
     alert("장바구니에 담겼습니다.");

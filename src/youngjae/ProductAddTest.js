@@ -14,7 +14,7 @@ const ProductAddTest = () => {
   const imgUpload = async () => {
     const formData = new FormData();
     formData.append("image", img);
-    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
+    const res = await axios.post("https://alconn.co/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -77,7 +77,7 @@ const ProductAddTest = () => {
   const addProduct = () => {
     const axiosAddProduct = async () => {
       const result = await axios.post(
-        "http://192.168.0.86:8080/api/item/add",
+        "https://alconn.co/api/item/add",
         productData
       );
       console.log(result);
@@ -88,7 +88,7 @@ const ProductAddTest = () => {
 
   const deleteProduct = async () => {
     const result = await axios.delete(
-      "http://192.168.0.86:8080/api/item/delete/" + input
+      "https://alconn.co/api/item/delete/" + input
     );
     console.log(result);
   };

@@ -40,7 +40,7 @@ const AddressUpdateForm = ({ location, history }) => {
 
   const updateAddr = (addressId) => {
     // console.log(addressId);
-    const uri = "http://192.168.0.86:8080/api/address/" + addressId;
+    const uri = "https://alconn.co/api/address/" + addressId;
     if (isChecked === false) {
       const putAddr = async () => {
         await axios.put(uri, addrValues);
@@ -48,7 +48,7 @@ const AddressUpdateForm = ({ location, history }) => {
       };
       putAddr();
     }
-    const uriDefault = "http://192.168.0.86:8080/api/address/" + addressId;
+    const uriDefault = "https://alconn.co/api/address/" + addressId;
     if (isChecked === true) {
       const putDefaultAddr = async () => {
         await axios.put(uri, addrValues);
@@ -60,7 +60,7 @@ const AddressUpdateForm = ({ location, history }) => {
   };
 
   // const updateDefaultAddr = () => {
-  //     const defaultAddrUri = 'http://192.168.0.86:8080/api/address/default';
+  //     const defaultAddrUri = 'https://alconn.co/api/address/default';
   //     const postDefaultAddr = async () => {
   //         await axios.post(defaultAddrUri,defaultAddr).then(res => console.log(res))
   //     }

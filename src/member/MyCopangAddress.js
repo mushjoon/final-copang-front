@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const MyCopangAddress = ({ history, match, location }, props) => {
   const [addrList, setAddrList] = useState([]);
   // 주소 목록 읽어오기
-  const addrListUrl = "http://192.168.0.86:8080/api/address";
+  const addrListUrl = "https://alconn.co/api/address";
   const getAddrList = async () => {
     const {
       data: { data },
@@ -24,7 +24,7 @@ const MyCopangAddress = ({ history, match, location }, props) => {
   //
   const onDelete = (addressId) => {
     console.log(addressId);
-    const deleteUri = "http://192.168.0.86:8080/api/address/" + addressId;
+    const deleteUri = "https://alconn.co/api/address/" + addressId;
     const deleteAddrList = async () => {
       await axios.delete(deleteUri);
     };

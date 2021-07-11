@@ -20,7 +20,7 @@ function UserMenu(props) {
 
   // console.log(user.userData.message);
   const logoutHandler = () => {
-    axios.get("http://192.168.0.86:8080/api/auth/logout").then((response) => {
+    axios.get("https://alconn.co/api/auth/logout").then((response) => {
       console.log(response);
       if (response.status === 200) {
         props.history.push("/login");

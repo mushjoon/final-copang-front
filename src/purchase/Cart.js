@@ -20,7 +20,7 @@ const Cart = (props) => {
 
   //user의 카트리스트 받아와서 cart 에 저장
   const axiosCartList = async () => {
-    const { data } = await axios.get("http://192.168.0.86:8080/api/cart");
+    const { data } = await axios.get("https://alconn.co/api/cart");
     console.log("cartList 결과:");
     console.log(data);
     setCart(data.data.cartItems);
@@ -52,7 +52,7 @@ const Cart = (props) => {
         amount: item.amount + 1,
       };
       const result = await axios.post(
-        "http://192.168.0.86:8080/api/cart/item/amount",
+        "https://alconn.co/api/cart/item/amount",
         data
       );
       console.log("addCart 결과:");
@@ -70,7 +70,7 @@ const Cart = (props) => {
         amount: item.amount - 1,
       };
       const result = await axios.post(
-        "http://192.168.0.86:8080/api/cart/item/amount",
+        "https://alconn.co/api/cart/item/amount",
         data
       );
       console.log("removeOneCart 결과:");
@@ -83,7 +83,7 @@ const Cart = (props) => {
   const removeLineCart = (item) => {
     const axiosRemoveLineCart = async () => {
       const result = await axios.delete(
-        "http://192.168.0.86:8080/api/cart/item/" + item.itemDetailId
+        "https://alconn.co/api/cart/item/" + item.itemDetailId
       );
       console.log("removeLineCart 결과:");
       console.log(result);
@@ -94,7 +94,7 @@ const Cart = (props) => {
   //카트 전부 비우기
   const removeUserCart = () => {
     const axiosRemoveUserCart = async () => {
-      const result = await axios.delete("http://192.168.0.86:8080/api/cart");
+      const result = await axios.delete("https://alconn.co/api/cart");
       console.log("removeUserCart 결과:");
       console.log(result);
       setRefresh((prev) => prev + 1);

@@ -4,7 +4,7 @@ import axios from "axios";
 const MyCopangOrderDetail = (props) => {
   // console.log(props.location.state.order.orderId)
   const orderId = props.location.state.order.orderId;
-  const uri = "http://192.168.0.86:8080/api/orders/" + orderId;
+  const uri = "https://alconn.co/api/orders/" + orderId;
 
   const [orderDetail, setOrderDetail] = useState();
 
@@ -26,7 +26,7 @@ const MyCopangOrderDetail = (props) => {
     };
 
     const axiosAddOneCart = async () => {
-      await axios.post("http://192.168.0.86:8080/api/cart/item", sendData);
+      await axios.post("https://alconn.co/api/cart/item", sendData);
     };
     axiosAddOneCart();
     alert("장바구니에 담겼습니다.");

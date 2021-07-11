@@ -6,7 +6,7 @@ const CategoriProductList = () => {
   useEffect(() => {
     const res = async () => {
       const result = await axios.get(
-        "http://192.168.0.86:8080/api/item/list/categoryid=" + 18
+        "https://alconn.co/api/item/list/categoryid=" + 18
       );
       setcategoriItemtList(result.data.data);
     };

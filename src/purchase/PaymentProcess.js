@@ -94,7 +94,7 @@ function Payment() {
         totalPrice: 20000,
       };
       const result = await axios.post(
-        "http://192.168.0.86:8080/api/orders/ready",
+        "https://alconn.co/api/orders/ready",
         orderData
       );
       console.log("ready 리턴값:");
@@ -118,9 +118,7 @@ function Payment() {
 
       //res.imp_uid 받아와서
       axios
-        .post(
-          "http://192.168.0.86:8080/api/orders/" + orderId + "/pay/" + imp_uid
-        ) // 우리쪽 api로 imp_uid를 보내줌
+        .post("https://alconn.co/api/orders/" + orderId + "/pay/" + imp_uid) // 우리쪽 api로 imp_uid를 보내줌
         .then((res) => {
           setCompleteRes(res);
         });

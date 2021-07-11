@@ -25,7 +25,7 @@ const AddNewCategoryForm = () => {
 
   const addNewCategory = () => {
     const axiosAddCategory = async () => {
-      await axios.post("http://192.168.0.86:8080/api/category/add", category);
+      await axios.post("https://alconn.co/api/category/add", category);
     };
     axiosAddCategory();
     alert("카테고리 등록 완료!!!");
@@ -33,7 +33,7 @@ const AddNewCategoryForm = () => {
 
   const deleteCategory = () => {
     const axiosDeleteCategory = async () => {
-      await axios.delete("http://192.168.0.86:8080/api/category/delete", {
+      await axios.delete("https://alconn.co/api/category/delete", {
         params: { categoryId },
       });
     };

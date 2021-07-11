@@ -45,9 +45,7 @@ const ProductList = (props) => {
   useEffect(() => {
     if (props.match.path === "/product") {
       const res = async () => {
-        const result = await axios.get(
-          "http://192.168.0.86:8080/api/item/search"
-        );
+        const result = await axios.get("https://alconn.co/api/item/search");
         setProductList(result.data.data.list);
       };
       res();
@@ -69,7 +67,7 @@ const ProductList = (props) => {
 
       const res = async () => {
         const result = await axios.request({
-          url: "http://192.168.0.86:8080/api/item/search",
+          url: "https://alconn.co/api/item/search",
           method: "get",
           params,
         });
@@ -79,7 +77,7 @@ const ProductList = (props) => {
     } else {
       const res = async () => {
         const result = await axios.get(
-          "http://192.168.0.86:8080/api/item/list/categoryid=" +
+          "https://alconn.co/api/item/list/categoryid=" +
             props.match.params.categoryId
         );
         setProductList(result.data.data);

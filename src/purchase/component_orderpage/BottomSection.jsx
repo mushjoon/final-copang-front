@@ -46,7 +46,7 @@ function BottomSection(props) {
       orderItems : props.convert(), //상품들의 배열
     }
     
-    const result = await axios.post("http://192.168.0.86:8080/api/orders/ready",orderData);
+    const result = await axios.post("https://alconn.co/api/orders/ready",orderData);
     setOrderId(result.data.data.orderId);
   }
 
@@ -70,7 +70,7 @@ function BottomSection(props) {
     const { imp_uid, success, merchant_uid, error_msg } = res;
 
     if(success) {
-      const result = await axios.post("http://192.168.0.86:8080/api/orders/"+orderId+"/pay/"+imp_uid) // 우리쪽 api로 imp_uid 보내고 result 받아옴
+      const result = await axios.post("https://alconn.co/api/orders/"+orderId+"/pay/"+imp_uid) // 우리쪽 api로 imp_uid 보내고 result 받아옴
 
       //카트에서 주문했으면 주문한 상품들 카트에서 비우기
       if(props.from === "cart")
@@ -79,7 +79,7 @@ function BottomSection(props) {
         for(let i=0; i<cartItems.length; i++)
         {
           const axiosDelCart = () => {
-            const delres = axios.delete("http://192.168.0.86:8080/api/cart/item/"+cartItems[i].itemDetailId);
+            const delres = axios.delete("https://alconn.co/api/cart/item/"+cartItems[i].itemDetailId);
             console.log("delete 결과:");
             console.log(delres);
           }

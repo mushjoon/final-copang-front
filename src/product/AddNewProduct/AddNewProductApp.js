@@ -20,7 +20,7 @@ const AddNewProductApp = () => {
     const objectURL = URL.createObjectURL(file);
     const formData = new FormData();
     formData.append("image", file);
-    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
+    const res = await axios.post("https://alconn.co/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -36,7 +36,7 @@ const AddNewProductApp = () => {
     //setMainImg(file);
     const formData = new FormData();
     formData.append("image", file);
-    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
+    const res = await axios.post("https://alconn.co/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -84,7 +84,7 @@ const AddNewProductApp = () => {
   const subImageUpload = async () => {
     const formData = new FormData();
     formData.append("image", subImg);
-    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
+    const res = await axios.post("https://alconn.co/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -175,7 +175,7 @@ const AddNewProductApp = () => {
 
   const addProduct = () => {
     const axiosAddProduct = async () => {
-      await axios.post("http://192.168.0.86:8080/api/item/add", productData);
+      await axios.post("https://alconn.co/api/item/add", productData);
       //=============================================================================================================//
       //======================상품이 성공적으로 등록되면 메인 창으로 이동 하도록 코드 입력!!!!!!!!!!!!!==================//
       //=============================================================================================================//
@@ -277,9 +277,7 @@ const AddNewProductApp = () => {
     console.log(productData.itemDetailFormList);
 
     const readAllCategory = async () => {
-      const result = await axios.get(
-        "http://192.168.0.86:8080/api/category/list"
-      );
+      const result = await axios.get("https://alconn.co/api/category/list");
       //console.log(result);
 
       setLargeCategory(result.data.data.cildCategory);

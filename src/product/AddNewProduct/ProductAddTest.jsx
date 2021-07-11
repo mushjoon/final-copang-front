@@ -13,7 +13,7 @@ const ProductAddTest = () => {
   const imgUpload = async () => {
     const formData = new FormData();
     formData.append("image", img);
-    const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
+    const res = await axios.post("https://alconn.co/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -60,7 +60,7 @@ const ProductAddTest = () => {
 
   const addProduct = () => {
     const axiosAddProduct = async () => {
-      await axios.post("http://192.168.0.86:8080/api/item/add", productData);
+      await axios.post("https://alconn.co/api/item/add", productData);
     };
     axiosAddProduct();
     alert("상품이 등록되었습니다.");

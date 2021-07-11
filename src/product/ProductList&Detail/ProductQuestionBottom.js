@@ -63,7 +63,7 @@ const ProductQuestionBottom = (props) => {
 
   const Questionres = async () => {
     const result = await axios.get(
-      "http://192.168.0.86:8080/api/inquiry/" + itemId + "/item"
+      "https://alconn.co/api/inquiry/" + itemId + "/item"
     );
     for (let i = 0; i < result.data.data.length; i++) {
       result.data.data[i].check = false;
@@ -76,7 +76,7 @@ const ProductQuestionBottom = (props) => {
   useEffect(() => {
     const ProductOneres = async () => {
       const result = await axios.get(
-        "http://192.168.0.86:8080/api/item/list/itemid=" + itemId
+        "https://alconn.co/api/item/list/itemid=" + itemId
       );
       setProductOne(result.data.data);
     };
@@ -112,7 +112,7 @@ const ProductQuestionBottom = (props) => {
           ProductOne.itemDetailFormList &&
           ProductOne.itemDetailFormList[0].sellerName,
       };
-      await axios.post("http://192.168.0.86:8080/api/inquiry", questionData);
+      await axios.post("https://alconn.co/api/inquiry", questionData);
       console.log(questionData);
     };
     axiosAddQuestion().then(() => Questionres());
@@ -126,8 +126,8 @@ const ProductQuestionBottom = (props) => {
   //             "inquiry": Question[idx].inquiryId,
   //             "content": replyContent.replyContent,
   //         }
-  //         await axios.post("http://192.168.0.86:8080/api/inquiry/" + Question[idx].inquiryId + "/reply", replyData);
-  //         const result = await axios.get("http://192.168.0.86:8080/api/inquiry/" + itemId + "/item");
+  //         await axios.post("https://alconn.co/api/inquiry/" + Question[idx].inquiryId + "/reply", replyData);
+  //         const result = await axios.get("https://alconn.co/api/inquiry/" + itemId + "/item");
   //         setQuestion(result.data.data);
   //         setRefresh(prev => prev + 1)
   //     }
@@ -143,7 +143,7 @@ const ProductQuestionBottom = (props) => {
         content: questionFix,
       };
       await axios.put(
-        "http://192.168.0.86:8080//api/inquiry/" + Question[idx].inquiryId,
+        "https://alconn.co//api/inquiry/" + Question[idx].inquiryId,
         fixQuestionData
       );
     };

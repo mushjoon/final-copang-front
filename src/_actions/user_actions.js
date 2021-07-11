@@ -30,7 +30,7 @@ export function autoLoginWithAccessToken() {
       "accessToken"
     )}`;
     const res = axios
-      .get("http://192.168.0.86:8080/api/user")
+      .get("https://alconn.co/api/user")
       .then((response) => response.data);
   }
 }
@@ -76,7 +76,7 @@ export function auth() {
     .catch((err) => {
       return {
         type: AUTH_USER,
-        message: err.response.data.message,
+        message: err.response,
       };
     });
 

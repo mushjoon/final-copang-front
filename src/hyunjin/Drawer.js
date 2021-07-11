@@ -14,9 +14,7 @@ export const Drawer = ({ position }) => {
   const [list, setList] = useState();
   useEffect(() => {
     const axiosList = async () => {
-      const result = await axios.get(
-        "http://192.168.0.86:8080/api/category/list"
-      );
+      const result = await axios.get("https://alconn.co/api/category/list");
       console.log("카테고리 출력");
       console.log(result);
       setList(result.data.data.cildCategory);

@@ -18,7 +18,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const MyCopangReview = ({ history }) => {
   const [reviewList, setReviewList] = useState([]);
-  const uri = "http://192.168.0.86:8080/api/review/user";
+  const uri = "https://alconn.co/api/review/user";
   const getReviewList = async () => {
     const { data } = await axios.get(uri);
     setReviewList(data);

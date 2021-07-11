@@ -7,54 +7,46 @@ const Test = () => {
   const [data, setData] = useState();
 
   const getProductList = async () => {
-    const result = await axios.get("http://192.168.0.86:8080/api/item/list/0");
+    const result = await axios.get("https://alconn.co/api/item/list/0");
     setRes(result.data.data);
   };
   const getProductId = async () => {
     const result = await axios.get(
-      "http://192.168.0.86:8080/api/item/list/itemid=" + input
+      "https://alconn.co/api/item/list/itemid=" + input
     );
     setRes(result.data.data);
   };
   const getProductReview = async () => {
-    const result = await axios.get(
-      "http://192.168.0.86:8080/api/review/" + input
-    );
+    const result = await axios.get("https://alconn.co/api/review/" + input);
   };
   const getProductCategory = async () => {
     const result = await axios.get(
-      "http://192.168.0.86:8080/api/item/list/categoryid=" + input
+      "https://alconn.co/api/item/list/categoryid=" + input
     );
     setRes(result.data.data);
   };
   const getUserInfo = async () => {
-    const result = await axios.get("http://192.168.0.86:8080/api/user");
+    const result = await axios.get("https://alconn.co/api/user");
     setRes(result.data.data);
   };
   const getUserOrder = async () => {
-    const result = await axios.get(
-      "http://192.168.0.86:8080/api/orders/client"
-    );
+    const result = await axios.get("https://alconn.co/api/orders/client");
     setRes(result.data.data);
   };
   const getUserCart = async () => {
-    const result = await axios.get("http://192.168.0.86:8080/api/cart");
+    const result = await axios.get("https://alconn.co/api/cart");
     setRes(result.data.data);
   };
   const getUserReview = async () => {
-    const result = await axios.get("http://192.168.0.86:8080/api/review/user");
+    const result = await axios.get("https://alconn.co/api/review/user");
     setRes(result.data.data);
   };
   const getCategoryMain = async () => {
-    const result = await axios.get(
-      "http://192.168.0.86:8080/api/category/main"
-    );
+    const result = await axios.get("https://alconn.co/api/category/main");
     setRes(result.data.data);
   };
   const getCategoryList = async () => {
-    const result = await axios.get(
-      "http://192.168.0.86:8080/api/category/list"
-    );
+    const result = await axios.get("https://alconn.co/api/category/list");
     setRes(result.data.data);
   };
 
@@ -64,7 +56,7 @@ const Test = () => {
   };
   const updateReview = async () => {
     const result = await axios.put(
-      "http://192.168.0.86:8080/api/review/" + input,
+      "https://alconn.co/api/review/" + input,
       reviewData
     );
     setData(reviewData);
@@ -87,7 +79,7 @@ const Test = () => {
 
   const addOption = async () => {
     const result = await axios.post(
-      "http://192.168.0.86:8080/api/item/add/detail",
+      "https://alconn.co/api/item/add/detail",
       addOptionData
     );
     setData(addOptionData);
@@ -95,7 +87,7 @@ const Test = () => {
   };
   const deleteOption = async () => {
     const result = await axios.delete(
-      "http://192.168.0.86:8080/api/item/delete/item-detail/" + 1183
+      "https://alconn.co/api/item/delete/item-detail/" + 1183
     );
     setRes(result.data.data);
   };
@@ -118,7 +110,7 @@ const Test = () => {
 
   const updateOption = async () => {
     const result = await axios.put(
-      "http://192.168.0.86:8080/api/item/update",
+      "https://alconn.co/api/item/update",
       updateOptionData
     );
     setData(updateOptionData);
@@ -144,7 +136,7 @@ const Test = () => {
   };
   const updateOptionList = async () => {
     const result = await axios.put(
-      "http://192.168.0.86:8080/api/item/update/list",
+      "https://alconn.co/api/item/update/list",
       updateOptionListData
     );
     setData(updateOptionListData);
@@ -153,12 +145,12 @@ const Test = () => {
 
   const proceedOrder = async () => {
     const result = await axios.patch(
-      "http://192.168.0.86:8080/api/orders/" + 83 + "/proceed"
+      "https://alconn.co/api/orders/" + 83 + "/proceed"
     );
     setRes(result.data.data);
   };
   const getOrderOne = async () => {
-    const result = await axios.get("http://192.168.0.86:8080/api/orders/" + 83);
+    const result = await axios.get("https://alconn.co/api/orders/" + 83);
     setRes(result.data.data);
   };
 
@@ -167,28 +159,21 @@ const Test = () => {
     itemDetailId: 54,
   };
   const addQuestion = async () => {
-    const result = await axios.post(
-      "http://192.168.0.86:8080/api/inquiry",
-      question
-    );
+    const result = await axios.post("https://alconn.co/api/inquiry", question);
     setData(question);
     setRes(result.data.data);
   };
   const getQuestionUser = async () => {
-    const result = await axios.get(
-      "http://192.168.0.86:8080/api/inquiry/client"
-    );
+    const result = await axios.get("https://alconn.co/api/inquiry/client");
     setRes(result.data.data);
   };
   const getQuestionSeller = async () => {
-    const result = await axios.get(
-      "http://192.168.0.86:8080/api/inquiry/seller"
-    );
+    const result = await axios.get("https://alconn.co/api/inquiry/seller");
     setRes(result.data.data);
   };
   const getQuestionProduct = async () => {
     const result = await axios.get(
-      "http://192.168.0.86:8080/api/inquiry/" + 53 + "/item"
+      "https://alconn.co/api/inquiry/" + 53 + "/item"
     );
     setRes(result.data.data);
   };
@@ -196,7 +181,7 @@ const Test = () => {
   const reply = { content: "문의사항에 대한 답변" };
   const addReply = async () => {
     const result = await axios.post(
-      "http://192.168.0.86:8080/api/inquiry/" + 151 + "/reply",
+      "https://alconn.co/api/inquiry/" + 151 + "/reply",
       reply
     );
     setData(reply);
@@ -206,7 +191,7 @@ const Test = () => {
   const question2 = { content: "문의 수정3333" };
   const updateQuestion = async () => {
     const result = await axios.put(
-      "http://192.168.0.86:8080/api/inquiry/" + 151,
+      "https://alconn.co/api/inquiry/" + 151,
       question2
     );
     setData(question2);
@@ -216,7 +201,7 @@ const Test = () => {
   const reply2 = { content: "답변 수정" };
   const updateReply = async () => {
     const result = await axios.put(
-      "http://192.168.0.86:8080/api/inquiry/" + 151 + "/reply",
+      "https://alconn.co/api/inquiry/" + 151 + "/reply",
       reply2
     );
     setData(reply2);

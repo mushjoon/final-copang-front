@@ -10,7 +10,7 @@ const ProductReviewBottom = (props) => {
   useEffect(() => {
     const res = async () => {
       const result = await axios.get(
-        "http://192.168.0.86:8080/api/item/list/itemid=" + itemId
+        "https://alconn.co/api/item/list/itemid=" + itemId
       );
       setProductOne(result.data.data);
     };
@@ -20,9 +20,7 @@ const ProductReviewBottom = (props) => {
   const [Review, setReview] = useState([]);
   useEffect(() => {
     const res = async () => {
-      const result = await axios.get(
-        "http://192.168.0.86:8080/api/review/" + itemId
-      );
+      const result = await axios.get("https://alconn.co/api/review/" + itemId);
       setReview(result.data.data);
       console.log(result.data);
     };

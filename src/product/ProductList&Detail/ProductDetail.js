@@ -16,7 +16,7 @@ const ProductDetail = ({ match, history }) => {
   useEffect(() => {
     const res = async () => {
       const result = await axios.get(
-        "http://192.168.0.86:8080/api/item/list/itemid=" + itemId
+        "https://alconn.co/api/item/list/itemid=" + itemId
       );
       setProductOne(result.data.data);
     };
@@ -27,9 +27,7 @@ const ProductDetail = ({ match, history }) => {
 
   useEffect(() => {
     const res = async () => {
-      const result = await axios.get(
-        "http://192.168.0.86:8080/api/item/list/0"
-      );
+      const result = await axios.get("https://alconn.co/api/item/list/0");
       console.log(result.data.data.list);
       result.data.data.list.sort(() => Math.random() - 0.5);
       console.log(result.data.data.list);
@@ -238,7 +236,7 @@ const ProductDetail = ({ match, history }) => {
                   const axiosAddOneCart = async () => {
                     const token = localStorage.getItem("accessToken");
                     await axios.post(
-                      "http://192.168.0.86:8080/api/cart/item",
+                      "https://alconn.co/api/cart/item",
                       sendData,
                       {
                         headers: {

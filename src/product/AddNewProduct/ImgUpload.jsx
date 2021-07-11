@@ -15,7 +15,7 @@ const ImgUpload = (props) => {
   // const imgUpload = async () => {
   //   const formData = new FormData();
   //   formData.append("image", img);
-  //   const res = await axios.post("http://192.168.0.86:8080/upload", formData, {
+  //   const res = await axios.post("https://alconn.co/upload", formData, {
   //     headers: {
   //       "Content-Type": "multipart/form-data",
   //     },

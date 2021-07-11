@@ -26,7 +26,7 @@ const MainPage = ({ history }) => {
   useEffect(() => {
     const res = async () => {
       const result = await axios.get(
-        "http://localhost:8080/api/item/list/categoryid=" + 2
+        "https://alconn.co/api/item/list/categoryid=" + FURNITURE_CATEGORY_ID
       );
       setFuniture(result.data.data);
       console.log(result.data);

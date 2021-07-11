@@ -204,7 +204,7 @@ function Header(props) {
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link exact to="/" className={classes.linkBasic}>
-              <img src="logo.png" alt="logo" />
+              <img src={"logo.png"} alt="logo" />
             </Link>
           </Typography>
           <div className={classes.search}>

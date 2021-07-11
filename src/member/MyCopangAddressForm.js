@@ -33,7 +33,7 @@ export default function MyCopangAddressForm({ history }) {
 
   //주소 저장하기
   const SubmitAddr = () => {
-    const uri = "http://192.168.0.86:8080/api/address";
+    const uri = "https://alconn.co/api/address";
     const postAddr = async () => {
       await axios
         .post(uri, addrValues)
