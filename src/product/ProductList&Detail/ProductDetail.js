@@ -50,7 +50,7 @@ const ProductDetail = ({ match, history }) => {
   const onChangeOptIdx = (e) => {
     setOptIdx(e.target.selectedIndex);
   };
-
+  console.log(ProductOne)
   return (
     <div className="total-wrap">
       <div className="totaldesc">
@@ -84,9 +84,6 @@ const ProductDetail = ({ match, history }) => {
                   <StarIcon className="emptyStar" />
                   <StarIcon className="emptyStar" />
                   <StarIcon className="emptyStar" />
-                  <span className="ReviewCount">
-                    ({ProductOne.countReviews})
-                  </span>
                 </div>
               ) : Math.round(ProductOne.averageRating) === 2 ? (
                 <div>
@@ -95,9 +92,6 @@ const ProductDetail = ({ match, history }) => {
                   <StarIcon className="emptyStar" />
                   <StarIcon className="emptyStar" />
                   <StarIcon className="emptyStar" />
-                  <span className="ReviewCount">
-                    ({ProductOne.countReviews})
-                  </span>
                 </div>
               ) : Math.round(ProductOne.averageRating) === 3 ? (
                 <div>
@@ -106,9 +100,6 @@ const ProductDetail = ({ match, history }) => {
                   <StarIcon className="smstar"></StarIcon>
                   <StarIcon className="emptyStar" />
                   <StarIcon className="emptyStar" />
-                  <span className="ReviewCount">
-                    ({ProductOne.countReviews})
-                  </span>
                 </div>
               ) : Math.round(ProductOne.averageRating) === 4 ? (
                 <div>
@@ -117,9 +108,6 @@ const ProductDetail = ({ match, history }) => {
                   <StarIcon className="smstar"></StarIcon>
                   <StarIcon className="smstar"></StarIcon>
                   <StarIcon className="emptyStar" />
-                  <span className="ReviewCount">
-                    ({ProductOne.countReviews})
-                  </span>
                 </div>
               ) : Math.round(ProductOne.averageRating) === 5 ? (
                 <div>
@@ -128,13 +116,11 @@ const ProductDetail = ({ match, history }) => {
                   <StarIcon className="smstar"></StarIcon>
                   <StarIcon className="smstar"></StarIcon>
                   <StarIcon className="smstar"></StarIcon>
-                  <span className="ReviewCount">
-                    ({ProductOne.countReviews})
-                  </span>
                 </div>
               ) : (
                 <div></div>
               )}
+              {(ProductOne.countReviews)}
             </div>
             <div className="productPrice">
               <div style={{ marginTop: "10px" }}>
@@ -292,7 +278,7 @@ const ProductDetail = ({ match, history }) => {
                 if (idx >= 8) return;
                 else
                   return (
-                    <li
+                    <li className="otherProduct"
                       row={row}
                       key={idx}
                       onClick={() => {

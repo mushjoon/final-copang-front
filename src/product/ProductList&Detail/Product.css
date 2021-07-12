@@ -223,6 +223,7 @@ div.product-review-header {
 .star {
   width: 50px;
   color: orange;
+  margin-right: 0%;
 }
 
 span.reviewlength {
@@ -466,10 +467,81 @@ ul.MainImage li {
   margin: 3px;
   float: left;
   cursor: pointer;
-  border: 1px solid #777;
+  border: 1px solid white;
   padding: 0%;
 }
 
 span.ReviewCount {
   color: #aaa;
+}
+
+li.todayFind:hover{
+  border: 1px solid rgb(168, 166, 166);
+}
+
+li.todayShoping:hover{
+  border: 1px solid rgb(247, 243, 243);
+  text-decoration-line: underline;
+}
+
+li.hotBook:hover{
+  border: 1px solid rgb(247, 243, 243);
+  text-decoration-line: underline;
+}
+
+li.doYouNeed:hover{
+  border: 1px solid rgb(247, 243, 243);
+  text-decoration-line: underline;
+}
+
+li.otherProduct:hover{
+  border: 1px solid rgb(247, 243, 243);
+  text-decoration-line: underline;
+}
+
+li.todayFind:hover img{
+  transform: scale(1.02);
+  transition: transform 0.5s;
+  filter: brightness(90%);
+}
+
+li.todayShoping:hover img{
+  transform: scale(1.02);
+  transition: transform 0.5s;
+  filter: brightness(90%);
+}
+
+li.hotBook:hover img{
+  transform: scale(1.02);
+  transition: transform 0.5s;
+  filter: brightness(90%);
+}
+
+li.doYouNeed:hover img{
+  transform: scale(1.02);
+  transition: transform 0.5s;
+  filter: brightness(90%);
+}
+
+li.otherProduct:hover{
+  border: 1px solid rgb(247, 243, 243);
+  text-decoration-line: underline;
+}
+
+
+li.otherProduct:hover img{
+transform: scale(1.05);
+transition: transform 0.5s;
+filter: brightness(90%);
+}
+
+li.RowItemList:hover{
+  border: 1px solid rgb(247, 243, 243);
+  text-decoration-line: underline;
+}
+
+li.RowItemList:hover img{
+  transform: scale(1.05);
+  transition: transform 0.5s;
+  filter: brightness(90%);
 }

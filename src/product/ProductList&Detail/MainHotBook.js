@@ -38,7 +38,7 @@ const MainHotBook = ({ history }) => {
                     float: "left",
                   }}
                 >
-                  <li
+                  <li className="hotBook"
                     row={row}
                     key={idx}
                     style={{
