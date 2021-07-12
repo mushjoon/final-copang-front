@@ -475,72 +475,71 @@ span.ReviewCount {
   color: #aaa;
 }
 
-li.todayFind:hover{
+li.todayFind:hover {
   border: 1px solid rgb(168, 166, 166);
 }
 
-li.todayShoping:hover{
+li.todayShoping:hover {
   border: 1px solid rgb(247, 243, 243);
   text-decoration-line: underline;
 }
 
-li.hotBook:hover{
+li.hotBook:hover {
   border: 1px solid rgb(247, 243, 243);
   text-decoration-line: underline;
 }
 
-li.doYouNeed:hover{
+li.doYouNeed:hover {
   border: 1px solid rgb(247, 243, 243);
   text-decoration-line: underline;
 }
 
-li.otherProduct:hover{
+li.otherProduct:hover {
   border: 1px solid rgb(247, 243, 243);
   text-decoration-line: underline;
 }
 
-li.todayFind:hover img{
+li.todayFind:hover img {
   transform: scale(1.02);
   transition: transform 0.5s;
   filter: brightness(90%);
 }
 
-li.todayShoping:hover img{
+li.todayShoping:hover img {
   transform: scale(1.02);
   transition: transform 0.5s;
   filter: brightness(90%);
 }
 
-li.hotBook:hover img{
+li.hotBook:hover img {
   transform: scale(1.02);
   transition: transform 0.5s;
   filter: brightness(90%);
 }
 
-li.doYouNeed:hover img{
+li.doYouNeed:hover img {
   transform: scale(1.02);
   transition: transform 0.5s;
   filter: brightness(90%);
 }
 
-li.otherProduct:hover{
+li.otherProduct:hover {
   border: 1px solid rgb(247, 243, 243);
   text-decoration-line: underline;
 }
 
-
-li.otherProduct:hover img{
-transform: scale(1.05);
-transition: transform 0.5s;
-filter: brightness(90%);
+li.otherProduct:hover img {
+  transform: scale(1.05);
+  transition: transform 0.5s;
+  filter: brightness(90%);
 }
 
-li.RowItemList:hover{
+li.RowItemList:hover {
   border: 1px solid rgb(247, 243, 243);
   text-decoration-line: underline;
 }
 
-li.RowItemList:hover img{
+li.RowItemList:hover img {
   transform: scale(1.05);
   transition: transform 0.5s;
   filter: brightness(90%);
