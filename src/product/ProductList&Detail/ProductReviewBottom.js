@@ -22,11 +22,9 @@ const ProductReviewBottom = (props) => {
     const res = async () => {
       const result = await axios.get("https://alconn.co/api/review/" + itemId);
       setReview(result.data.data);
-      console.log(result.data);
     };
     res();
   }, []);
-  console.log(Review);
   const [modalOpen, setModelOpen] = useState(false);
 
   const openModal = () => {
@@ -36,6 +34,8 @@ const ProductReviewBottom = (props) => {
   const closeModal = () => {
     setModelOpen(false);
   };
+
+  https://alconn.co/api/item/search?sorted=rating
 
   return (
     <div className="product-review-wrap">

@@ -28,9 +28,7 @@ const ProductDetail = ({ match, history }) => {
   useEffect(() => {
     const res = async () => {
       const result = await axios.get("https://alconn.co/api/item/list/0");
-      console.log(result.data.data.list);
       result.data.data.list.sort(() => Math.random() - 0.5);
-      console.log(result.data.data.list);
       setProductList(result.data.data);
     };
     res();
@@ -50,7 +48,6 @@ const ProductDetail = ({ match, history }) => {
   const onChangeOptIdx = (e) => {
     setOptIdx(e.target.selectedIndex);
   };
-  console.log(ProductOne)
   return (
     <div className="total-wrap">
       <div className="totaldesc">
@@ -232,7 +229,6 @@ const ProductDetail = ({ match, history }) => {
                     );
                   };
                   axiosAddOneCart();
-                  console.log(sendData);
                   alert("장바구니에 담겼습니다.");
                 }}
               >
@@ -275,7 +271,7 @@ const ProductDetail = ({ match, history }) => {
           <ul className="otherProduct-ul">
             {ProductList.list &&
               ProductList.list.map((row, idx) => {
-                if (idx >= 8) return;
+                if (idx >= 10) return;
                 else
                   return (
                     <li className="otherProduct"
@@ -284,8 +280,7 @@ const ProductDetail = ({ match, history }) => {
                       onClick={() => {
                         history.push(
                           "/product/selectOne/" +
-                            row.itemId +
-                            "/ProductDescBottom"
+                            row.itemId
                         );
                       }}
                     >
@@ -324,7 +319,7 @@ const ProductDetail = ({ match, history }) => {
               className="ProductDescBottom"
               onClick={() => {
                 history.push(
-                  "/product/selectOne/" + itemId + "/ProductDescBottom"
+                  "/product/selectOne/" + itemId
                 );
               }}
             >
@@ -334,7 +329,7 @@ const ProductDetail = ({ match, history }) => {
               className="ProductReviewBottom"
               onClick={() => {
                 history.push(
-                  "/product/selectOne/" + itemId + "/ProductReviewBottom"
+                  "/product/selectOne/" + itemId
                 );
               }}
             >
@@ -344,7 +339,7 @@ const ProductDetail = ({ match, history }) => {
               className="ProductQuestionBottom"
               onClick={() => {
                 history.push(
-                  "/product/selectOne/" + itemId + "/ProductQuestionBottom"
+                  "/product/selectOne/" + itemId
                 );
               }}
             >

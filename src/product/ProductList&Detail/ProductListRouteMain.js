@@ -18,15 +18,15 @@ const ProductListRouteMain = () => {
       <Route path="/product/search/option" component={ProductList} />
       <Route path="/product/selectOne/:itemId" component={ProductDetail} />
       <Route
-        path="/product/selectOne/:itemId/ProductDescBottom"
+        path="/product/selectOne/:itemId"
         component={ProductDescBottom}
       />
       <Route
-        path="/product/selectOne/:itemId/ProductReviewBottom"
+        path="/product/selectOne/:itemId"
         component={ProductReviewBottom}
       />
       <Route
-        path="/product/selectOne/:itemId/ProductQuestionBottom"
+        path="/product/selectOne/:itemId"
         component={ProductQuestionBottom}
       />
       <Route path="/order/do" component={OrderPageApp} />

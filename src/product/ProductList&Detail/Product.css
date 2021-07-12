@@ -31,7 +31,7 @@ img.productImage {
 }
 
 ul.otherProduct-ul li {
-  margin-right: 50px;
+  margin-right: 25px;
   width: 230px;
   display: inline-block;
   cursor: pointer;
@@ -136,7 +136,6 @@ div.cartPerchase {
 
 div.otherProduct {
   width: 100%;
-  margin-left: 10%;
 }
 
 div.productMenuBar {
@@ -175,6 +174,7 @@ div.product-question-desc-header {
   height: auto;
   min-height: 700px;
   border: 1px solid #aaa;
+  margin-top: 700px;
 }
 
 ul.product-question-desc {
