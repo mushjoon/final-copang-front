@@ -50,8 +50,7 @@ const MainToday = ({ history }) => {
                     onClick={() => {
                       history.push(
                         "/product/selectOne/" +
-                          row.itemId +
-                          "/ProductDescBottom"
+                          row.itemId
                       );
                     }}
                   >
