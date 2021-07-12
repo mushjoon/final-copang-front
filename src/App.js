@@ -42,7 +42,8 @@ const App = () => {
                     <div className={classes.root}>
                         <LinearProgress />
                         
-                    </div>
+
+            </div>
                 )}>
                     <LazyRoute />
                 </Suspense>
