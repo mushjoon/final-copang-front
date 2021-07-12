@@ -25,24 +25,20 @@ export function getCookie(cookieName) {
 }
 
 export function autoLoginWithAccessToken() {
-  if (getCookie("accessToken") !== "") {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${getCookie(
-      "accessToken"
-    )}`;
-    const res = axios
-      .get("https://alconn.co/api/user")
-      .then((response) => response.data);
-  }
+    if(getCookie("accessToken")!==""){
+        axios.defaults.headers.common['Authorization'] = `Bearer ${getCookie("accessToken")}`;
+        const res = axios.get(`${USER_SERVER}/user`)
+            .then(response => response.data);
+        ;
+    }
 }
 export function registerUser(dataToSubmit) {
-  const request = axios
-    .post(`${USER_SERVER}/auth/signup`, dataToSubmit)
-    .then((response) => response.data);
-
-  return {
-    type: REGISTER_USER,
-    payload: request,
-  };
+    const request = axios.post(`${USER_SERVER}/auth/signup`, dataToSubmit)
+        .then(response => response.data);
+    return {
+        type: REGISTER_USER,
+        payload: request
+    }
 }
 export function registerSeller(dataToSubmit) {
   const request = axios
@@ -69,16 +65,16 @@ export function loginUser(dataToSubmit) {
 }
 
 export function auth() {
-  //axios.defaults.header의 accesstoken값으로 사용자 인증
-  const request = axios
-    .get(`${USER_SERVER}/user`)
-    .then((response) => response.data)
-    .catch((err) => {
-      return {
-        type: AUTH_USER,
-        message: err.response,
-      };
-    });
+    //axios.defaults.header의 accesstoken값으로 사용자 인증
+    const request = axios.get(`${USER_SERVER}/user`)
+        .then(response => response.data)
+        .catch(err =>{
+            
+            return ({
+                type: AUTH_USER,
+                message: err.response
+            });
+        });
 
   return {
     type: AUTH_USER,

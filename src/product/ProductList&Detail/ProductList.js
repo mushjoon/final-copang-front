@@ -89,6 +89,30 @@ const ProductList = (props) => {
         params.categoryId = categoryId;
       }
 
+      if(data.sortCheck == true)
+      {
+        if(data.sortOpt === "인기순")
+          params.sorted = "ranking";
+        else if(data.sortOpt === "별점순")
+          params.sorted = "rating";
+        else if(data.sortOpt === "판매순")
+          params.sorted = "sales";
+        else if(data.sortOpt === "가격△")
+          params.sorted = "price";
+        else if(data.sortOpt === "가격▽")
+          params.sorted = "priceAsc";
+        else if(data.sortOpt === "리뷰순")
+          params.sorted = "review";
+        else if(data.sortOpt === "등록일△")
+          params.sorted = "date";
+        else if(data.sortOpt === "등록일▽")
+          params.sorted = "dateAsc";
+      }
+      if(categoryId !== null)
+      {
+        params.categoryId = categoryId;
+      }
+
       const res = async () => {
         const result = await axios.request({
           url: "https://alconn.co/api/item/search",
