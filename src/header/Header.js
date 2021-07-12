@@ -16,10 +16,12 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import logoImg from "../image/logo.png";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import axios from "axios";
+
 const useStyles = makeStyles((theme) => ({
   linkBasic: {
     color: "black",
@@ -204,7 +206,7 @@ function Header(props) {
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link exact to="/" className={classes.linkBasic}>
-              <img src={"logo.png"} alt="logo" />
+              <img src={logoImg} alt="logo" />
             </Link>
           </Typography>
           <div className={classes.search}>

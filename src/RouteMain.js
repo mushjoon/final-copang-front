@@ -36,34 +36,34 @@ const RouteMain = () => {
       {/* 자동로그인 */}
       {autoLoginWithAccessToken()}
       {/* <Suspense fallback={(<div>Loading...</div>)}> */}
-      <div style={{ minWidth: "940px", maxWidth: "1280px", margin: "auto" }}>
+      <div className="layout">
         <TopBar />
         <Header />
         <Menu />
-        <Switch>
-          <Route exact path="/" component={Auth(CategoryForm, null)} />
-          <Route path="/member/1" component={Cart} />
-          <Route path="/member/2" component={AddNewProductApp} />
-          <Route path="/member/3" component={MainPage} />
-          <Route path="/member/5" component={MyCopang} />
-          <Route path="/member/6" component={AddForm} />
-          <Route path="/member/7" component={Test22} />
-          <Route path="/member/8" component={Test} />
-          <Route path="/member/9" component={Drawer} />
-
-          <Route path="/login" component={Auth(LoginPage, false)} />
-          <Route path="/register" component={Auth(RegisterPage, false)} />
-          <Route
-            path="/sellerRegister"
-            component={Auth(RegisterSellerPage, false)}
-          />
-          <Route path="/product" component={ProductListRouteMain} />
-          <Route path="/cart" component={Auth(Cart, true)} />
-          <Route path="/mycopang" component={Auth(MyCopang, true)} />
-          <Route path="/order/complete" component={Auth(OrderComplete)} />
-          <Route path="/order/do" component={Auth(OrderPageApp)} />
-        </Switch>
       </div>
+      <Switch>
+        <Route exact path="/" component={Auth(CategoryForm, null)} />
+        <Route path="/member/1" component={Cart} />
+        <Route path="/member/2" component={AddNewProductApp} />
+        <Route path="/member/3" component={MainPage} />
+        <Route path="/member/5" component={MyCopang} />
+        <Route path="/member/6" component={AddForm} />
+        <Route path="/member/7" component={Test22} />
+        <Route path="/member/8" component={Test} />
+        <Route path="/member/9" component={Drawer} />
+
+        <Route path="/login" component={Auth(LoginPage, false)} />
+        <Route path="/register" component={Auth(RegisterPage, false)} />
+        <Route
+          path="/sellerRegister"
+          component={Auth(RegisterSellerPage, false)}
+        />
+        <Route path="/product" component={ProductListRouteMain} />
+        <Route path="/cart" component={Auth(Cart, true)} />
+        <Route path="/mycopang" component={Auth(MyCopang, true)} />
+        <Route path="/order/complete" component={Auth(OrderComplete)} />
+        <Route path="/order/do" component={Auth(OrderPageApp)} />
+      </Switch>
       {/* </Suspense> */}
     </div>
   );
