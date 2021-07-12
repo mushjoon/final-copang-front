@@ -96,26 +96,27 @@ function Header(props) {
   const user = useSelector((state) => state.user);
   //console.log(user.userData);
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [search, setSearch] = useState("");
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const history = useHistory();
 
   const handleEnter = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && search !== "") {
       const data = {
         keyword: search,
         priceCheck: false,
         dateCheck: false,
       };
       localStorage.setItem("keyword", search);
+      localStorage.removeItem("categoryId");
       history.push("/product/search/option", data);
     }
   };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [search, setSearch] = useState("");
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
