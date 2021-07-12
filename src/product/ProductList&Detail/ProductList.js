@@ -54,6 +54,7 @@ const ProductList = (props) => {
       let params = {};
       if(data.keyword !=="")
         params.keyword = data.keyword.replaceAll(" ","+");
+
       if(data.priceCheck === true)
       {
         if(data.priceOpt === "이상")
@@ -101,6 +102,7 @@ const ProductList = (props) => {
       >
         조건 검색
       </button>
+
       <div id="search-collapse" className="collapse" style={{ marginTop: "10px" }}>
         <div className="row col-10">
           <div className="col-3">
