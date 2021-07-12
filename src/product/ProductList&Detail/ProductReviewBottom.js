@@ -4,7 +4,8 @@ import Modal from "./ProductReviewModal";
 import StarIcon from "@material-ui/icons/Star";
 
 const ProductReviewBottom = (props) => {
-  let itemId = props.match.params.itemId;
+  // let itemId = props.match.params.itemId;
+  let itemId = props.itemId;
   //개별상품의 정보를 itemId로 받아 ProductOne에 저장
   const [ProductOne, setProductOne] = useState([]);
   useEffect(() => {
@@ -22,11 +23,9 @@ const ProductReviewBottom = (props) => {
     const res = async () => {
       const result = await axios.get("https://alconn.co/api/review/" + itemId);
       setReview(result.data.data);
-      console.log(result.data);
     };
     res();
   }, []);
-  console.log(Review);
   const [modalOpen, setModelOpen] = useState(false);
 
   const openModal = () => {
@@ -36,6 +35,8 @@ const ProductReviewBottom = (props) => {
   const closeModal = () => {
     setModelOpen(false);
   };
+
+  //alconn.co/api/item/search?sorted=rating
 
   return (
     <div className="product-review-wrap">
@@ -48,11 +49,11 @@ const ProductReviewBottom = (props) => {
           >
             상품리뷰&nbsp;&nbsp;
             <span style={{ width: "300px", height: "44" }}>
-              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
-              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
-              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
-              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
-              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
+              <StarIcon style={{ width: "30px" }} className="star"></StarIcon>
+              <StarIcon style={{ width: "30px" }} className="star"></StarIcon>
+              <StarIcon style={{ width: "30px" }} className="star"></StarIcon>
+              <StarIcon style={{ width: "30px" }} className="star"></StarIcon>
+              <StarIcon style={{ width: "30px" }} className="star"></StarIcon>
               &nbsp;&nbsp;
               <span className="reviewlength">{Review.length}</span>
             </span>

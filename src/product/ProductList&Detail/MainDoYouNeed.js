@@ -55,7 +55,7 @@ const MainDoYouNeed = ({ history }) => {
                       );
                     }}
                   >
-                    <dl style={{ marginTop: "0", marginBottom: "1rem;" }}>
+                    <dl style={{ marginTop: "0", marginBottom: "16px;" }}>
                       <dt>
                         <img
                           alt={row.mainImg}

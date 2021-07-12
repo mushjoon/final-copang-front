@@ -17,7 +17,7 @@ const ProductQuestionBottom = (props) => {
   //     setRefresh(prev => prev + 1)
   // }
 
-  useEffect(() => {}, [refresh]);
+  // useEffect(() => {}, [refresh]);
 
   const [questionFix, setQuestionFix] = useState({
     questionFix: "",
@@ -25,7 +25,6 @@ const ProductQuestionBottom = (props) => {
 
   const handleChange4 = (e) => {
     const { name, value } = e.target;
-    console.log(e.target);
     setQuestionFix({ fixQuestion, [name]: value });
   };
 
@@ -35,7 +34,6 @@ const ProductQuestionBottom = (props) => {
 
   const handleChange3 = (e) => {
     const { name, value } = e.target;
-    console.log(e.target);
     setReplyContent({ replyContent, [name]: value });
   };
 
@@ -45,7 +43,6 @@ const ProductQuestionBottom = (props) => {
     setOptionValue(
       ProductOne.itemDetailFormList[e.target.selectedIndex].optionValue
     );
-    console.log(optionValue);
   };
 
   const [content, setContent] = useState({
@@ -54,11 +51,11 @@ const ProductQuestionBottom = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target);
     setContent({ content, [name]: value });
   };
 
-  let itemId = props.match.params.itemId;
+  // let itemId = props.match.params.itemId;
+  let itemId = props.itemId;
   const [Question, setQuestion] = useState([]);
 
   const Questionres = async () => {
@@ -70,7 +67,6 @@ const ProductQuestionBottom = (props) => {
     }
     setQuestion(result.data.data);
   };
-  Questionres();
 
   const [ProductOne, setProductOne] = useState([]);
   useEffect(() => {
@@ -81,7 +77,9 @@ const ProductQuestionBottom = (props) => {
       setProductOne(result.data.data);
     };
     ProductOneres();
-  }, [itemId]);
+
+    Questionres();
+  }, []);
 
   const [modalOpen, setModelOpen] = useState(false);
 
@@ -113,7 +111,6 @@ const ProductQuestionBottom = (props) => {
           ProductOne.itemDetailFormList[0].sellerName,
       };
       await axios.post("https://alconn.co/api/inquiry", questionData);
-      console.log(questionData);
     };
     axiosAddQuestion().then(() => Questionres());
     alert("문의등록이 되었습니다.");
@@ -308,9 +305,7 @@ const ProductQuestionBottom = (props) => {
                         <div style={{ fontSize: "10pt", color: "#777" }}>
                           {row.itemName},{row.optionName},{row.optionValue}
                         </div>
-                        <button onClick={() => console.log(row)}>
-                          console
-                        </button>
+
                         <br />
                         <div style={{ height: "40px" }}>{row.content}</div>
                         {/* <div><button onClick={() => onClickReply(idx, row)} style={{ border: 'none', backgroundColor: 'white', color: '#346AFF' }} >답글달기</button>&nbsp;&nbsp;<button onClick={() => onClickFixQuestion(idx, row)} style={{ border: 'none', backgroundColor: 'white', color: 'green' }}>수정</button></div> */}

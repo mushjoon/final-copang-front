@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const ProductDescBottom = (props) => {
-  let itemId = props.match.params.itemId;
+  // let itemId = props.match.params.itemId;
+  let itemId = props.itemId;
   const [ProductOne, setProductOne] = useState();
   useEffect(() => {
     const res = async () => {
@@ -18,7 +19,11 @@ const ProductDescBottom = (props) => {
   return (
     <div className="product-detail-desc">
       <div>
-        <img alt="itemComment" src={ProductOne && ProductOne.itemComment} />
+        {ProductOne && ProductOne.itemComment.substring(0, 5) === "https" ? (
+          <img alt="itemComment" src={ProductOne && ProductOne.itemComment} />
+        ) : (
+          "등록된 상품설명이 없습니다"
+        )}
       </div>
       {/* <div><img alt="사진1" src="/상품상세1.PNG"/></div> 
                 <div><img alt="사진2" src="/상품상세2.PNG"/></div> */}

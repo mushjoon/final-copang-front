@@ -17,18 +17,7 @@ const ProductListRouteMain = () => {
       <Route path="/product/category/:categoryId" component={ProductList} />
       <Route path="/product/search/option" component={ProductList} />
       <Route path="/product/selectOne/:itemId" component={ProductDetail} />
-      <Route
-        path="/product/selectOne/:itemId/ProductDescBottom"
-        component={ProductDescBottom}
-      />
-      <Route
-        path="/product/selectOne/:itemId/ProductReviewBottom"
-        component={ProductReviewBottom}
-      />
-      <Route
-        path="/product/selectOne/:itemId/ProductQuestionBottom"
-        component={ProductQuestionBottom}
-      />
+
       <Route path="/order/do" component={OrderPageApp} />
       <Route
         path="/productReviewBottom/review/write/:itemId"
