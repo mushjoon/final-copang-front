@@ -38,7 +38,7 @@ const MainToday = ({ history }) => {
                     float: "left",
                   }}
                 >
-                  <li
+                  <li className="todayShoping"
                     row={row}
                     key={idx}
                     style={{

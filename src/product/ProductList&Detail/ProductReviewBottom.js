@@ -48,11 +48,11 @@ const ProductReviewBottom = (props) => {
           >
             상품리뷰&nbsp;&nbsp;
             <span style={{ width: "300px", height: "44" }}>
-              <StarIcon className="star"></StarIcon>
-              <StarIcon className="star"></StarIcon>
-              <StarIcon className="star"></StarIcon>
-              <StarIcon className="star"></StarIcon>
-              <StarIcon className="star"></StarIcon>
+              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
+              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
+              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
+              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
+              <StarIcon style={{width:'30px'}} className="star"></StarIcon>
               &nbsp;&nbsp;
               <span className="reviewlength">{Review.length}</span>
             </span>

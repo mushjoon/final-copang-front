@@ -37,7 +37,7 @@ const MainDoYouNeed = ({ history }) => {
                     float: "left",
                   }}
                 >
-                  <li
+                  <li className="doYouNeed"
                     row={row}
                     key={idx}
                     style={{
