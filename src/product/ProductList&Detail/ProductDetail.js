@@ -50,7 +50,7 @@ const ProductDetail = ({ match, history }) => {
   const onChangeOptIdx = (e) => {
     setOptIdx(e.target.selectedIndex);
   };
-  console.log(ProductOne)
+  console.log(ProductOne);
   return (
     <div className="total-wrap">
       <div className="totaldesc">
@@ -120,7 +120,7 @@ const ProductDetail = ({ match, history }) => {
               ) : (
                 <div></div>
               )}
-              {(ProductOne.countReviews)}
+              {ProductOne.countReviews}
             </div>
             <div className="productPrice">
               <div style={{ marginTop: "10px" }}>
@@ -278,7 +278,8 @@ const ProductDetail = ({ match, history }) => {
                 if (idx >= 8) return;
                 else
                   return (
-                    <li className="otherProduct"
+                    <li
+                      className="otherProduct"
                       row={row}
                       key={idx}
                       onClick={() => {
