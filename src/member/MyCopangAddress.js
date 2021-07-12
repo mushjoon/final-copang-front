@@ -82,23 +82,29 @@ const MyCopangAddress = ({ history, match, location }, props) => {
       <Card className={classes.root} variant="outlined">
         {addrList.map((addr) => (
           <Box>
-            <CardContent className={classes.cardContent} key={addr.addressId}>
+            <CardContent
+              className={classes.cardContent}
+              key={addr.addressId}
+              style={{ border: "1px solid black" }}
+            >
               <Typography
                 className={classes.title}
                 color="textSecondary"
                 gutterBottom
               >
-                <PersonRounded /> {addr.receiverName}
+                {/* <PersonRounded />  */}
+                {addr.receiverName}
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 {addr.priority === "PRIMARY" ? "기본배송지" : ""}
               </Typography>
               <Typography variant="h6" component="h2">
-                <MarkunreadMailboxRoundedIcon color={"primary"} />{" "}
+                {/* <MarkunreadMailboxRoundedIcon color={"primary"} />{" "} */}
                 {addr.address} {addr.detail}
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
-                <PhoneAndroidRounded /> {addr.receiverPhone}
+                {/* <PhoneAndroidRounded />  */}
+                {addr.receiverPhone}
               </Typography>
               <Typography className={classes.pos} color="textSecondary">
                 {addr.preRequest}
@@ -127,7 +133,11 @@ const MyCopangAddress = ({ history, match, location }, props) => {
         ))}
         <div
           className="MyCopangAddr-add-wrap"
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px",
+          }}
         >
           <Button
             variant="contained"

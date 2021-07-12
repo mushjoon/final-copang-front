@@ -42,10 +42,10 @@ const RouteMain = () => {
         <Menu />
       </div>
       <Switch>
-        <Route exact path="/" component={Auth(CategoryForm, null)} />
+        <Route exact path="/" component={MainPage} />
         <Route path="/member/1" component={Cart} />
         <Route path="/member/2" component={AddNewProductApp} />
-        <Route path="/member/3" component={MainPage} />
+        {/* <Route path="/mainpage" component={MainPage} /> */}
         <Route path="/member/5" component={MyCopang} />
         <Route path="/member/6" component={AddForm} />
         <Route path="/member/7" component={Test22} />

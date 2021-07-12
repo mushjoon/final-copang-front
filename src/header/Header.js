@@ -202,7 +202,7 @@ function Header(props) {
             color={"#333"}
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <MenuIcon style={{ fontSize: "2.5rem" }} />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             <Link exact to="/" className={classes.linkBasic}>
@@ -227,23 +227,23 @@ function Header(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="black">
+            {/* <IconButton aria-label="show 17 new notifications" color="black">
               <Badge badgeContent={1} color="secondary">
-                <NotificationsIcon />
+                <NotificationsIcon style={{ fontSize: "2.5rem" }} />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton aria-label="" color="black">
               <Link to="/mycopang" className={classes.linkBasic}>
-                <Badge badgeContent={3} color="secondary">
-                  <AccountCircle />
-                </Badge>
+                {/* <Badge badgeContent={3} color="secondary"> */}
+                <AccountCircle style={{ fontSize: "2.5rem" }} />
+                {/* </Badge> */}
               </Link>
             </IconButton>
             <IconButton aria-label="" color="black">
               <Link to="/cart" className={classes.linkBasic}>
-                <Badge badgeContent={3} color="secondary">
-                  <ShoppingCartIcon />
-                </Badge>
+                {/* <Badge badgeContent={3} color="secondary"> */}
+                <ShoppingCartIcon style={{ fontSize: "2.5rem" }} />
+                {/* </Badge> */}
               </Link>
             </IconButton>
             {/* <IconButton

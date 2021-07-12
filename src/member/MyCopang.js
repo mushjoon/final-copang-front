@@ -269,7 +269,7 @@ const MyCopangTemplate = () => {
   return (
     <Router>
       <section>
-        <div className="mc">
+        <div className="layout" style={{ display: "flex" }}>
           <div className="mc-side">
             <div className="mc-logo">MY 쿠팡</div>
             <div className="mc-shopping">

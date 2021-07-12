@@ -163,7 +163,8 @@ const Cart = (props) => {
   };
 
   return (
-    <div style={{ width: "1000px", margin: "0 auto", padding: "20px" }}>
+    // <div style={{ width: "1000px", margin: "0 auto", padding: "20px" }}>
+    <div className="layout">
       <h2>
         <b>
           <i className="fas fa-shopping-cart"></i> 장바구니
