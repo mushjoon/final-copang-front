@@ -21,7 +21,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import axios from "axios";
-
+import Drawer from "../hyunjin/Drawer";
 const useStyles = makeStyles((theme) => ({
   linkBasic: {
     color: "black",
@@ -197,14 +197,15 @@ function Header(props) {
         style={{ backgroundColor: "white" }}
       >
         <Toolbar>
-          <IconButton
+          <Drawer />
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color={"#333"}
             aria-label="open drawer"
-          >
-            <MenuIcon style={{ fontSize: "2.5rem" }} />
-          </IconButton>
+          > */}
+          {/* <MenuIcon style={{ fontSize: "2.5rem" }} />
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             <Link exact to="/" className={classes.linkBasic}>
               <img src={logoImg} alt="logo" />

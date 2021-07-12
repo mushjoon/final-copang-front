@@ -77,7 +77,6 @@ const ProductQuestionBottom = (props) => {
       setProductOne(result.data.data);
     };
     ProductOneres();
-
     Questionres();
   }, []);
 

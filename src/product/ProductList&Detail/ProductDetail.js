@@ -321,13 +321,13 @@ const ProductDetail = ({ match, history }) => {
               <li className="ProductReviewBottom">상품리뷰</li>
               <li className="ProductQuestionBottom">상품문의</li>
             </ul>
-            <div className="111">
+            <div>
               <ProductDescBottom itemId={itemId} />
             </div>
-            <div className="222">
+            <div>
               <ProductReviewBottom itemId={itemId} />
             </div>
-            <div className="333">
+            <div>
               <ProductQuestionBottom itemId={itemId} />
             </div>
           </div>

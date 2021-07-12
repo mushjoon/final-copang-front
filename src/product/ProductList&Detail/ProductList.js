@@ -114,8 +114,10 @@ const ProductList = (props) => {
 
   return (
     <div>
-      <div style={{ float: "left", width: "300px", height: "100px" }}>
-        <div style={{ marginTop: "10px" }}>
+      {/* <div style={{ float: "left", width: "300px", height: "100px" }}> */}
+      {/* <div style={{ marginTop: "10px" }}> */}
+      <div>
+        <div>
           <input
             value={priceCheck}
             onChange={(e) => setPriceCheck(e.target.checked)}
@@ -130,18 +132,20 @@ const ProductList = (props) => {
             type="text"
             className="form-control"
             id="price-input"
-            style={{ width: "100px", float: "left" }}
+            // style={{ width: "100px", float: "left" }}
           />
           <select
             value={priceOpt}
             onChange={(e) => setPriceOpt(e.target.value)}
             className="form-control"
             id="price-option"
-            style={{
-              width: "80px",
-              display: "inline-block",
-              marginLeft: "10px",
-            }}
+            style={
+              {
+                // width: "80px",
+                // display: "inline-block",
+                // marginLeft: "10px",
+              }
+            }
           >
             <option>이상</option>
             <option>이하</option>
@@ -159,18 +163,20 @@ const ProductList = (props) => {
             type="date"
             value={convertDate()}
             className="form-control"
-            style={{ width: "170px", float: "left" }}
+            // style={{ width: "170px", float: "left" }}
           />
           <select
             value={dateOpt}
             onChange={(e) => setDateOpt(e.target.value)}
             className="form-control"
             id="date-option"
-            style={{
-              width: "80px",
-              display: "inline-block",
-              marginLeft: "10px",
-            }}
+            style={
+              {
+                // width: "80px",
+                // display: "inline-block",
+                // marginLeft: "10px",
+              }
+            }
           >
             <option>이전</option>
             <option>이후</option>
@@ -188,7 +194,7 @@ const ProductList = (props) => {
             onChange={(e) => setSortOpt(e.target.value)}
             className="form-control"
             id="sort-option"
-            style={{ width: "150px" }}
+            // style={{ width: "150px" }}
           >
             <option selected>인기순</option>
             <option>별점순</option>
@@ -202,7 +208,7 @@ const ProductList = (props) => {
           <br />
           <button
             onClick={clickOptionSearch}
-            style={{ marginTop: "24px" }}
+            // style={{ marginTop: "24px" }}
             className="btn btn-primary"
             id="btn-option"
           >
@@ -211,7 +217,7 @@ const ProductList = (props) => {
         </div>
       </div>
       <div
-        style={{ display: "inline-block", width: "980px" }}
+        // style={{ display: "inline-block", width: "980px" }}
         className="productlist"
       >
         <br />
