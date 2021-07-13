@@ -88,7 +88,7 @@ export const Order = ({ history }) => {
           <div className="container">
             <div className="box-header">
               {/* <div className="header-date">{order.orderId}</div> */}
-              <div>{order.orderDate.substring(0, 10)}</div>
+              <div key={order.orderId}>{order.orderDate.substring(0, 10)}</div>
               <div className="header-detail"><Link to={{ pathname: '/mycopang/detail', state: { order } }}>주문 상세 정보 보기</Link></div>
             </div>
             {/* <div >{order.orderStatus}</div> */}

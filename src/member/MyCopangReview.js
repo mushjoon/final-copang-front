@@ -22,7 +22,7 @@ const MyCopangReview = ({ history }) => {
   const getReviewList = async () => {
     const { data } = await axios.get(uri);
     setReviewList(data);
-    // console.log(data);
+    console.log(data);
   };
   useEffect(() => {
     getReviewList();
@@ -82,7 +82,8 @@ const MyCopangReview = ({ history }) => {
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
-              {localStorage.getItem("userId").substring(0, 3)}
+              {reviewList.data &&
+                reviewList.data[0].writerName.substring(0, 3)}
             </Avatar>
           }
           action={
@@ -90,7 +91,8 @@ const MyCopangReview = ({ history }) => {
               <MoreVertIcon />
             </IconButton>
           }
-          title={localStorage.getItem("userId")}
+          title={reviewList.data &&
+            reviewList.data[0].writerName}
           subheader="내가 바로 리뷰어.."
         />
         <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
