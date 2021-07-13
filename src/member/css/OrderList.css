@@ -6,10 +6,7 @@
   background-color: white;
   margin-bottom: 20px;
   padding: 24px 24px 16px;
-<<<<<<< HEAD
   margin-left: 10px;
-=======
->>>>>>> dd4c2ce24b374ef18bad30dcef8e6a9a17734bb9
 }
 .box-header {
   height: 28px;
@@ -110,4 +107,8 @@
 
 .mypageleftlayout li {
   padding-left: 10px;
+}
+
+.mc-main-content {
+  min-height: 800px;
 }

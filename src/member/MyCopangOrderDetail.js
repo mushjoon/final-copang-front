@@ -126,15 +126,17 @@ const MyCopangOrderDetail = (props) => {
           ))}
       </div>
       <hr />
-      <h3>받는사람 정보</h3>
-      <div>받는 사람 : {orderDetail && orderDetail.address.receiverName}</div>
-      <div>연락처 : {orderDetail && orderDetail.address.receiverPhone}</div>
       <div>
-        받는 사람 주소 :{" "}
-        {orderDetail &&
-          orderDetail.address.address + " " + orderDetail.address.detail}
+        <h3>받는사람 정보</h3>
+        <div>받는 사람 : {orderDetail && orderDetail.address.receiverName}</div>
+        <div>연락처 : {orderDetail && orderDetail.address.receiverPhone}</div>
+        <div>
+          받는 사람 주소 :{" "}
+          {orderDetail &&
+            orderDetail.address.address + " " + orderDetail.address.detail}
+        </div>
+        <div>요청 사항 : {orderDetail && orderDetail.address.preRequest}</div>
       </div>
-      <div>요청 사항 : {orderDetail && orderDetail.address.preRequest}</div>
     </div>
   );
 };
