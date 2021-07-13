@@ -352,62 +352,68 @@ const MyCopangTemplate = () => {
       <section>
         <div className="layout" style={{ display: "flex" }}>
           <div className="mc-side">
-            <div className="mc-logo">MY 쿠팡</div>
-            <div className="mc-shopping">
-              <ul>
-                <li className="title-mid">My쇼핑</li>
-                <li>
-                  <Link exact="true" to="/mycopang">
-                    주문목록
-                  </Link>
-                </li>
-                <li>
-                  <Link exact="true" to="/mycopang/cancel-return">
-                    취소/반품/교환/환불내역
-                  </Link>
-                </li>
-                <li>정기배송관리</li>
-                <li>영수증 조회/출력</li>
-              </ul>
-            </div>
-            <div className="mc-benefit">
-              <ul>
-                <li className="title-mid">MY 혜택</li>
-                <li>할인쿠폰</li>
-                <li>쿠팡캐시/기프트카드</li>
-              </ul>
-            </div>
-            <div className="mc-activity">
-              <ul>
-                <li className="title-mid">My 활동</li>
+            <div className="mypageleftlayout">
+              <div className="mc-logo">MY 쿠팡</div>
+              <div className="mc-shopping">
+                <ul>
+                  <li className="title-mid">My쇼핑</li>
+                  <li>
+                    <Link exact="true" to="/mycopang">
+                      주문목록
+                    </Link>
+                  </li>
+                  <li>
+                    <Link exact="true" to="/mycopang/cancel-return">
+                      취소/반품/교환/환불내역
+                    </Link>
+                  </li>
+                  <li>정기배송관리</li>
+                  <li>영수증 조회/출력</li>
+                </ul>
+              </div>
+              <hr />
+              <div className="mc-benefit">
+                <ul>
+                  <li className="title-mid">MY 혜택</li>
+                  <li>할인쿠폰</li>
+                  <li>쿠팡캐시/기프트카드</li>
+                </ul>
+              </div>
+              <hr />
+              <div className="mc-activity">
+                <ul>
+                  <li className="title-mid">My 활동</li>
 
-                <li>
-                  <Link exact="true" to="/mycopang/review-page">
-                    리뷰 관리
-                  </Link>
-                </li>
-                <li>찜 리스트</li>
-              </ul>
-            </div>
-            <div className="mc-info">
-              <ul>
-                <li className="title-mid">My정보</li>
-                <li>
-                  <Link exact="true" to="/mycopang/userinfo">
-                    개인정보확인/수정
-                  </Link>
-                </li>
-                <li>
-                  <Link exact="true" to="/mycopang/co-pay">
-                    결제수단/쿠페이 관리
-                  </Link>
-                </li>
-                <li>
-                  <Link exact="true" to="/mycopang/my-addr">
-                    배송지 관리
-                  </Link>
-                </li>
-              </ul>
+                  <li>
+                    <Link exact="true" to="/mycopang/review-page">
+                      리뷰 관리
+                    </Link>
+                  </li>
+                  <li>찜 리스트</li>
+                </ul>
+              </div>
+              <hr />
+              <div className="mc-info">
+                <ul>
+                  <li className="title-mid">My정보</li>
+                  <li>
+                    <Link exact="true" to="/mycopang/userinfo">
+                      개인정보확인/수정
+                    </Link>
+                  </li>
+                  <li>
+                    <Link exact="true" to="/mycopang/co-pay">
+                      결제수단/쿠페이 관리
+                    </Link>
+                  </li>
+                  <li>
+                    <Link exact="true" to="/mycopang/my-addr">
+                      배송지 관리
+                    </Link>
+                  </li>
+                </ul>
+                <hr />
+              </div>
             </div>
           </div>
           <div className="mc-main">
