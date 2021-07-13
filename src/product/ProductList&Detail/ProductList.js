@@ -162,6 +162,7 @@ const ProductList = (props) => {
     } else if(props.match.path == "/product/keyword/:brand")
     {
       const res = async () => {
+        console.log(props.match.params);
         const result = await axios.request({
           url: "https://alconn.co/api/item/search",
           method: "get",
