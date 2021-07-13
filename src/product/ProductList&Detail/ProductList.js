@@ -61,7 +61,7 @@ const ProductList = (props) => {
       keyword,
     };
     console.log(data);
-    props.history.push("/product/search/option", data);
+    props.history.push("/product/search/categoryoption", data);
   };
 
   const enterPress = (e) => {
@@ -72,18 +72,24 @@ const ProductList = (props) => {
     setProductList([]);
     setLoad1(false);
     const path = props.match.path;
-    if (path.indexOf("/product/header") == -1) {
-      console.log("false!!");
+    if(path.indexOf("/product/header") == -1)
+    {
       setHeader("");
     }
-
+    if(path.indexOf("/product/search/categoryoption") == -1)
+    {
+      localStorage.removeItem("categoryId");
+    }
+    
     if (props.match.path === "/product") {
       const res = async () => {
         const result = await axios.get("https://alconn.co/api/item/search");
         setProductList(result.data.data.list);
       };
       res();
-    } else if (props.match.path === "/product/search/option") {
+    } else if (props.match.path === "/product/search/option" ||
+              props.match.path === "/product/search/categoryoption"
+    ) {
       const categoryId = localStorage.getItem("categoryId");
       const keyword = localStorage.getItem("keyword");
       const data = props.location.state;
