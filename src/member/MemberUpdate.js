@@ -10,7 +10,11 @@ import {
 import { loginUser, getCookie } from "../_actions/user_actions";
 import { useDispatch } from "react-redux";
 
-const MemberUpdate = (props,{history}) => {
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+
+const MemberUpdate = (props, { history }) => {
     let xs = 8;
     const [Username, setUsername] = useState("");
     const [userId, setUserId] = useState('');
@@ -29,6 +33,43 @@ const MemberUpdate = (props,{history}) => {
         console.log(data.data)
     }
     const dispatch = useDispatch();
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
+    const useStyles = makeStyles((abc) => ({
+        root: {
+            width: '100%',
+            '& > * + *': {
+                marginTop: abc.spacing(2),
+            },
+        },
+    }));
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+
+    // const handleClick = () => {
+    //     setOpen(true);
+    // };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const checkMessage = () => {
+        if (formErrorMessage === "로그인 실패") {
+                // <div className={classes.root}>
+                // <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
+                //     <Alert onClose={handleClose} severity="error">
+                //     </Alert>
+                // </Snackbar>
+                // </div>
+                alert("비밀번호를 확인해주세요.")
+        }
+    }
     const onSubmitHandler = (e) => {
         console.log("SubmitHandler 시작");
         setTimeout((e) => {
@@ -45,17 +86,18 @@ const MemberUpdate = (props,{history}) => {
                         window.localStorage.setItem('accessToken', accessToken);
                         document.cookie = `accessToken=${accessToken}`;
                         axios.defaults.headers.common['Authorization'] = `Bearer ${getCookie("accessToken")}`;
-                        props.history.push({pathname : "/mycopang/userinfo/updateform", state : {userId : userId}});
+                        props.history.push({ pathname: "/mycopang/userinfo/updateform", state: { userId: userId } });
                     } else {
                         setFormErrorMessage('비밀번호 또는 계정을 확인해주세요')
+                        checkMessage();
                     }
                 })
-
                 .catch(err => {
                     setFormErrorMessage('비밀번호 또는 계정을 확인해주세요')
                     setTimeout(() => {
                         setFormErrorMessage("로그인 실패")
-                    }, 3000);
+                        checkMessage();
+                    }, 2000);
                 });
         }, 500);
     };
@@ -90,13 +132,13 @@ const MemberUpdate = (props,{history}) => {
                 <Grid item xs={xs} sm={4}>
                     아이디
                     <TextField
-                        required
+                        disabled
                         id="username"
                         name="username"
                         value={userId.username}
                         fullWidth
                         autoComplete="given-name"
-                        // onChange={onUsernameHandler}
+                    // onChange={onUsernameHandler}
                     />
                 </Grid>
                 <Grid item xs={xs} sm={4}>
@@ -106,7 +148,6 @@ const MemberUpdate = (props,{history}) => {
                         id="password"
                         name="password"
                         type="password"
-                        // value={addrValues.receiverPhone}
                         fullWidth
                         onChange={onPasswordHanlder}
                     />
