@@ -18,7 +18,6 @@ const Menu = () => {
       <Link to="/product/header/free">무료 배송 상품</Link>&nbsp;/&nbsp;
       <Link to="/product/header/review">리뷰 많은 상품</Link>&nbsp;/&nbsp;
       <Link to="/product/header/new">최신 등록 상품</Link>&nbsp;/&nbsp;
-
       {/* <Link to="/product/header/display">오늘의 기획전</Link>&nbsp;&nbsp; */}
       {/* <Link to="/member/5">마이 페이지</Link> */}
       <br />
