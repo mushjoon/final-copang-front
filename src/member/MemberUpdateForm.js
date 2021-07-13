@@ -23,8 +23,8 @@ const MemberUpdateForm = (props) => {
     };
 
     const handleSubmit = async () => {
-        const putData = await axios.put("https://alconn.co/api/user",info);
-        // console.log(info);
+        const putData = await axios.put("https://alconn.co/api/user",info)
+        .then(()=> props.history.push({pathname : '/mycopang/userinfo'}));
     }
     return (
         <div>

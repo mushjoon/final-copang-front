@@ -132,7 +132,7 @@ const ProductList = (props) => {
         setProductList(result.data.data.list);
       };
       res();
-      setHeader("all");
+      setHeader("전체 상품목록");
     }
     else if (props.match.path == "/product/header/hot") {
       const res = async () => {
@@ -144,7 +144,7 @@ const ProductList = (props) => {
         setProductList(result.data.data.list);
       };
       res();
-      setHeader("hot");
+      setHeader("HOT! 인기상품");
     } else if (props.match.path == "/product/header/free") {
       const res = async () => {
         const result = await axios.request({
@@ -155,7 +155,7 @@ const ProductList = (props) => {
         setProductList(result.data.data.list);
       };
       res();
-      setHeader("free");
+      setHeader("무료 배송 상품");
     } else if (props.match.path == "/product/header/review") {
       const res = async () => {
         const result = await axios.request({
@@ -166,7 +166,7 @@ const ProductList = (props) => {
         setProductList(result.data.data.list);
       };
       res();
-      setHeader("review");
+      setHeader("리뷰 많은 상품");
     } else if (props.match.path == "/product/header/new") {
       const res = async () => {
         const result = await axios.request({
@@ -177,7 +177,7 @@ const ProductList = (props) => {
         setProductList(result.data.data.list);
       };
       res();
-      setHeader("new");
+      setHeader("최신 등록 상품");
     } else if(props.match.path == "/product/keyword/:brand")
     {
       const res = async () => {
@@ -206,7 +206,7 @@ const ProductList = (props) => {
 
   return (
     <div style={{ display: "flex" }}>
-      {header}
+      <div className="1234">{header}</div>
       {/* <div style={{ float: "left", width: "300px", height: "100px" }}> */}
       {/* <div style={{ marginTop: "10px" }}> */}
       <div style={{ width: "15%" }}>
