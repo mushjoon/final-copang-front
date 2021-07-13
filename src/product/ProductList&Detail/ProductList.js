@@ -6,7 +6,7 @@ import "./Product.css";
 import ProductListRowItem from "./ProductListRowItem";
 // import CategorySidebar from "./CategorySidebar";
 
-const SHABATH = "shabath";
+const SHABATH = "샤바스";
 
 const ProductList = (props) => {
   const convertDate = () => {
@@ -156,13 +156,16 @@ const ProductList = (props) => {
         setProductList(result.data.data.list);
       };
       res();
-    } else if (props.match.path == "/product/header/display") {
-    } else if (props.match.path == "/product/keyword/" + SHABATH) {
+    } else if(props.match.path == "/product/header/display")
+    {
+      
+    } else if(props.match.path == "/product/keyword/:brand")
+    {
       const res = async () => {
         const result = await axios.request({
           url: "https://alconn.co/api/item/search",
           method: "get",
-          params: { keyword: SHABATH },
+          params: { keyword : props.match.params.brand },
         });
         setProductList(result.data.data.list);
       };
