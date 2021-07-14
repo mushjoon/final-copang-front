@@ -64,7 +64,7 @@ const RouteMain = () => {
         <Route path="/order/complete" component={Auth(OrderComplete)} />
         <Route path="/order/do" component={Auth(OrderPageApp)} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
       {/* </Suspense> */}
     </div>
   );
